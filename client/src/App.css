@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+.Container, 
+.Search, 
+.FestivalList,
+ .Festival, 
+ .Hashtag, 
+ .Footer, 
+ .Navigationbar, 
+ img, 
+ .Tab,
+ .Tab div ,
+ .Detailviewpage,
+ .Detailview,
+ .Pickpage,
+ .Picklist,
+ .Pick,
+ .Pick div,
+ .Header{
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* .Navigationbar {
+  margin-left: 40rem;
+ 
+} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.list-flex {
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo-navi {
+  display: flex;
+ justify-content: space-between;
+}
+
+.Detailviewpage {
+  display: flex;
+}
+
+.Tab {
+  display: flex;
+}
+
+/* .Tab div {
+  border: 1px solid black;
+} */
+
+ .festival-info {
+  display: flex;
+}
+
+.Pickpage .title-navi, .Pick {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Pick {
+  border: 3px solid blue;
+}
+
+.Picklist {
+  border: 3px solid yellowgreen;
 }
