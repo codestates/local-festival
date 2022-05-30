@@ -1,12 +1,11 @@
 import React from "react";
-
+import Container from "../components/Container";
 const Mainpage = () => {
   return (
-    <div>
-      <h1>Mainpage입니다</h1>
+    <div className="Mainpage">
+      <Container />
     </div>
   );
 };
 
 export default Mainpage;
-<h1>Mainpage입니다</h1>;
