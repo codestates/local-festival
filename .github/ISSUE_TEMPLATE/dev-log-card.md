@@ -2,8 +2,8 @@
 name: Dev log Card
 about: Dev log Card
 title: "[✍️ Dev Log] 이름 / 2022-00-00"
-labels: ''
-assignees: ''
+labels: ErrorHandling
+assignees: robin14dev
 
 ---
 

@@ -1,13 +1,16 @@
 ---
 name: Error Handling Card
 about: Error Handling Card
-title: "[Guide] Error Handling Card 이름 / 2022-00-00"
-labels: ''
+title: 에러 간단요약 제목 / 2022-00-00
+labels: ErrorHandling
 assignees: ''
 
 ---
 
 ### 어떤 에러인가요?
+
+## 에러 관련한 분야 라벨링 설정해주세요!
+- ex) git, aws
  
  ### 에러 메시지
  ```shell
