@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Mainpage from "./pages/Mainpage";
 import Pickpage from "../src/pages/Pickpage";
@@ -7,11 +7,14 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  // render() {
+  const [isLogin, setIsLogin] = useState(false);
+  const loginHandler = () => {
+    // isLogin ? setIsLogin(false) : setIsLogin(true);
+    setIsLogin(!isLogin); //* 더 간단!
+  };
   return (
     <div className="App">
-      <Header />
-      {/* <Pickpage /> */}
+      <Header loginHandler={loginHandler} isLogin={isLogin} />
       <Routes>
         <Route exact path="/" element={<Mainpage />}></Route>
         <Route exact path="/Pickpage" element={<Pickpage />}></Route>
@@ -19,7 +22,6 @@ function App() {
       <Footer />
     </div>
   );
-  // }
 }
 
 export default App;

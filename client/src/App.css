@@ -14,20 +14,26 @@
  .Picklist,
  .Pick,
  .Pick div,
- .Header{
+ .Header,
+ .Login{
   border: 1px solid black;
   padding: 1rem;
   margin: 1rem;
 }
 
-/* .Navigationbar {
-  margin-left: 40rem;
+.Navigationbar{
+  display: flex;
  
-} */
+}
 
-.Header {
+.Navigationbar-buttons{
+  display: flex;
+}
+
+.Header{
   display: flex;
   justify-content: space-between;
+  height: 10vh;
 }
 
 .list-flex {
@@ -66,4 +72,62 @@
 
 .Picklist {
   border: 3px solid yellowgreen;
+}
+
+.Login-container, .Logout-container, .Mypage-container, .Signup-container {
+  height: 15rem;
+  text-align: center;
+  /* margin: 120px auto; */
+}
+
+.Login-backdrop, .Logout-backdrop, .Mypage-backdrop, .Signup-backdrop {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login-view, .Logout-view, .Mypage-view, .Signup-view {
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 30vw;
+  height: 40vh;
+}
+
+.Login-view-itself {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+  height: 8em;
+}
+
+.Login-view-inputs, .Mypage-view {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.Login-view-buttons {
+  display: flex;
+}
+
+.Signup-view-inputs{
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin: 0.2rem;
+  
+}
+button {
+  /* width: 4rem; */
+  height: 2rem;
+  margin: 0.2rem;
 }
