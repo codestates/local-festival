@@ -5,7 +5,6 @@ const Pickpage = () => {
   return (
     <div className="Pickpage">
       <div>My Pick!</div>
-
       <Picklist />
     </div>
   );

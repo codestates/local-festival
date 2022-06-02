@@ -1,10 +1,15 @@
 import React from "react";
 import Navigationbar from "./Navigationbar";
-const Header = () => {
+import { Link } from "react-router-dom";
+
+const Header = ({ isLogin, loginHandler }) => {
   return (
     <div className="Header">
-      <img alt="로고"></img>
-      <Navigationbar />
+      <Link to="/">
+        <img alt="로고"></img>
+      </Link>
+      <h1>Header component</h1>
+      <Navigationbar loginHandler={loginHandler} isLogin={isLogin} />
     </div>
   );
 };

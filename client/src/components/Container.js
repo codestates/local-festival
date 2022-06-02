@@ -1,6 +1,5 @@
 import React from "react";
 import FestivalList from "./FestivalList";
-import Footer from "./Footer";
 import Hashtag from "./Hashtag";
 import Search from "./Search";
 
@@ -11,7 +10,6 @@ const Container = () => {
       <Search />
       <FestivalList />
       <Hashtag />
-      {/* <Footer /> */}
     </div>
   );
 };
