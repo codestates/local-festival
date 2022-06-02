@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 const Search = ({ onSearch }) => {
   const [searchText, setSearchText] = useState("");
+
+  const onClickSearch = () => {
+    onSearch(searchText);
+  };
   const onChangeHandler = (e) => {
     console.log(e.target.value);
     setSearchText(e.target.value);
-  };
-  const onClickSearch = () => {
-    onSearch(searchText);
   };
   return (
     <div className="Search">

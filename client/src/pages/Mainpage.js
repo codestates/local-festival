@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FestivalList from "../components/FestivalList";
 import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";
+
 const Mainpage = () => {
   const dummyData = [
     {
@@ -305,7 +306,7 @@ const Mainpage = () => {
 
   //     try {
   //       const response = await axios.get(
-  //         "localhost어쩌구"
+  //         `${process.env.SERVER_ADDRESS}`
   //       );
   //       setFestivalData();
   //     } catch (error) {
