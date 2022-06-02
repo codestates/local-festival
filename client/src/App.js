@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Mainpage from "./pages/Mainpage";
 import Pickpage from "../src/pages/Pickpage";
@@ -8,10 +8,12 @@ import "./App.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+
   const loginHandler = () => {
     // isLogin ? setIsLogin(false) : setIsLogin(true);
     setIsLogin(!isLogin); //* 더 간단!
   };
+
   return (
     <div className="App">
       <Header loginHandler={loginHandler} isLogin={isLogin} />
