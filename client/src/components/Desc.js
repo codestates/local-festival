@@ -1,4 +1,9 @@
 import React from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  border: 1px solid black;
+`;
 
 const Desc = ({ festivalInfo }) => {
   // 탭메뉴의 상태가 detail(상세정보)이면 특정 행사정보 렌더링
@@ -7,7 +12,7 @@ const Desc = ({ festivalInfo }) => {
     festivalInfo;
 
   return (
-    <div className="Desc">
+    <Wrapper>
       {/* {tabStatus === 'info' ? <Info /> : <Review />} // info 면 상세정보, review면 리뷰정보  */}
       <h3>Title</h3>
       {title}
@@ -22,7 +27,7 @@ const Desc = ({ festivalInfo }) => {
       <h3>URL</h3>
       {/* 파싱안됨ㅠㅠ */}
       {url}
-    </div>
+    </Wrapper>
   );
 };
 
