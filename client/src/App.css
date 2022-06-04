@@ -17,10 +17,21 @@
  .Header,
  .Login{
   border: 1px solid black;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem;
   
 }
+body {
+  background-color: #e5f3e6;
+  
+}
+
+div{
+  word-break:break-all;
+  border-radius: 4px;
+  transition: transform .3s ease-out;
+}
+
 
 .App {
   display: flex;
@@ -29,6 +40,7 @@
   height: 100vh;
   margin: 0;
   padding: 0;
+  background-color:#f8f9fa;
 }
 
 .Navigationbar{
@@ -44,47 +56,79 @@
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  width: 60vw;
+  width: 80vw;
+  text-align: center;
+  background-color: #f9ed91;
+  border: none;
 }
 
 .Mainpage {
-  width: 60vw;
+  width: 70vw;
+  height: 80vh;
+  background-color: #faf7f2;
 }
 
 
 .list-flex {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   overflow-y:auto;
-  height: 30vh;
+  height: 40vh;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
+  background-color: #faf7f2;
+  padding: 0;
 }
 
 .list-flex::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
-.Festival {
-  width: 20%;
-  display: flex;
-  
-  justify-content: center;
-  align-items: center;
+.FestivalList{
+  padding: 0.5em;
+  border: none;
 }
 
-.festival-info {
+.Festival{
+  width: 12em;
+  height:15em;
+  padding: 0.2em;
+  border: none;
+  /* background-color: #ff8a3d; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  box-shadow:inset;
+  
   
 }
 
-.festival-description {
-  border: 1px solid black;
+.Festival:hover{
+  transform:  scale(1.1);
+  
+  
+}
+.Festival:active{
+  box-shadow: 0px 0px 10px 5px coral;
+  transform: translateY(-2em);
+}
+
+.Festival>img{
+  object-fit: cover;
+  width: 100%;
+  height: 10em;
+  border-radius: 3.5px 0 0 0 ;
+}
+
+.Fe-description {
+ /* height: 100%; */
   text-align: start;
-  padding: 0;
+  height:5em;
+  padding: 0.2em;
+  border-top: 0.3em solid #ff8a3d;
+  color: white;
+  background-color: #ff8a3d;
+  border-radius: 0 0 4px 4px ;
 }
 
 .logo-navi {
@@ -94,23 +138,54 @@
 
 .Detailviewpage {
   display: flex;
+  width: 80vw;
+  height: 80vh;
+  justify-content: space-evenly;
+
 }
+
+.Detailviewpage>img{
+  width: 20em;
+  object-fit: contain;
+  border-radius: 2.5em;
+}
+
+.TabAndDesc{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  width: 50em;
+}
+
 
 .Tab {
   display: flex;
+  
 }
 
-/* .Tab div {
+.Desc{
   border: 1px solid black;
-} */
-
- .festival-info {
-  display: flex;
+  
 }
 
+
+
+
+ 
+.festival-pick-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 .Pickpage .title-navi, .Pick {
   display: flex;
   justify-content: space-between;
+}
+
+.Pickpage {
+  width: 60vw;
 }
 
 .Pick {
@@ -179,12 +254,13 @@ button {
   margin: 0.2rem;
 }
 
-.Footer {
-  width: 60vw;
+.Hashtag{
+  height: 5vh;
 }
 
-img {
-  object-fit: cover;
-  width: 100%;
-  height: 400px;
+.Footer {
+  width: 60vw;
+  height: 5vh;
+  text-align: center;
 }
+

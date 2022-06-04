@@ -12,7 +12,6 @@ const Search = ({ onSearch }) => {
   };
   return (
     <div className="Search">
-      <h2>Search 컴포넌트 입니다</h2>
       <input onChange={onChangeHandler} placeholder="축제를 검색해주세요!" />
       <button onClick={onClickSearch}>검색</button>
     </div>

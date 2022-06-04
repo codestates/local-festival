@@ -8,7 +8,7 @@ const Header = ({ isLogin, loginHandler }) => {
       <Link to="/">
         <img alt="로고"></img>
       </Link>
-      <h1>Header component</h1>
+      <div>header</div>
       <Navigationbar loginHandler={loginHandler} isLogin={isLogin} />
     </div>
   );

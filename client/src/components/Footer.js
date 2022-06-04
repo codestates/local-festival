@@ -1,11 +1,7 @@
 import React from "react";
 
 const Footer = () => {
-  return (
-    <div className="Footer">
-      <h1>Footer 컴포넌트 입니다</h1>
-    </div>
-  );
+  return <div className="Footer">footer</div>;
 };
 
 export default Footer;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FestivalList from "../components/FestivalList";
 import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";
-
+import axios from "axios";
 const Mainpage = () => {
   const dummyData = [
     {
@@ -283,7 +283,7 @@ const Mainpage = () => {
       url: '<a href="https://kicb.or.kr/" target="_blank" title="새창 : 경기세계도자비엔날레">https://kicb.or.kr/</a>',
     },
   ];
-  const [festivalData, setFestivalData] = useState(dummyData);
+  const [festivalData, setFestivalData] = useState(null);
   const [condition, setCondition] = useState("");
 
   //* 두번 클릭해야지 작동
@@ -301,29 +301,38 @@ const Mainpage = () => {
   };
 
   //* 서버랑 연결할 때
-  // useEffect(() => {
-  //   const fetchData = async () => {
-
-  //     try {
-  //       const response = await axios.get(
-  //         `${process.env.SERVER_ADDRESS}`
-  //       );
-  //       setFestivalData();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-
-  //   };
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
-    setFestivalData(dummyData);
-  }, [condition]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.SERVER_ADDRESS}/festivals`
+        );
+
+        if (response) {
+          setFestivalData(response);
+        } else {
+          console.log("no fetch data & use dummyData");
+          setFestivalData(dummyData);
+        }
+        // setFestivalData(dummyData);
+      } catch (error) {
+        console.log(error);
+        setFestivalData(dummyData);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // useEffect(() => {}, [condition]);
+
+  //* 데이터 한번 받아온 후, client에서 자체적으로 필터링
+
+  // useEffect(() => {
+  //   setFestivalData(dummyData);
+  // }, [condition]);
 
   return (
     <div className="Mainpage">
-      <h1>Mainpage component</h1>
       <Search onSearch={onSearch} />
       <FestivalList festivals={festivalData} />
       <Hashtag />

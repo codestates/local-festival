@@ -3,7 +3,7 @@ import React from "react";
 const Pick = () => {
   return (
     <div className="Pick">
-      <div className="festival-info">
+      <div className="festival-pick-info">
         <div>picknumber & pickdate</div>
         <div>Festival image</div>
         <div>Festival title</div>
