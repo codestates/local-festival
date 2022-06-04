@@ -1,12 +1,17 @@
 import React from "react";
 import Pick from "./Pick";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  border: 3px solid yellowgreen;
+`;
 const Picklist = () => {
   return (
-    <div className="Picklist">
+    <Wrapper>
       <Pick />
       <Pick />
       <Pick />
-    </div>
+    </Wrapper>
   );
 };
 

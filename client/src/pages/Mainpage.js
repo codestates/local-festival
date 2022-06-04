@@ -3,6 +3,20 @@ import FestivalList from "../components/FestivalList";
 import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";
 import axios from "axios";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 70vw;
+  height: 80vh;
+  background-color: #faf7f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > * {
+    margin: 1rem;
+  }
+`;
 const Mainpage = () => {
   const dummyData = [
     {
@@ -332,11 +346,11 @@ const Mainpage = () => {
   // }, [condition]);
 
   return (
-    <div className="Mainpage">
+    <Wrapper>
       <Search onSearch={onSearch} />
       <FestivalList festivals={festivalData} />
       <Hashtag />
-    </div>
+    </Wrapper>
   );
 };
 

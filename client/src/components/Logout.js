@@ -1,5 +1,29 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
+const ModalContainer = styled.div`
+  height: 15rem;
+  text-align: center;
+`;
+const ModalBackdrop = styled.div`
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalView = styled.div`
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 30vw;
+  height: 40vh;
+`;
 const Logout = ({ loginHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
@@ -10,12 +34,11 @@ const Logout = ({ loginHandler }) => {
     loginHandler();
   };
   return (
-    <div className="Logout-container">
+    <ModalContainer>
       <button onClick={openModalHandler}>Logout</button>
       {isOpen ? (
-        <div className="Logout-backdrop" onClick={openModalHandler}>
-          <div
-            className="Logout-view"
+        <ModalBackdrop onClick={openModalHandler}>
+          <ModalView
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -25,10 +48,10 @@ const Logout = ({ loginHandler }) => {
               <button>cancel</button>
               <button onClick={onClickLogoutBtn}>Logout</button>
             </div>
-          </div>
-        </div>
+          </ModalView>
+        </ModalBackdrop>
       ) : null}
-    </div>
+    </ModalContainer>
   );
 };
 

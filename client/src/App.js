@@ -6,6 +6,17 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Detailviewpage from "./pages/Detailviewpage";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+`;
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -16,7 +27,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Wrapper>
       <Header loginHandler={loginHandler} isLogin={isLogin} />
       <Routes>
         <Route exact path="/" element={<Mainpage />}></Route>
@@ -28,7 +39,7 @@ function App() {
         ></Route>
       </Routes>
       <Footer />
-    </div>
+    </Wrapper>
   );
 }
 
