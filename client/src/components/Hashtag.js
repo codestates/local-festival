@@ -3,9 +3,8 @@ import React from "react";
 const Hashtag = () => {
   return (
     <div className="Hashtag">
-      <h1>Hashtag컴포넌트입니다</h1>
-      <h1>#1월</h1>
-      <h1>#강원</h1>
+      <div>#1월</div>
+      <div>#강원</div>
     </div>
   );
 };
