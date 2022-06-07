@@ -22,10 +22,10 @@ const Wrapper = styled.div`
     }
   }
 
-  &:active {
+  /* &:active {
     box-shadow: 0px 0px 10px 5px coral;
     transform: translateY(-1em);
-  }
+  } */
 
   & > img {
     object-fit: cover;
@@ -45,15 +45,21 @@ const Description = styled.div`
   border-radius: 0 0 4px 4px;
 `;
 
-const Festival = ({ festival }) => {
+const Festival = ({ festival, addPick }) => {
   let navigate = useNavigate();
 
   const onClickMoveDVP = () => {
     navigate("/Detailviewpage", { state: festival });
   };
 
+  const onClickPick = (event, id) => {
+    event.stopPropagation();
+    console.log("pick_id!!!!!!!!!!", id);
+    addPick(id);
+  };
+
   return (
-    <Wrapper onClick={onClickMoveDVP}>
+    <Wrapper key={festival.id} onClick={onClickMoveDVP}>
       <img src={festival.image} alt="이미지 없을 때!" />
 
       <Description>
@@ -63,6 +69,13 @@ const Festival = ({ festival }) => {
         <div>
           {festival.start_date}~{festival.end_date}
         </div>
+        <button
+          onClick={(e) => {
+            onClickPick(e, festival.id);
+          }}
+        >
+          찜
+        </button>
       </Description>
     </Wrapper>
   );
