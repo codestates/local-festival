@@ -1,4 +1,9 @@
 import React from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 const Tab = () => {
   // 기본이 상세정보로 렌더링
@@ -10,11 +15,11 @@ const Tab = () => {
   // 상태 : info , review
 
   return (
-    <div className="Tab">
+    <Wrapper>
       {/* // onClick 클릭한 텍스트 컨텐츠 상태 끌어올리기 */}
       <div>상세정보</div>
       <div>리뷰</div>
-    </div>
+    </Wrapper>
   );
 };
 

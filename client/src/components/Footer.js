@@ -1,11 +1,15 @@
 import React from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 60vw;
+  height: 5vh;
+  text-align: center;
+  border: 1px solid black;
+`;
 
 const Footer = () => {
-  return (
-    <div className="Footer">
-      <h1>Footer 컴포넌트 입니다</h1>
-    </div>
-  );
+  return <Wrapper>footer</Wrapper>;
 };
 
 export default Footer;

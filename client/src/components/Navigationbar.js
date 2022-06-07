@@ -4,27 +4,37 @@ import Login from "./Login";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+`;
+
 const Navigationbar = ({ isLogin, loginHandler }) => {
   console.log(isLogin);
   return (
-    <div className="Navigationbar">
+    <Wrapper>
       {isLogin ? (
-        <div className="Navigationbar-buttons">
+        <ButtonsWrapper>
           <Mypage />
           <Link to="/Pickpage">
             <button>pickpage</button>
           </Link>
           <Logout loginHandler={loginHandler} />
-        </div>
+        </ButtonsWrapper>
       ) : (
-        <div className="Navigationbar-buttons">
+        <ButtonsWrapper>
           <Link to="/Pickpage">
             <button>pickpage</button>
           </Link>
           <Login loginHandler={loginHandler} />
-        </div>
+        </ButtonsWrapper>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
