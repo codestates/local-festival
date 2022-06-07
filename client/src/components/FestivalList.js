@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const FestivalList = ({ festivals }) => {
+const FestivalList = ({ festivals, addPick }) => {
   console.log(festivals);
   if (!festivals) {
     return (
@@ -33,7 +33,7 @@ const FestivalList = ({ festivals }) => {
     return (
       <Wrapper>
         {festivals.map((festival) => (
-          <Festival key={festival.id} festival={festival} />
+          <Festival addPick={addPick} key={festival.id} festival={festival} />
         ))}
       </Wrapper>
     );
