@@ -5,7 +5,7 @@ dotenv.config();
 
 var options = {
   method: "GET",
-  url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=hI8N%2FKuJMiaTFL%2FDN8yE1s3VbusoNoPVTehySvthW3VPsojML94LBk%2BAzDJdWzWYyudV8JzSEU7VBH2u1g0RUw%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&eventStartDate=20170901&_type=json",
+  url: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey=hI8N%2FKuJMiaTFL%2FDN8yE1s3VbusoNoPVTehySvthW3VPsojML94LBk%2BAzDJdWzWYyudV8JzSEU7VBH2u1g0RUw%3D%3D&numOfRows=970&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&eventStartDate=20170901&_type=json",
   headers: {},
 };
 
