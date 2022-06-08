@@ -1,13 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import Signup from "./Signup";
+import React, { useState } from "react";
+import Login from "./Login";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
   height: 15rem;
   text-align: center;
 `;
-
 const ModalBackdrop = styled.div`
   position: fixed;
   z-index: 999;
@@ -28,7 +26,7 @@ const ModalView = styled.div`
   height: 40vh;
 `;
 
-const LoginControl = styled.div`
+const PickupControl = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,19 +50,15 @@ const ButtonsInRow = styled.div`
   }
 `;
 
-const Login = ({ loginHandler }) => {
+const Moveloginpick = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const openModalHandler = () => {
+  const openModalHandler = (event) => {
     setIsOpen(!isOpen);
-  };
-
-  const onClickLoginBtn = () => {
-    loginHandler();
   };
 
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>login</button>
+      <button onClick={openModalHandler}>찜하기</button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView
@@ -72,24 +66,19 @@ const Login = ({ loginHandler }) => {
               e.stopPropagation();
             }}
           >
-            <h1>Login Component</h1>
-            <LoginControl>
-              <InputsInColumn>
-                <input placeholder="ID"></input>
-                <input placeholder="Password"></input>
-              </InputsInColumn>
+            <h1>찜하기 기능</h1>
+            <h2>로그인시 사용 가능합니다</h2>
+            <h3>로그인 하시겠습니까?</h3>
+            <PickupControl>
               <ButtonsInRow>
-                <button onClick={onClickLoginBtn}>Log in</button>
-                <Signup />
-                <button className="close-btn" onClick={openModalHandler}>
-                  cancel
-                </button>
+                <InputsInColumn>
+                  <button className="close-btn" onClick={openModalHandler}>
+                    cancel
+                  </button>
+                  <Login />
+                </InputsInColumn>
               </ButtonsInRow>
-            </LoginControl>
-            <div>
-              <button>구글 로그인</button>
-              <button>카카오 로그인?</button>
-            </div>
+            </PickupControl>
           </ModalView>
         </ModalBackdrop>
       ) : null}
@@ -97,4 +86,4 @@ const Login = ({ loginHandler }) => {
   );
 };
 
-export default Login;
+export default Moveloginpick;
