@@ -9,6 +9,15 @@ const config = {
     database: "local_festival",
     connectTimeout: 60000,
   },
+  // deploy 추가
+  deploy: {
+    host: "local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com",
+    user: "admin",
+    password: process.env.DATABASE_PASSWORD,
+    database: "local_festival",
+    port: process.env.DATABASE_PORT,
+    connectTimeout: 60000,
+  },
 };
 
 module.exports = config;
