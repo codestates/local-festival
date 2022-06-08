@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Tab from "../components/Tab";
 import Desc from "../components/Desc";
-import { useLocation } from "react-router-dom";
+import Moveloginpick from "../components/Moveloginpick";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -23,16 +24,29 @@ const TabAndDesc = styled.div`
   align-items: center;
   width: 50em;
 `;
+
+const Imagepickbutton = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Detailviewpage = () => {
   const { state } = useLocation();
   console.log(state);
   const { image } = state;
+
   return (
     <Wrapper>
-      <img src={image} alt="이미지"></img>
+      <Imagepickbutton>
+        <img src={image} alt="이미지"></img>
+        <Moveloginpick />
+      </Imagepickbutton>
       <TabAndDesc>
         <Tab />
         <Desc festivalInfo={state} />
+        <Link to="/">
+          <button className="gobackmainpage">메인페이지로 돌아가기</button>
+        </Link>
       </TabAndDesc>
     </Wrapper>
   );

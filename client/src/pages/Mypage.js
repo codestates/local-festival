@@ -52,7 +52,9 @@ const Mypage = () => {
               <input placeholder="바꿀닉네임"></input>
             </Controllers>
             <Controllers>
-              <button>취소</button>
+              <button className="close-btn" onClick={openModalHandler}>
+                cancel
+              </button>
               <button>수정하기</button>
               <button>회원탈퇴</button>
             </Controllers>

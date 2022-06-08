@@ -50,6 +50,11 @@ const Signup = () => {
             </div>
             <div className="Signup-view-buttons">
               <button>create account</button>
+              <div>
+                <button className="close-btn" onClick={openModalHandler}>
+                  cancel
+                </button>
+              </div>
             </div>
           </ModalView>
         </ModalBackdrop>

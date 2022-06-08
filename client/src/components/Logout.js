@@ -45,7 +45,9 @@ const Logout = ({ loginHandler }) => {
           >
             <h1>정말 로그아웃할꺼여?</h1>
             <div className="Logout-view-buttons">
-              <button>cancel</button>
+              <button className="close-btn" onClick={openModalHandler}>
+                Cancel
+              </button>
               <button onClick={onClickLogoutBtn}>Logout</button>
             </div>
           </ModalView>
