@@ -5,9 +5,16 @@ server readme.md입니다
 ./local-festival/server
 환경변수 설치 해주시고 // npm install
 
-mysql
+mysql (로컬)
 mysql에 접속하셔서 // mysql -u root -p
 데이터베이스 local_festival 만들고 // create database local_festival
+
+mysql (배포) // \* 2차 배포시에 user를 admin으로 하지 말고 root로 해주세요.
+rds에 접속 (admin)
+mysql -u admin --host local-festival-db.c5uujgrdfrvu.ap-northeast-2.rds.amazonaws.com -P 13306 -p
+
+ec2에서 schema.sql 파일 실행하기
+mysql -u admin --host local-festival-db.c5uujgrdfrvu.ap-northeast-2.rds.amazonaws.com -P 13306 -p < schema.sql -p -Dlocal_festival
 
 ./local-festival/server
 서버터미널에서 스키마 해서 필드 만들면 됩니다. // npm run schema

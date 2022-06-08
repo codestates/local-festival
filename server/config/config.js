@@ -3,7 +3,7 @@ dotenv.config();
 
 const config = {
   development: {
-    host: "127.0.0.1",
+    host: "localhost",
     user: "root",
     password: process.env.DATABASE_SPRINT_PASSWORD,
     database: "local_festival",

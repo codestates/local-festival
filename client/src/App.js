@@ -351,7 +351,8 @@ function App() {
       try {
         console.log(process.env.SERVER_ADDRESS);
         const response = await axios.get(
-          `http://ec2-3-35-218-199.ap-northeast-2.compute.amazonaws.com/festivals`
+          `http://localhost:4001/festivals`
+          // `http://ec2-3-35-218-199.ap-northeast-2.compute.amazonaws.com/festivals`
           // `${process.env.SERVER_ADDRESS}/festivals`,
           //* local test용 `${process.env.SERVER_ADDRESS || `http://localhost:4001`}/festivals`,
           // { params: { date: "date?!?!?" } }
