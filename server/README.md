@@ -18,7 +18,5 @@ mysql -u admin --host local-festival-db.c5uujgrdfrvu.ap-northeast-2.rds.amazonaw
 
 ./local-festival/server
 서버터미널에서 스키마 해서 필드 만들면 됩니다. // npm run schema
-이후 필드에 데이터를 채워주시면 됩니다. // npm run db
+이후 필드에 데이터를 채워주시면 됩니다. // npm run db, npm run db2
 이후 ctal+c / cmd+c 하셔서 종료 해주시면 festival 데이터 저장됩니다.
-
-받아오는 것 횟수 제한 때문에 아직 400개까지 제한

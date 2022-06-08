@@ -360,7 +360,7 @@ function App() {
         console.log("서버에서 데이터 어케 받아져오지??, response?", response);
 
         if (response) {
-          setFestivalData(response);
+          setFestivalData(response.data);
         } else {
           console.log("no fetch data & use dummyData");
           setFestivalData(dummyData);
