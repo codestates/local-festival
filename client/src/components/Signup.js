@@ -26,16 +26,22 @@ const ModalView = styled.div`
   height: 40vh;
 `;
 
-const Signup = () => {
+const Signup = ({ openModalHandlerLogin }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
+    // openModalHandlerLogin();
   };
   return (
     <ModalContainer>
       <button onClick={openModalHandler}>Sign up</button>
       {isOpen ? (
-        <ModalBackdrop onClick={openModalHandler}>
+        <ModalBackdrop
+          onClick={() => {
+            openModalHandler();
+            openModalHandlerLogin();
+          }}
+        >
           <ModalView
             onClick={(e) => {
               e.stopPropagation();
@@ -51,7 +57,13 @@ const Signup = () => {
             <div className="Signup-view-buttons">
               <button>create account</button>
               <div>
-                <button className="close-btn" onClick={openModalHandler}>
+                <button
+                  className="close-btn"
+                  onClick={() => {
+                    openModalHandler();
+                    openModalHandlerLogin();
+                  }}
+                >
                   cancel
                 </button>
               </div>

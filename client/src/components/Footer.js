@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
-  width: 60vw;
+  width: 100vw;
   height: 5vh;
   text-align: center;
-  border: 1px solid black;
+  background-color: blue;
+  color: black;
 `;
 
 const Footer = () => {

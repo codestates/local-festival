@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -25,16 +26,20 @@ const Info = styled.div`
   }
 `;
 const Pick = ({ item, removePick }) => {
+  let navigate = useNavigate();
   const { id, title, image, start_date, end_date } = item;
   const onClickRemove = (id) => {
     removePick(id);
   };
+  const onClickMoveDVP = () => {
+    navigate("/Detailviewpage", { state: item });
+  };
   return (
     <Wrapper>
-      <Info>
+      <Info onClick={onClickMoveDVP}>
         <div>picknumber & pickdate</div>
         <div>
-          <img src={image} />
+          <img src={image} alt={title} />
         </div>
         <div>{title}</div>
         <div>
