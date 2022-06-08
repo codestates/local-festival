@@ -1,5 +1,6 @@
 import React from "react";
 import Picklist from "../components/Picklist";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -21,6 +22,9 @@ const Pickpage = ({ festivalData, pickItems, removePick }) => {
         festivalData={festivalData}
         pickItems={pickItems}
       />
+      <Link to="/">
+        <button className="gobackmainpage">메인페이지로 돌아가기</button>
+      </Link>
     </Wrapper>
   );
 };

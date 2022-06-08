@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Toggle from "./Toggle";
 import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
@@ -33,6 +34,10 @@ const Wrapper = styled.div`
     height: 10em;
     border-radius: 3.5px 3.5px 0 0;
   }
+  button {
+    widtih: 100%;
+    height: 100%;
+  }
 `;
 
 const Description = styled.div`
@@ -61,7 +66,6 @@ const Festival = ({ festival, addPick }) => {
   return (
     <Wrapper key={festival.id} onClick={onClickMoveDVP}>
       <img src={festival.image} alt="이미지 없을 때!" />
-
       <Description>
         <div>
           <b>{festival.title}</b>
