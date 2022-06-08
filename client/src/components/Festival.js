@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 13em;
@@ -60,7 +60,10 @@ const Festival = ({ festival, addPick }) => {
 
   return (
     <Wrapper key={festival.id} onClick={onClickMoveDVP}>
-      <img src={festival.image} alt="이미지 없을 때!" />
+      <img
+        src={festival.image}
+        alt={`${festival.title} : 이미지가 존재하지 않습니다`}
+      />
 
       <Description>
         <div>

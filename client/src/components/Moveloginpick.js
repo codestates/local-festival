@@ -3,7 +3,7 @@ import Login from "./Login";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  height: 15rem;
+  height: 1rem;
   text-align: center;
 `;
 const ModalBackdrop = styled.div`

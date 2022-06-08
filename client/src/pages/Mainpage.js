@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FestivalList from "../components/FestivalList";
 import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";

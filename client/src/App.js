@@ -347,6 +347,7 @@ function App() {
   };
 
   useEffect(() => {
+    console.log("계속 작동하니???");
     const fetchData = async () => {
       try {
         console.log(process.env.SERVER_ADDRESS);

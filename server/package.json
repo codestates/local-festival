@@ -7,7 +7,7 @@
     "start": "nodemon app.js",
     "schema": "mysql -u root < schema.sql -p -Dlocal_festival",
     "db": "node indexDB.js",
-    "db2": "node indexDB2.js",
+    "db2" : "node indexDB2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

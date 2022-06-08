@@ -62,6 +62,11 @@ const Login = ({ loginHandler }) => {
     loginHandler();
   };
 
+  const openModalHandlerLogin = () => {
+    console.log("here!!!!");
+    setIsOpen(!isOpen);
+  };
+
   return (
     <ModalContainer>
       <button onClick={openModalHandler}>login</button>
@@ -80,7 +85,7 @@ const Login = ({ loginHandler }) => {
               </InputsInColumn>
               <ButtonsInRow>
                 <button onClick={onClickLoginBtn}>Log in</button>
-                <Signup />
+                <Signup openModalHandlerLogin={openModalHandlerLogin} />
                 <button className="close-btn" onClick={openModalHandler}>
                   cancel
                 </button>

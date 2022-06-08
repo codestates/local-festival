@@ -23,7 +23,7 @@ const Pickpage = ({ festivalData, pickItems, removePick }) => {
         pickItems={pickItems}
       />
       <Link to="/">
-        <button className="gobackmainpage">메인페이지로 돌아가기</button>
+        <button>메인페이지로 돌아가기</button>
       </Link>
     </Wrapper>
   );
