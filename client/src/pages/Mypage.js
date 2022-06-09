@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Withdraw from "../components/Withdraw";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
@@ -37,6 +38,12 @@ const Mypage = () => {
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };
+
+  const openModalHandlerMypage = () => {
+    console.log("here!!!!");
+    setIsOpen(!isOpen);
+  };
+
   return (
     <ModalContainer>
       <button onClick={openModalHandler}>Mypage</button>
@@ -56,7 +63,7 @@ const Mypage = () => {
                 cancel
               </button>
               <button>수정하기</button>
-              <button>회원탈퇴</button>
+              <Withdraw openModalHandlerMypage={openModalHandlerMypage} />
             </Controllers>
           </ModalView>
         </ModalBackdrop>
