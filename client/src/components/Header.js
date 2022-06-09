@@ -18,7 +18,7 @@ const Header = ({ isLogin, loginHandler }) => {
   return (
     <Wrapper>
       <Link to="/">
-        <div>로고</div>
+        <img className="logo" src="../logo192.png" alt="logo" />
       </Link>
 
       <Navigationbar loginHandler={loginHandler} isLogin={isLogin} />
