@@ -13,7 +13,7 @@ const config = {
   deploy: {
     host: "local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com",
     user: "admin",
-    password: process.env.DATABASE_PASSWORD,
+    password: "vlclahd1",
     database: "local_festival",
     connectTimeout: 60000,
   },
