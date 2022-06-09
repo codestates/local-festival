@@ -15,7 +15,6 @@ const config = {
     user: "admin",
     password: process.env.DATABASE_PASSWORD,
     database: "local_festival",
-    port: process.env.DATABASE_PORT,
     connectTimeout: 60000,
   },
 };
