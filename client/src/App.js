@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  /* height: 100em; */
   margin: 0;
   padding: 0;
   background-color: #f8f9fa;

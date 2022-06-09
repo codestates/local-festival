@@ -5,14 +5,17 @@ import ReviewWrite from "./ReviewWrite";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-color: blue;
-  overflow-y: auto; // 안해주면 줄어들음
-  /* display: flex;
+
+  overflow: hidden; // 안해주면 줄어들음
+  display: flex;
   flex-direction: column;
-  justify-content: flex-end; */
+  justify-content: space-evenly;
+  & > * {
+    margin: 0.5rem;
+  }
 `;
 
-const Review = () => {
+const ReviewTab = () => {
   return (
     <Wrapper>
       <ReviewList />
@@ -21,4 +24,4 @@ const Review = () => {
   );
 };
 
-export default Review;
+export default ReviewTab;
