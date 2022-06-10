@@ -8,28 +8,36 @@ import ReviewTab from "../components/ReviewTab";
 const Wrapper = styled.div`
   display: flex;
   width: 70vw;
-  height: 80vh;
+  height: 80rem;
   justify-content: space-evenly;
+  border-radius: 1rem;
+  border: 1px solid black;
 `;
 
 const ImageAndPickbtn = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 100%;
-  background-color: yellow;
+  height: 97%;
+  border: 1px solid black;
+  border-radius: 1rem;
   & > img {
     height: 50%;
+    border-radius: 1rem;
   }
 `;
 const TabAndDesc = styled.div`
   width: 80%;
-  height: 100%;
-  background-color: bisque;
+  height: 97%;
+  /* background-color: bisque; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  margin: 1rem;
 `;
 
 const Tab = styled.div`
@@ -42,6 +50,14 @@ const Tab = styled.div`
   justify-items: center;
   align-items: center;
   list-style: none;
+  border: 1px solid black;
+  border-radius: 1rem;
+  background-color: aliceblue;
+
+  & > div {
+    width: 100%;
+  }
+
   /* margin-bottom: 7rem; */
 
   .submenu {
@@ -52,6 +68,7 @@ const Tab = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1rem;
   }
 
   .focused {

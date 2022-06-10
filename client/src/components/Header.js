@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   background-color: #f9ed91;
   border: none;
   margin: 1em;
+  border-radius: 1rem;
 `;
 
 const Header = ({ isLogin, loginHandler }) => {

@@ -3,9 +3,10 @@ import Review from "./Review";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 97%;
   height: 70%;
-  background-color: yellowgreen;
+  border: 1px solid black;
+  border-radius: 0.5rem;
   overflow-y: auto;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
@@ -18,11 +19,16 @@ const ReviewList = () => {
   return (
     <Wrapper>
       <h3>ReviewList Component</h3>
+
       <Review />
       <Review />
       <Review />
       <Review />
       <Review />
+      <Review />
+      <Review />
+      <Review />
+      <b>pagenation으로 구현하면 좋을 것 같음</b>
     </Wrapper>
   );
 };

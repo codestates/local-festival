@@ -2,10 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 98%;
   /* height: 30%; */
   margin-bottom: 1rem;
-  background-color: gold;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin: 0.4rem;
+  padding: 0.3rem;
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 `;

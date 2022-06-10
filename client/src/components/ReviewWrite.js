@@ -2,10 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 30%;
-  background-color: goldenrod;
+  width: 97%;
+  height: 20%;
+  border: 1px solid black;
+  border-radius: 0.5rem;
   overflow-y: auto;
+  padding: 0.5rem;
+  margin: 0.5rem;
 `;
 
 const ReviewWrite = () => {
