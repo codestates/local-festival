@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   box-shadow: inset;
   transition: transform 0.3s ease-out;
+  font-family: "EarlyFontDiary";
 
   &:hover {
     transform: scale(1.1);
@@ -57,6 +59,8 @@ const Festival = ({ festival, addPick }) => {
     console.log("pick_id!!!!!!!!!!", id);
     addPick(id);
   };
+  let startDate = festival.start_date;
+  let endDate = festival.end_date;
 
   return (
     <Wrapper key={festival.id} onClick={onClickMoveDVP}>
@@ -70,7 +74,8 @@ const Festival = ({ festival, addPick }) => {
           <b>{festival.title}</b>
         </div>
         <div>
-          {festival.start_date}~{festival.end_date}
+          {moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}~
+          {moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}
         </div>
         <button
           onClick={(e) => {

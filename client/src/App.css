@@ -1,10 +1,30 @@
-/* CSS reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
+
+
+.logo {
+    width: 250px;
+    vertical-align: middle;
+  }
+
+  @font-face {
+    font-family: 'EarlyFontDiary';
+    /* src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2') format('woff2'); */
+    src: url("./fonts/EF_Diary.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'ulsanjunggu';
+    /* src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ulsanjunggu.woff2') format('woff2'); */
+    src: url("./fonts/ulsanjunggu.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
 
 
 

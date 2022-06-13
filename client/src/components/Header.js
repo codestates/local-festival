@@ -12,14 +12,28 @@ const Wrapper = styled.div`
   background-color: #f9ed91;
   border: none;
   margin: 1em;
-  border-radius: 1rem;
+  position: relative;
+`;
+
+const Title = styled.div`
+  font-size: 25px;
+  font-family: "ulsanjunggu";
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 4em;
+  transform: translate(-50%, -50%);
 `;
 
 const Header = ({ isLogin, loginHandler }) => {
   return (
     <Wrapper>
       <Link to="/">
-        <img className="logo" src="../logo192.png" alt="logo" />
+        <Title>
+          <h2>나가노라</h2>
+        </Title>
+        <img className="logo" src="img/playoutside.png" alt="playoutside" />
       </Link>
 
       <Navigationbar loginHandler={loginHandler} isLogin={isLogin} />
