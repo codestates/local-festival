@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Mainpage from "./pages/Mainpage";
-import Pickpage from "../src/pages/Pickpage";
+import Mypage from "../src/pages/Mypage";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -16,7 +16,8 @@ const Wrapper = styled.div`
   /* height: 100em; */
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
+  background-color: #faf7f2;
 `;
 
 function App() {
@@ -394,9 +395,9 @@ function App() {
         ></Route>
         <Route
           exact
-          path="/Pickpage"
+          path="/Mypage"
           element={
-            <Pickpage
+            <Mypage
               removePick={removePick}
               festivalData={festivalData}
               pickItems={pickItems}

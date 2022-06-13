@@ -3,10 +3,14 @@ import Pick from "./Pick";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  border: 3px solid yellowgreen;
+  display: flex;
+    /* border: 3px solid yellowgreen; */
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  /* margin-left: 5rem;
+  margin-right: 5rem; */
   overflow-y: auto;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
@@ -22,7 +26,7 @@ const Picklist = ({ festivalData, pickItems, removePick }) => {
       (ele) => pickItems.map((el) => el.festival_Id).indexOf(ele.id) > -1
     );
     return (
-      <div>
+      <>
         {pickItems.length === 0 ? (
           <div>찜한 축제가 없습니다</div>
         ) : (
@@ -32,7 +36,7 @@ const Picklist = ({ festivalData, pickItems, removePick }) => {
             })}
           </Wrapper>
         )}
-      </div>
+      </>
     );
   }
 };

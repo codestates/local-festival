@@ -5,12 +5,13 @@ import Search from "../components/Search";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 70vw;
+  width: 90%;
   height: 80vh;
-  background-color: #faf7f2;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
   & > * {
     margin: 1rem;
