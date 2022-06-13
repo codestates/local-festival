@@ -1,75 +1,67 @@
-import React, { useState } from "react";
-import Withdraw from "../components/Withdraw";
+import React from "react";
+import Picklist from "../components/Picklist";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import EditProfile from "../components/EditProfile";
 
-const ModalContainer = styled.div`
-  height: 15rem;
-  text-align: center;
-`;
-
-const ModalBackdrop = styled.div`
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalView = styled.div`
-  border-radius: 10px;
-  background-color: #ffffff;
-  width: 30vw;
-  height: 40vh;
-`;
-
-const Controllers = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  width: 80vw;
+  height: 80vh;
+  /* border: 1px solid black; */
+  font-family: "EarlyFontDiary";
 `;
 
-const Mypage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModalHandler = () => {
-    setIsOpen(!isOpen);
-  };
+const Nav = styled.div`
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-end;
+  height: 4rem;
+  margin-top: 1rem;
+  &  button {
+    border: none;
+    width: 8rem;
+    height: 100%;
+    margin-left: 1rem;
+    background-color: #faa08e;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    transition: transform 0.2s ease-out;
 
-  const openModalHandlerMypage = () => {
-    console.log("here!!!!");
-    setIsOpen(!isOpen);
-  };
+    &:hover {
+    transform: scale(1.1);
+    background-color: #f8826b;
 
+    & > div,
+    border {
+      /* background-color: #88b85c; */
+      background-color: #f8826b;
+
+    }
+  }
+  }
+`;
+
+const Pickpage = ({ festivalData, pickItems, removePick }) => {
   return (
-    <ModalContainer>
-      <button onClick={openModalHandler}>Mypage</button>
-      {isOpen ? (
-        <ModalBackdrop onClick={openModalHandler}>
-          <ModalView
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <h1>Mypage component</h1>
-            <Controllers>
-              <input placeholder="바꿀닉네임"></input>
-            </Controllers>
-            <Controllers>
-              <button className="close-btn" onClick={openModalHandler}>
-                cancel
-              </button>
-              <button>수정하기</button>
-              <Withdraw openModalHandlerMypage={openModalHandlerMypage} />
-            </Controllers>
-          </ModalView>
-        </ModalBackdrop>
-      ) : null}
-    </ModalContainer>
+    <Wrapper>
+      <Nav>
+        <EditProfile />
+        <Link to="/">
+          <button>메인페이지로 <br></br>돌아가기</button>
+        </Link>
+      </Nav>
+      <h1>My Pick!</h1>
+      <Picklist
+        removePick={removePick}
+        festivalData={festivalData}
+        pickItems={pickItems}
+      />
+    </Wrapper>
   );
 };
 
-export default Mypage;
+export default Pickpage;

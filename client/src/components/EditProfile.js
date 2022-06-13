@@ -1,30 +1,15 @@
 import React, { useState } from "react";
+import Withdraw from "./Withdraw";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  width: 6rem;
-  height: 100%;
+  /* height: 15rem; */
   text-align: center;
-  &>button{
-    
-    height: 100%  ;
-    border: none;
-padding: 0 1rem;
-    background-color: #faa08e;
-    color: white;
-    font-weight: bolder;
-    font-size: larger;
-    transition: 0.2s ease-out;
-    &:hover{
-      background-color: #f56f54cb;
-      transition: all 0.2s ease-in;
-      cursor: pointer;
-    }
-  }
 `;
+
 const ModalBackdrop = styled.div`
   position: fixed;
-  z-index: 999;
+  /* z-index: 999; */
   top: 0;
   left: 0;
   bottom: 0;
@@ -41,18 +26,27 @@ const ModalView = styled.div`
   width: 30vw;
   height: 40vh;
 `;
-const Logout = ({ loginHandler }) => {
+
+const Controllers = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+`;
+
+const Mypage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };
 
-  const onClickLogoutBtn = () => {
-    loginHandler();
+  const openModalHandlerMypage = () => {
+    console.log("here!!!!");
+    setIsOpen(!isOpen);
   };
+
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>Logout</button>
+      <button onClick={openModalHandler}>회원정보 수정</button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView
@@ -60,13 +54,17 @@ const Logout = ({ loginHandler }) => {
               e.stopPropagation();
             }}
           >
-            <h1>정말 로그아웃할꺼여?</h1>
-            <div className="Logout-view-buttons">
+            <h1>Mypage component</h1>
+            <Controllers>
+              <input placeholder="바꿀닉네임"></input>
+            </Controllers>
+            <Controllers>
               <button className="close-btn" onClick={openModalHandler}>
-                Cancel
+                cancel
               </button>
-              <button onClick={onClickLogoutBtn}>Logout</button>
-            </div>
+              <button>수정하기</button>
+              <Withdraw openModalHandlerMypage={openModalHandlerMypage} />
+            </Controllers>
           </ModalView>
         </ModalBackdrop>
       ) : null}
@@ -74,4 +72,4 @@ const Logout = ({ loginHandler }) => {
   );
 };
 
-export default Logout;
+export default Mypage;

@@ -3,19 +3,22 @@ import Festival from "./Festival";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  margin-top: 2rem;
-  padding: 0.5em;
+  width: 100%;
   height: 80%;
+  margin-top: 2rem;
+  padding: 0;
+  /* background-color: #f2d29b; */
+  
+  /* padding: 0.5em; */
   border: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   overflow-y: auto;
-  height: 40vh;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
-  background-color: #faf7f2;
-  padding: 0;
+
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
@@ -33,7 +36,11 @@ const FestivalList = ({ festivals, addPick }) => {
     return (
       <Wrapper>
         {festivals.map((festival) => (
-          <Festival addPick={addPick} key={festival.id} festival={festival} />
+          <Festival
+            addPick={addPick}
+            key={festival.content_id}
+            festival={festival}
+          />
         ))}
       </Wrapper>
     );

@@ -4,8 +4,26 @@ import Signup from "./Signup";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  height: 15rem;
+  width: 30rem;
+  height: 100%;
   text-align: center;
+  &>button{
+    width: 20%;
+    height: 100%;
+    border: none;
+    background-color: #faa08e;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+    transition: 0.2s ease-out;
+   
+
+    &:hover{
+      background-color: #f56f54;
+      transition: all 0.2s ease-in;
+      cursor: pointer;
+    }
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -71,7 +89,7 @@ const Login = ({ loginHandler }) => {
 
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>login</button>
+      <button onClick={openModalHandler}>Log In</button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView

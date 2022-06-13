@@ -1,40 +1,52 @@
 import React from "react";
-import Mypage from "../pages/Mypage";
 import Login from "./Login";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  display: flex;
-`;
+
 
 const ButtonsWrapper = styled.div`
   display: flex;
+  /* align-items: center; */
+  
+  /* background-color: blue; */
+  width: 20rem;
+  height: 100%;
+ & > a{
+  width: 6rem;
+  line-height: 4;
+  font-size: larger;
+  font-weight: bolder;
+  color: white;
+  text-decoration:none;
+  /* background-color: #f56f54cb; */
+  transition: 0.2s ease-out;
+    &:hover{
+      background-color: #f56f54;
+      transition: all 0.2s ease-in;
+    }
+  
+ }
+
 `;
 
 const Navigationbar = ({ isLogin, loginHandler }) => {
   console.log(isLogin);
-  return (
-    <Wrapper>
+  return (  
+    <>
       {isLogin ? (
         <ButtonsWrapper>
-          <Mypage />
-          <Link to="/Pickpage">
-            <button>pickpage</button>
-          </Link>
+          <Link to="/Mypage">Mypage</Link>
           <Logout loginHandler={loginHandler} />
         </ButtonsWrapper>
       ) : (
         <ButtonsWrapper>
-          <Link to="/Pickpage">
-            <button>pickpage</button>
-          </Link>
           <Login loginHandler={loginHandler} />
         </ButtonsWrapper>
       )}
-    </Wrapper>
+    </>
   );
 };
 

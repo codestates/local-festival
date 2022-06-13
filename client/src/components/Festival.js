@@ -2,10 +2,10 @@ import React from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
+import onErrorImage from "../noimage.png"
 const Wrapper = styled.div`
-  width: 13em;
-  height: 15em;
+  width: 22%;
+  height: 20em;
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     transform: scale(1.1);
     & > div,
     border {
-      background-color: coral;
+      background-color: #f8826b;
     }
   }
 
@@ -30,26 +30,36 @@ const Wrapper = styled.div`
   } */
 
   & > img {
-    object-fit: cover;
+    object-fit: fill;
     width: 100%;
-    height: 10em;
+    height: 70%;
     border-radius: 3.5px 3.5px 0 0;
   }
 `;
 
 const Description = styled.div`
   text-align: start;
-  height: 5em;
+  height: 7rem;
   padding: 0.2em;
-  border-top: 0.3em solid #ff8a3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border-top: 0.3em solid; */
   color: white;
-  background-color: #ff8a3d;
+  background-color: #d2ad81;
   border-radius: 0 0 4px 4px;
+  & > div {
+    width: 80%;
+    text-align: center;
+  }
 `;
 
 const Festival = ({ festival, addPick }) => {
   let navigate = useNavigate();
 
+  const onErrorImg = (e) => {
+    e.target.src = onErrorImage
+  }
   const onClickMoveDVP = () => {
     navigate("/Detailviewpage", { state: festival });
   };
@@ -66,7 +76,8 @@ const Festival = ({ festival, addPick }) => {
     <Wrapper key={festival.id} onClick={onClickMoveDVP}>
       <img
         src={festival.image}
-        alt={`${festival.title} : 이미지가 존재하지 않습니다`}
+         alt={`${festival.title} : 이미지가 존재하지 않습니다`}
+        onError={onErrorImg}
       />
 
       <Description>
@@ -74,8 +85,8 @@ const Festival = ({ festival, addPick }) => {
           <b>{festival.title}</b>
         </div>
         <div>
-          {moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}~
-          {moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}
+          <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
+          <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
         </div>
         <button
           onClick={(e) => {
