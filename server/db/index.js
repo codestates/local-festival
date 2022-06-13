@@ -5,7 +5,7 @@ dotenv.config();
 
 const con = mysql.createConnection(
   // 여기도 수정
-  config[process.env.NODE_ENV || "deploy"]
+  config[process.env.NODE_ENV || "development"]
 );
 
 con.connect((err) => {

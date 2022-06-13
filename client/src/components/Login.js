@@ -49,6 +49,8 @@ const ButtonsInRow = styled.div`
   & > button {
     height: 2rem;
     margin: 0.2rem;
+    font-size: 28px;
+    font-weight: bold;
   }
 `;
 
