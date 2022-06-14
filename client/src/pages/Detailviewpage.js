@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DescTab from "../components/DescTab";
 import Moveloginpick from "../components/Moveloginpick";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams,Routes , Route } from "react-router-dom";
 import styled from "styled-components";
 import ReviewTab from "../components/ReviewTab";
 
@@ -83,18 +83,22 @@ const Tab = styled.div`
 `;
 
 const Detailviewpage = () => {
+  // let {id} = useParams()
+  // console.log(id);
   const [currentTab, setCurrentTab] = useState(0);
 
   const { state } = useLocation();
-  console.log(state);
-  const { image, title } = state;
 
+  const { image, title } = state;
+  
   const tabArr = [
     { name: "상세정보", content: <DescTab festivalInfo={state} /> },
-    { name: "리뷰", content: <ReviewTab /> },
+    { name: "리뷰", content: <ReviewTab  festivalInfo={state}/> },
   ];
   return (
     <Wrapper>
+      
+    
       <ImageAndPickbtn>
         <img src={image} alt={`${title} : 이미지가 존재하지 않습니다.`}></img>
         <Moveloginpick />
@@ -124,6 +128,14 @@ const Detailviewpage = () => {
       </TabAndDesc>
     </Wrapper>
   );
+
+
+
+  
+  
+  
+  
+
 };
 
 export default Detailviewpage;

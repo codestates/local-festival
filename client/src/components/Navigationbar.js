@@ -33,7 +33,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const Navigationbar = ({ isLogin, loginHandler }) => {
-  console.log(isLogin);
+  // console.log(isLogin);
   return (  
     <>
       {isLogin ? (

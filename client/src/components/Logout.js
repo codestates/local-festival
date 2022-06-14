@@ -9,7 +9,7 @@ const ModalContainer = styled.div`
     
     height: 100%  ;
     border: none;
-padding: 0 1rem;
+    padding: 0 1rem;
     background-color: #faa08e;
     color: white;
     font-weight: bolder;
@@ -48,6 +48,8 @@ const Logout = ({ loginHandler }) => {
   };
 
   const onClickLogoutBtn = () => {
+     //# 클라이언트에서 토큰 지우기 
+    // localStorage.removeItem("accessToken");
     loginHandler();
   };
   return (

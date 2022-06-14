@@ -17,19 +17,28 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   font-size: 25px;
-  font-family: "ulsanjunggu";
+  /* font-family: "ulsanjunggu"; */
+  font-family: 'HS-Regular';
   color: white;
   text-align: center;
+  line-height: 1.6;
   position: absolute;
   top: 50%;
-  left: 4em;
+  width: 10rem;
+  left: 4.5rem;
+  height: 100%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 1px 0 1px #dadce0;
+  font-style: italic;
+  background-color: #f43e4d;
+  padding: 0.5rem;
+  border-radius: 0.1rem;
+  /* box-shadow: 0 1px 0 1px #dadce0; */
   margin-bottom: 1em;
-  & img {
+  /* & img {
     width: 100%;
     height: 100%;
-  }
+  } */
+  
 `;
 
 const Header = ({ isLogin, loginHandler }) => {

@@ -348,10 +348,10 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("계속 작동하니???");
+    // console.log("계속 작동하니???");
     const fetchData = async () => {
       try {
-        console.log(process.env.SERVER_ADDRESS);
+        // console.log(process.env.SERVER_ADDRESS);
         const response = await axios.get(
           `http://localhost:4001/festivals`
           // `http://ec2-3-35-218-199.ap-northeast-2.compute.amazonaws.com/festivals`
@@ -359,7 +359,7 @@ function App() {
           //* local test용 `${process.env.SERVER_ADDRESS || `http://localhost:4001`}/festivals`,
           // { params: { date: "date?!?!?" } }
         );
-        console.log("서버에서 데이터 어케 받아져오지??, response?", response);
+        console.log("서버에서 데이터 어케 받아져오지?", response);
 
         if (response) {
           setFestivalData(response.data);
@@ -406,7 +406,7 @@ function App() {
         ></Route>
         <Route
           exact
-          path="/Detailviewpage"
+          path="/Detailviewpage/festival_id/:id"
           element={<Detailviewpage />}
         ></Route>
       </Routes>

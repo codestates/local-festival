@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   width: 80vw;
   height: 80vh;
   /* border: 1px solid black; */
-  font-family: "EarlyFontDiary";
+  /* font-family: "EarlyFontDiary"; */
 `;
 
 const Nav = styled.div`
