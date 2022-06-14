@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Signup from "./Signup";
 import styled from "styled-components";
-
+import axios from "axios";
 const ModalContainer = styled.div`
   width: 30rem;
   height: 100%;
@@ -19,7 +19,7 @@ const ModalContainer = styled.div`
    
 
     &:hover{
-      background-color: #f56f54;
+      background-color: #fb505e;
       transition: all 0.2s ease-in;
       cursor: pointer;
     }
@@ -74,12 +74,45 @@ const ButtonsInRow = styled.div`
 
 const Login = ({ loginHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userId, setUserId] = useState('');
+const [password, setPassword] = useState('');
+  
+  const handleUserId = (e) => {
+    setUserId(e.target.value);
+  }
+ const handlePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
+      axios.post("http://localhost:4001/signin", {user_id : userId, password : password})
+      .then(response => {
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          //# 토큰을 받아왔으면  토큰을 저장한다.
+          // localStorage.setItem("accessToken", response.data.token);
+          console.log(response.data.message);
+          //# 토큰 설정
+          loginHandler();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+     
+    // }
+   
+  ;
+  }
+
+  
+
+
   const openModalHandler = () => {
     setIsOpen(!isOpen);
-  };
-
-  const onClickLoginBtn = () => {
-    loginHandler();
   };
 
   const openModalHandlerLogin = () => {
@@ -99,18 +132,26 @@ const Login = ({ loginHandler }) => {
           >
             <h1>Login Component</h1>
             <LoginControl>
+            <form onSubmit={(e) => { handleSubmit(e) }}>
               <InputsInColumn>
-                <input placeholder="ID"></input>
-                <input placeholder="Password"></input>
+              <label >
+            아이디 
+          <input type="text" value={userId} required onChange={(e)=> { handleUserId(e) }} /><br />
+          </label>
+          <label>
+            비밀번호
+          <input type="password" value={password} required onChange={(e) => { handlePassword(e) }} /><br />
+          </label>
               </InputsInColumn>
               <ButtonsInRow>
-                <button onClick={onClickLoginBtn}>Log in</button>
-                <Signup openModalHandlerLogin={openModalHandlerLogin} />
+              <input type="submit" value="로그인하기" />
+              </ButtonsInRow>
+              </form>
+            </LoginControl>
+            <Signup openModalHandlerLogin={openModalHandlerLogin} />
                 <button className="close-btn" onClick={openModalHandler}>
                   cancel
                 </button>
-              </ButtonsInRow>
-            </LoginControl>
             <div>
               <button>구글 로그인</button>
               <button>카카오 로그인?</button>

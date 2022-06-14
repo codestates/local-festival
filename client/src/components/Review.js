@@ -12,15 +12,16 @@ const Wrapper = styled.div`
   /* overflow: hidden; */
   /* text-overflow: ellipsis; */
 `;
-const Review = () => {
+const Review = ({review}) => {
+  // console.log(review);
   return (
     <Wrapper>
       <b>Review component</b>
       <ul>
-        <li>작성자</li>
+        <li>작성내용 : {review.content}</li>
         <li>작성일시</li>
-        <li>작성내용</li>
-        <li>평점</li>
+        <li>작성자 : {review.nickname}</li>
+        <li>평점 : {review.rating}</li>
         <li>태그</li>
       </ul>
     </Wrapper>

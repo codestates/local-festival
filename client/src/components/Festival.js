@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   box-shadow: inset;
   transition: transform 0.3s ease-out;
-  font-family: "EarlyFontDiary";
+  /* font-family: "EarlyFontDiary"; */
 
   &:hover {
     transform: scale(1.1);
@@ -56,12 +56,16 @@ const Description = styled.div`
 
 const Festival = ({ festival, addPick }) => {
   let navigate = useNavigate();
-
+  // console.log(festival.content_id);
   const onErrorImg = (e) => {
     e.target.src = onErrorImage
   }
-  const onClickMoveDVP = () => {
-    navigate("/Detailviewpage", { state: festival });
+  // const onClickMoveDVP = () => {
+  //   navigate(`/Detailviewpage/`, { state: festival });
+  // };
+  const onClickMoveDVP = (id) => {
+    console.log(id);
+    navigate(`/Detailviewpage/festival_id/${id}`, { state: festival });
   };
 
   const onClickPick = (event, id) => {
@@ -73,7 +77,8 @@ const Festival = ({ festival, addPick }) => {
   let endDate = festival.end_date;
 
   return (
-    <Wrapper key={festival.id} onClick={onClickMoveDVP}>
+    <Wrapper key={festival.id} onClick={()=>{onClickMoveDVP(festival.id)}}>
+     {/* <Wrapper key={festival.id} onClick={onClickMoveDVP}> */}
       <img
         src={festival.image}
          alt={`${festival.title} : 이미지가 존재하지 않습니다`}

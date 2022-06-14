@@ -15,11 +15,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const ReviewTab = () => {
+const ReviewTab = ({festivalInfo}) => {
+const festival_id = festivalInfo.id
   return (
     <Wrapper>
-      <ReviewList />
-      <ReviewWrite />
+      <ReviewList festival_id={festival_id} />
+      <ReviewWrite festival_id={festival_id} />
     </Wrapper>
   );
 };
