@@ -32,11 +32,11 @@ const ButtonsWrapper = styled.div`
 
 `;
 
-const Navigationbar = ({ isLogin, loginHandler }) => {
+const Navigationbar = ({ authState, loginHandler }) => {
   // console.log(isLogin);
   return (  
-    <>
-      {isLogin ? (
+    <> 
+      {authState.loginStatus ? (
         <ButtonsWrapper>
           <Link to="/Mypage">Mypage</Link>
           <Logout loginHandler={loginHandler} />

@@ -45,7 +45,8 @@ const Nav = styled.div`
   }
 `;
 
-const Pickpage = ({ festivalData, pickItems, removePick }) => {
+const Mypage = ({ authState,festivalData, pickItems, removePick }) => {
+  const {nickname} = authState
   return (
     <Wrapper>
       <Nav>
@@ -54,7 +55,7 @@ const Pickpage = ({ festivalData, pickItems, removePick }) => {
           <button>메인페이지로 <br></br>돌아가기</button>
         </Link>
       </Nav>
-      <h1>My Pick!</h1>
+      <h1> {nickname}님이 찜하신 축제들 입니다</h1>
       <Picklist
         removePick={removePick}
         festivalData={festivalData}
@@ -64,4 +65,4 @@ const Pickpage = ({ festivalData, pickItems, removePick }) => {
   );
 };
 
-export default Pickpage;
+export default Mypage;

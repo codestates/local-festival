@@ -21,7 +21,12 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [authState, setAuthState] = useState({
+    nickname : "",
+    user_id : "",
+    loginStatus : false
+  })
+  // const [isLogin, setIsLogin] = useState(false);
   const [festivalData, setFestivalData] = useState(null);
   const [condition, setCondition] = useState("");
   const [pickItems, setPickItems] = useState([]);
@@ -306,9 +311,31 @@ function App() {
     },
   ];
 
-  const loginHandler = () => {
+  const loginHandler = (nickname, user_id, loginStatus) => {
     // isLogin ? setIsLogin(false) : setIsLogin(true);
-    setIsLogin(!isLogin); //* 더 간단!
+    console.log(nickname, user_id, loginStatus);
+    //* 로그인한 후의 유저정보 상태변경입니다.
+   const nextState = {
+    nickname : nickname,
+    user_id : user_id,
+    loginStatus : loginStatus
+   }
+   setAuthState(nextState)
+   console.log('나 실행???');
+   
+   //# 유저별 찜한 축제 가져오기
+   axios.get(`http://localhost:4001/pick/${user_id}`)
+   .then(response => {
+    console.log(response.data.data);
+    const pickedFestivalId = response.data.data
+    console.log(pickedFestivalId);
+    // const festivalIdArr = pickedFestivalId.map(ele => ele.local_id)
+    // const pickedFestivalByUser = festivalData.filter(ele => festivalIdArr.indexOf(ele.id) > -1)
+//{festival_Id: 4}
+    setPickItems(pickedFestivalId)
+   })
+    
+    
   };
   const onSearch = (searchText) => {
     console.log(searchText);
@@ -327,16 +354,25 @@ function App() {
     // console.log("addPick", id);
     // const nextPickItems = pickItems.concat({ itemId: id });
     // setPickItems(nextPickItems);
-    const found = pickItems.filter((el) => el.festival_Id === id)[0];
+    const found = pickItems.filter((el) => el.festival_id === id)[0];
     if (found) {
       console.log("found");
       alert("이미 추가된 축제입니다");
     } else {
       console.log("add new");
+      //# 픽해서 서버에 픽한 정보 보내주기 
+      axios.post("http://localhost:4001/pick", {user_id : authState.user_id, festival_id: id})
+      .then(response => {
+        console.log(response.data.message);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
       setPickItems([
         ...pickItems,
         {
-          festival_Id: id,
+          festival_id: id,
         },
       ]);
     }
@@ -344,16 +380,28 @@ function App() {
 
   const removePick = (id) => {
     console.log("removeId what!!!", id);
-    setPickItems(pickItems.filter((el) => el.festival_Id !== id));
+
+    //*서버에 삭제요청 보내기
+    axios.delete("http://localhost:4001/pick", {data : {user_id : authState.user_id, festival_id: id}})
+    .then(response => {
+      console.log(response.data.message);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+    setPickItems(pickItems.filter((el) => el.festival_id !== id));
+
+
   };
 
   useEffect(() => {
     // console.log("계속 작동하니???");
     const fetchData = async () => {
       try {
-        // console.log(process.env.SERVER_ADDRESS);
         const response = await axios.get(
-          `http://ec2-3-34-91-15.ap-northeast-2.compute.amazonaws.com:4001/festivals`
+          `http://localhost:4001/festivals`
+          // `http://ec2-3-34-91-15.ap-northeast-2.compute.amazonaws.com:4001/festivals`
           // `http://ec2-3-35-218-199.ap-northeast-2.compute.amazonaws.com/festivals`
           // `${process.env.SERVER_ADDRESS}/festivals`,
           //* local test용 `${process.env.SERVER_ADDRESS || `http://localhost:4001`}/festivals`,
@@ -380,13 +428,14 @@ function App() {
   }, []);
   return (
     <Wrapper>
-      <Header loginHandler={loginHandler} isLogin={isLogin} />
+      <Header loginHandler={loginHandler} authState={authState} />
       <Routes>
         <Route
           exact
           path="/"
           element={
             <Mainpage
+            authState={authState}
               addPick={addPick}
               onSearch={onSearch}
               festivalData={festivalData}
@@ -398,6 +447,7 @@ function App() {
           path="/Mypage"
           element={
             <Mypage
+              authState={authState}
               removePick={removePick}
               festivalData={festivalData}
               pickItems={pickItems}

@@ -65,7 +65,7 @@ const Pick = ({ item, removePick }) => {
 
   };
   const onClickMoveDVP = () => {
-    navigate("/Detailviewpage", { state: item });
+    navigate(`/Detailviewpage/festival_id/${id}`, { state: item });
   };
   return (
     <Wrapper onClick={onClickMoveDVP}>

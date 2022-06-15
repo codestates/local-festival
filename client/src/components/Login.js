@@ -87,16 +87,17 @@ const [password, setPassword] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
       //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
-      axios.post("http://localhost:4001/signin", {user_id : userId, password : password})
+      axios.post("http://localhost:4001/users/signin", {user_id : userId, password : password})
       .then(response => {
         if (response.data.error) {
           alert(response.data.error);
         } else {
-          //# 토큰을 받아왔으면  토큰을 저장한다.
+          //# 토큰과 유저정보를 받아온다.
           // localStorage.setItem("accessToken", response.data.token);
-          console.log(response.data.message);
+          console.log(response.data.data);
+          const {nickname, user_id} = response.data.data
           //# 토큰 설정
-          loginHandler();
+          loginHandler(nickname, user_id, true);
         }
       })
       .catch(err => {

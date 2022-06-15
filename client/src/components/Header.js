@@ -41,7 +41,7 @@ const Title = styled.div`
   
 `;
 
-const Header = ({ isLogin, loginHandler }) => {
+const Header = ({ authState, loginHandler }) => {
   return (
     <Wrapper>
       <Link to="/">
@@ -51,7 +51,7 @@ const Header = ({ isLogin, loginHandler }) => {
         {/* <img className="logo" src="img/playoutside.png" alt="playoutside" /> */}
       </Link>
 
-      <Navigationbar loginHandler={loginHandler} isLogin={isLogin} />
+      <Navigationbar loginHandler={loginHandler} authState={authState} />
     </Wrapper>
   );
 };

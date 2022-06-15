@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     margin: 1rem;
   }
 `;
-const Mainpage = ({ addPick, onSearch, festivalData }) => {
+const Mainpage = ({ authState,addPick, onSearch, festivalData }) => {
   //* 두번 클릭해야지 작동
 
   //* 서버랑 연결할 때
@@ -33,7 +33,7 @@ const Mainpage = ({ addPick, onSearch, festivalData }) => {
   return (
     <Wrapper>
       <Search onSearch={onSearch} />
-      <FestivalList addPick={addPick} festivals={festivalData} />
+      <FestivalList  authState={authState} addPick={addPick} festivals={festivalData} />
       <Hashtag />
     </Wrapper>
   );

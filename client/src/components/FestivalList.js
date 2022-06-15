@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const FestivalList = ({ festivals, addPick }) => {
+const FestivalList = ({authState, festivals, addPick }) => {
   console.log(festivals);
   if (!festivals) {
     return (
@@ -37,6 +37,7 @@ const FestivalList = ({ festivals, addPick }) => {
       <Wrapper>
         {festivals.map((festival) => (
           <Festival
+          authState={authState}
             addPick={addPick}
             key={festival.content_id}
             festival={festival}

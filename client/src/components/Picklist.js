@@ -23,7 +23,7 @@ const Picklist = ({ festivalData, pickItems, removePick }) => {
     return <div>데이터를 받아오는 중</div>;
   } else {
     const renderedItems = festivalData.filter(
-      (ele) => pickItems.map((el) => el.festival_Id).indexOf(ele.id) > -1
+      (ele) => pickItems.map((el) => el.festival_id).indexOf(ele.id) > -1
     );
     return (
       <>
