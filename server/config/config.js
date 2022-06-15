@@ -11,8 +11,8 @@ const config = {
   },
   // deploy 추가
   deploy: {
-    host: "local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com",
-    user: "admin",
+    host: "database-1.c5ihcddce3kx.ap-northeast-2.rds.amazonaws.com",
+    user: "root",
     password: "vlclahd1",
     database: "local_festival",
     connectTimeout: 60000,
