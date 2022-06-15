@@ -11,10 +11,10 @@ mysql에 접속하셔서 // mysql -u root -p
 
 mysql (배포) // \* 2차 배포시에 user를 admin으로 하지 말고 root로 해주세요.
 rds에 접속 (admin)
-mysql -u admin --host local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com -P 3306 -p
+mysql -u root --host final-project-local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com -P 3306 -p
 
 ec2에서 schema.sql 파일 실행하기
-mysql -u admin --host local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com -P 3306 -p < schema.sql -p -Dlocal_festival
+mysql -u root --host final-project-local-festival.cckvitmvdr6s.ap-northeast-2.rds.amazonaws.com -P 3306 -p < schema.sql -p -Dlocal_festival
 
 ./local-festival/server
 서버터미널에서 스키마 해서 필드 만들면 됩니다. // npm run schema
