@@ -66,7 +66,7 @@ const Signup = ({ openModalHandlerLogin }) => {
       document.body.querySelector(".errorMessage").textContent = '비밀번호가 일치하지 않습니다'
     } else {
       //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
-      axios.post("http://localhost:4001/signup", {user_id : userId, password : password, nickname : nickname})
+      axios.post("http://localhost:4001/users/signup", {user_id : userId, password : password, nickname : nickname})
       .then(response => {
         console.log(response.data.message);
       })

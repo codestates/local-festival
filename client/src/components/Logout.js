@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
@@ -43,6 +44,9 @@ const ModalView = styled.div`
 `;
 const Logout = ({ loginHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  let navigate = useNavigate()
+
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -50,7 +54,10 @@ const Logout = ({ loginHandler }) => {
   const onClickLogoutBtn = () => {
      //# 클라이언트에서 토큰 지우기 
     // localStorage.removeItem("accessToken");
-    loginHandler();
+    loginHandler("","",false);
+    navigate('/')
+   
+
   };
   return (
     <ModalContainer>

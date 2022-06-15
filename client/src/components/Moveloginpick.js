@@ -53,8 +53,13 @@ const ButtonsInRow = styled.div`
 const Moveloginpick = () => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = (event) => {
+    event.stopPropagation();
     setIsOpen(!isOpen);
   };
+
+  const openModalHandlerMLP = ()=>{
+    setIsOpen(!isOpen);
+  }
 
   return (
     <ModalContainer>
@@ -75,7 +80,7 @@ const Moveloginpick = () => {
                   <button className="close-btn" onClick={openModalHandler}>
                     cancel
                   </button>
-                  <Login />
+                  <Login openModalHandlerMLP={openModalHandlerMLP} />
                 </InputsInColumn>
               </ButtonsInRow>
             </PickupControl>

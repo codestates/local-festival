@@ -3,6 +3,7 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import onErrorImage from "../noimage.png"
+import Moveloginpick from "./Moveloginpick"
 const Wrapper = styled.div`
   width: 22%;
   height: 20em;
@@ -54,7 +55,7 @@ const Description = styled.div`
   }
 `;
 
-const Festival = ({ festival, addPick }) => {
+const Festival = ({ authState, festival, addPick }) => {
   let navigate = useNavigate();
   // console.log(festival.content_id);
   const onErrorImg = (e) => {
@@ -93,13 +94,15 @@ const Festival = ({ festival, addPick }) => {
           <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
           <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
         </div>
-        <button
+        {authState.loginStatus ? <button
           onClick={(e) => {
             onClickPick(e, festival.id);
           }}
         >
-          찜
-        </button>
+          찜하기
+        </button> : <Moveloginpick />}
+        
+     
       </Description>
     </Wrapper>
   );
