@@ -11,9 +11,9 @@ const config = {
   },
   // deploy 추가
   deploy: {
-    host: "database-1.c5ihcddce3kx.ap-northeast-2.rds.amazonaws.com",
+    host: process.env.DATABASE_RDS_ADDRESS,
     user: "root",
-    password: "vlclahd1",
+    password: process.env.DATABASE_PASSWORD,
     database: "local_festival",
     connectTimeout: 60000,
   },
