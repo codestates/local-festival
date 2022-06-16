@@ -3,38 +3,66 @@ import FestivalList from "../components/FestivalList";
 import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";
 import styled from "styled-components";
-
+import resetImg from "../assets/reset.png"
 const Wrapper = styled.div`
   width: 90%;
-  height: 80vh;
+  height: 44rem;
   
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   align-items: center;
 
   & > * {
-    margin: 1rem;
+    /* margin: 1rem; */
   }
 `;
-const Mainpage = ({ authState,addPick, onSearch, festivalData }) => {
-  //* 두번 클릭해야지 작동
 
-  //* 서버랑 연결할 때
+const FilteredInfo = styled.div`
+width: 90%;
+height: 5rem;
+align-self: flex-start;
+margin-top: 1rem;
+font-size: 2rem;
+font-weight: bold;
+line-height: 3;
+position: relative;
+left: 3.5rem;
+bottom: 1rem;
+display: flex;
+justify-content: space-between;
 
-  // useEffect(() => {}, [condition]);
+&>img{
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  top: 1.2rem;
+  &:hover{
+     transition: all 1s ease-in-out;
+    transform: rotate(-45deg);
 
-  //* 데이터 한번 받아온 후, client에서 자체적으로 필터링
+  }
+  &:active   {
+    
+  transform: rotate(-360deg);
+  transition: 0.3s;   
 
-  // useEffect(() => {
-  //   setFestivalData(dummyData);
-  // }, [condition]);
+
+  }
+}
+`
+const Mainpage = ({ authState,togglePick, onSearch, filteredData, pickItems, resetCondition }) => {
+  
 
   return (
     <Wrapper>
       <Search onSearch={onSearch} />
-      <FestivalList  authState={authState} addPick={addPick} festivals={festivalData} />
-      <Hashtag />
+      <FilteredInfo>
+       <div>{!!filteredData && <span style={{color:"red"}}>{filteredData.length}</span>}개의 축제가 진행중입니다</div> <img onClick={resetCondition} src={resetImg}></img>
+
+        </FilteredInfo>
+      <FestivalList  authState={authState} togglePick={togglePick} festivals={filteredData} pickItems={pickItems} />
+      <Hashtag onSearch={onSearch}/>
     </Wrapper>
   );
 };

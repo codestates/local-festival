@@ -7,6 +7,7 @@ const Wrapper = styled.div`
     /* border: 3px solid yellowgreen; */
   width: 100%;
   height: 100%;
+  
   flex-wrap: wrap;
   justify-content: flex-start;
   /* margin-left: 5rem;
@@ -32,7 +33,7 @@ const Picklist = ({ festivalData, pickItems, removePick }) => {
         ) : (
           <Wrapper>
             {renderedItems.map((item, idx) => {
-              return <Pick key={idx} item={item} removePick={removePick} />;
+              return <Pick key={idx} item={item} pickItems={pickItems} removePick={removePick} />;
             })}
           </Wrapper>
         )}

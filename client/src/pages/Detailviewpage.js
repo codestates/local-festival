@@ -8,10 +8,11 @@ import ReviewTab from "../components/ReviewTab";
 const Wrapper = styled.div`
   display: flex;
   width: 70vw;
-  height: 80rem;
+  height: 60rem;
   justify-content: space-evenly;
   border-radius: 1rem;
   border: 1px solid black;
+  margin-top: 1rem;
 `;
 
 const ImageAndPickbtn = styled.div`

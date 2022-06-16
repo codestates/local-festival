@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import onErrorImage from "../noimage.png"
 import Moveloginpick from "./Moveloginpick"
+import HeartButton from "./HeartButton";
+
 const Wrapper = styled.div`
   width: 22%;
-  height: 20em;
+  height: 25em;
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
@@ -19,16 +21,11 @@ const Wrapper = styled.div`
 
   &:hover {
     transform: scale(1.1);
-    & > div,
-    border {
+    & > div:nth-child(2) {
       background-color: #f8826b;
     }
   }
 
-  /* &:active {
-    box-shadow: 0px 0px 10px 5px coral;
-    transform: translateY(-1em);
-  } */
 
   & > img {
     object-fit: fill;
@@ -48,38 +45,67 @@ const Description = styled.div`
   /* border-top: 0.3em solid; */
   color: white;
   background-color: #d2ad81;
+  
   border-radius: 0 0 4px 4px;
   & > div {
     width: 80%;
     text-align: center;
+   
   }
+
+  
+
+  
 `;
 
-const Festival = ({ authState, festival, addPick }) => {
+const HeartDiv = styled.div`
+display: flex;
+justify-content: flex-end;
+& > img {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  right: 0.8rem;
+  bottom: 2.2rem;
+}
+`
+
+
+
+const Festival = ({ authState, festival, togglePick, pickItems }) => {
+  const [like, setLike] = useState(false)
   let navigate = useNavigate();
-  // console.log(festival.content_id);
   const onErrorImg = (e) => {
     e.target.src = onErrorImage
   }
-  // const onClickMoveDVP = () => {
-  //   navigate(`/Detailviewpage/`, { state: festival });
-  // };
+ 
   const onClickMoveDVP = (id) => {
     console.log(id);
     navigate(`/Detailviewpage/festival_id/${id}`, { state: festival });
   };
+  const toggleLike =  (event) => {
+    // event.stopPropagation();
+    setLike(!like)
+  }
+
+  useEffect(()=>{
+    const isPicked = pickItems.some(ele => ele.festival_id === festival.id)
+    setLike(isPicked)
+    console.log('hey');
+  })
 
   const onClickPick = (event, id) => {
     event.stopPropagation();
     console.log("pick_id!!!!!!!!!!", id);
-    addPick(id);
+    togglePick(id);
+    toggleLike()
   };
   let startDate = festival.start_date;
   let endDate = festival.end_date;
 
   return (
     <Wrapper key={festival.id} onClick={()=>{onClickMoveDVP(festival.id)}}>
-     {/* <Wrapper key={festival.id} onClick={onClickMoveDVP}> */}
+     
       <img
         src={festival.image}
          alt={`${festival.title} : 이미지가 존재하지 않습니다`}
@@ -94,16 +120,24 @@ const Festival = ({ authState, festival, addPick }) => {
           <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
           <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
         </div>
-        {authState.loginStatus ? <button
-          onClick={(e) => {
-            onClickPick(e, festival.id);
-          }}
-        >
-          찜하기
-        </button> : <Moveloginpick />}
         
-     
-      </Description>
+        </Description>
+        <HeartDiv>
+          
+        {authState.loginStatus ? <HeartButton like={like}
+            onClick={(e) => {
+              onClickPick(e, festival.id);
+          
+            }}
+          >
+          
+          </HeartButton> : null}
+        </HeartDiv>
+        
+      
+        
+      
+      
     </Wrapper>
   );
 };

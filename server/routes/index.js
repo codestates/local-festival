@@ -29,7 +29,7 @@ router.post('/users/signin', (req, res) => {
 router.get('/pick/:user_id', (req, res) => {
   const user_id = req.params
   // console.log(user_id); { user_id: '1' }
-  const dummydata = [{festival_id : 11},{festival_id : 12},{festival_id:15}]
+  const dummydata = [{festival_id : 3},{festival_id : 4}]
   res.json({data : dummydata})
 })
 
@@ -37,7 +37,7 @@ router.get('/pick/:user_id', (req, res) => {
 router.post('/pick', (req, res) => {
   // console.log(req.body); { user_id: 1, festival_id: 24 }
   console.log(req.body);
-
+res.send("good")
   // 받아온 user_id와 festival_id로 데이터 저장해주세욥
 
 })
@@ -46,6 +46,7 @@ router.post('/pick', (req, res) => {
 router.delete('/pick', (req, res) => {
   console.log('delete',req.body); //delete { user_id: 1, festival_id: 11 }
   // db에 삭제 처리 해주세욥
+  res.send("good")
 })
 
 

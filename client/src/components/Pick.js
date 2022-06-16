@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import HeartButton from "./HeartButton";
 
 const Wrapper = styled.div`
-  width: 20%;
-  height: 20em;
+  width: 22%;
+  height: 25em;
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
@@ -18,18 +19,12 @@ const Wrapper = styled.div`
 
   &:hover {
     transform: scale(1.1);
-    & > div,
-    border {
-      /* background-color: #88b85c; */
+    & > div:nth-child(2) {
       background-color: #f8826b;
-
     }
   }
 
-  /* &:active {
-    box-shadow: 0px 0px 10px 5px coral;
-    transform: translateY(-1em);
-  } */
+  
 
   & > img {
     object-fit: fill;
@@ -56,7 +51,21 @@ const Description = styled.div`
   }
 `;
 
-const Pick = ({ item, removePick }) => {
+const HeartDiv = styled.div`
+display: flex;
+justify-content: flex-end;
+& > img {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  right: 0.8rem;
+  bottom: 2.2rem;
+}
+`
+
+const Pick = ({ item, removePick, pickItems }) => {
+  const [like, setLike] = useState(false)
+
   let navigate = useNavigate();
   const { id, title, image, start_date, end_date } = item;
   const onClickRemove = (event,id) => {
@@ -64,6 +73,13 @@ const Pick = ({ item, removePick }) => {
     removePick(id);
 
   };
+  
+  useEffect(()=>{
+    const isPicked = pickItems.some(ele => ele.festival_id === id)
+    setLike(isPicked)
+    console.log('hey');
+  })
+
   const onClickMoveDVP = () => {
     navigate(`/Detailviewpage/festival_id/${id}`, { state: item });
   };
@@ -75,15 +91,18 @@ const Pick = ({ item, removePick }) => {
         <div><b>{title}</b></div>
         <div>{start_date}~{end_date}</div>
         <div>pickdate</div>
-      <button
-        onClick={(event) => {
-          onClickRemove(event, id);
-        }}
-        className="pick-x"
-        >
-        찜해제
-      </button>
+     
         </Description>
+        <HeartDiv>
+        <HeartButton like={like}
+            onClick={(event) => {
+              onClickRemove(event, id);
+          
+            }}
+          >
+          
+          </HeartButton>
+        </HeartDiv>
     </Wrapper>
   );
 };

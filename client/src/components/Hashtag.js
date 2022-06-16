@@ -1,37 +1,118 @@
-import React from "react";
+import React,{useRef} from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 10%;
+  height: 10rem;
   width: 80%;
-  border: 1px solid black;
+  background-color: #f9c9c9;
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  font-family: 'HS-Regular';
+  flex-direction: column;
+  justify-content: center;
+  position: relative; 
+  bottom: 1rem;
+
+  &  button {
+    border: none;
+    background: none;
+	color: inherit;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-style: italic;
+
+  &:hover{
+    color: red;
+  }
+  &:visited{
+    color: red;
+  }
+  }
 `;
 
-const Hashtag = () => {
+const Month = styled.div`
+margin-bottom: 1rem;
+
+`
+
+const Location = styled.div`
+`
+
+const Hashtag = ({ onSearch }) => {
+  const onClickMonth = (e)=>{
+    
+    const monthTags = e.target.parentNode.children
+    console.log(monthTags);
+    console.log(e.target.parentNode.parentNode.children[1].children);
+    const LocationTags = e.target.parentNode.parentNode.children[1].children
+    for(let i = 0 ; i < monthTags.length; i++) {
+      if(monthTags[i].style.color === "red") {
+        monthTags[i].style.color = "black"
+        
+      }
+    }
+    for(let i = 0 ; i < LocationTags.length; i++) {
+      if(LocationTags[i].style.color === "red") {
+        LocationTags[i].style.color = "black"
+        
+      }
+    }
+    // console.log(e.target.parentNode.children);
+    // console.log(e.target.parentNode.children[0].style.color);
+    // console.log(e.target.textContent.slice(1));
+    const month = e.target.textContent.slice(1, -1)
+    if(month.length === 1) {
+      onSearch(`20220${month}00`)
+    } else {
+      onSearch(`2022${month}00`)
+    }
+
+     e.target.style.color = "red"
+  }
+
+const onClickLocation = (e) => {
+  console.log(e.target.textContent.slice(1));
+  const searchTag = e.target.textContent.slice(1)
+
+  const LocationTags = e.target.parentNode.children
+  const monthTags = e.target.parentNode.parentNode.children[0].children
+
+  for(let i = 0 ; i < LocationTags.length; i++) {
+    if(LocationTags[i].style.color === "red") {
+      LocationTags[i].style.color = "black"
+      
+    }
+  }
+  for(let i = 0 ; i < monthTags.length; i++) {
+    if(monthTags[i].style.color === "red") {
+      monthTags[i].style.color = "black"
+      
+    }
+  }
+  
+
+  onSearch(searchTag)
+  e.target.style.color = "red"
+
+}
+const tagsArr = {months : Array(12).fill().map((v,i)=>i+1),
+                  locations : ['서울','경기','강원','충청','전라','경상','제주']
+                }
+
+                
   return (
-    <Wrapper>
-      <div>
-        <button>#1월</button>
-        <button>#2월</button>
-        <button>#3월</button>
-        <button>#4월</button>
-        <button>#5월</button>
-        <button>#6월</button>
-        <button>#7월</button>
-        <button>#8월</button>
-        <button>#9월</button>
-        <button>#10월</button>
-        <button>#11월</button>
-        <button>#12월</button>
-      </div>
-      <div>
-        <button>#서울</button>
-        <button>#경기</button>
-        <button>#강원</button>
-        <button>#충청</button>
-        <button>#전라</button>
-        <button>#경상</button>
-      </div>
+    <Wrapper >
+      <Month >
+        {tagsArr.months.map((month) => <button key={month} onClick={onClickMonth}>#{month}월</button>)}
+      </Month>
+      <Location>
+        {tagsArr.locations.map(location => <button key={location} onClick={onClickLocation}>#{location}</button>)}       
+      </Location>
     </Wrapper>
   );
 };

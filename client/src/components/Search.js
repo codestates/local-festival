@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   background-color: #fa6464;
+  margin-top: 2rem;
   height: 10%;
   width: 40%;
   display: flex;
@@ -52,9 +53,18 @@ const Search = ({ onSearch }) => {
     console.log(e.target.value);
     setSearchText(e.target.value);
   };
+  const onKeyPress = (e) => {
+
+    if(e.key === 'Enter') {
+   
+      onSearch(searchText);
+   
+    }
+   
+   }
   return (
     <Wrapper>
-      <input onChange={onChangeHandler} placeholder="축제를 검색해주세요!" />
+      <input onKeyPress={onKeyPress} onChange={onChangeHandler} placeholder="축제를 검색해주세요!" />
       <button onClick={onClickSearch}>검색</button>
     </Wrapper>
   );
