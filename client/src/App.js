@@ -8,6 +8,7 @@ import "./App.css";
 import Detailviewpage from "./pages/Detailviewpage";
 import styled from "styled-components";
 import axios from "axios";
+import Signup from "./components/Signup";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Wrapper = styled.div`
   padding: 0;
   /* background-color: #f8f9fa; */
   background-color: #faf7f2;
+  height: 75rem;
 `;
 
 function App() {
@@ -28,9 +30,8 @@ function App() {
   })
   // const [isLogin, setIsLogin] = useState(false);
   const [festivalData, setFestivalData] = useState(null);
-  const [condition, setCondition] = useState("");
   const [pickItems, setPickItems] = useState([]);
-
+  const [filteredData, setFilteredData] = useState(festivalData)
   const dummyData = [
     {
       id: 1,
@@ -339,25 +340,49 @@ function App() {
   };
   const onSearch = (searchText) => {
     console.log(searchText);
-    setCondition(searchText);
+    // setCondition(searchText);
     const filteredFestival = festivalData.filter(
       (festival) =>
-        festival.location.includes(condition) ||
-        festival.title.includes(condition)
+        festival.location.includes(searchText) ||
+        festival.title.includes(searchText) ||
+        festival.location.includes(searchText) ||(
+        Number(festival.start_date) <= (Number(searchText)) &&
+        Number(festival.end_date) >= (Number(searchText)) )
+        
     );
-    setFestivalData(filteredFestival);
 
+    setFilteredData(filteredFestival);
+        //alert(`${filteredFestival.length}개의 축제가 진행중입니다.`)
     // }
   };
 
-  const addPick = (id) => {
-    // console.log("addPick", id);
+  const resetCondition = ()=>{
+    setFilteredData(festivalData)
+
+  }
+
+  const togglePick = (id) => {
+    // console.log("togglePick", id);
     // const nextPickItems = pickItems.concat({ itemId: id });
     // setPickItems(nextPickItems);
     const found = pickItems.filter((el) => el.festival_id === id)[0];
     if (found) {
       console.log("found");
-      alert("이미 추가된 축제입니다");
+     
+      //# 픽 해제해서 서버에 픽 해제한 정보 보내주기 
+      console.log("removeId what!!!", id);
+
+    //*서버에 삭제요청 보내기
+    axios.delete("http://localhost:4001/pick", {data : {user_id : authState.user_id, festival_id: id}})
+    .then(response => {
+      console.log(response.data.message);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+    setPickItems(pickItems.filter((el) => el.festival_id !== id));
+      
     } else {
       console.log("add new");
       //# 픽해서 서버에 픽한 정보 보내주기 
@@ -411,6 +436,7 @@ function App() {
 
         if (response) {
           setFestivalData(response.data);
+          setFilteredData(response.data)
         } else {
           console.log("no fetch data & use dummyData");
           setFestivalData(dummyData);
@@ -436,9 +462,11 @@ function App() {
           element={
             <Mainpage
             authState={authState}
-              addPick={addPick}
+              togglePick={togglePick}
               onSearch={onSearch}
-              festivalData={festivalData}
+              filteredData={filteredData}
+              pickItems={pickItems}
+              resetCondition={resetCondition}
             />
           }
         ></Route>
@@ -459,6 +487,12 @@ function App() {
           path="/Detailviewpage/festival_id/:id"
           element={<Detailviewpage />}
         ></Route>
+        <Route
+          exact
+          path="/Signup"
+          element={<Signup />}
+        ></Route>
+       
       </Routes>
       <Footer />
     </Wrapper>

@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 80%;
-  margin-top: 2rem;
+  height: 60rem;
   padding: 0;
   /* background-color: #f2d29b; */
   
@@ -14,7 +13,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+  position: relative;
+  top: -2rem;
   overflow-y: auto;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const FestivalList = ({authState, festivals, addPick }) => {
+const FestivalList = ({authState, festivals, pickItems,togglePick }) => {
   console.log(festivals);
   if (!festivals) {
     return (
@@ -38,9 +38,10 @@ const FestivalList = ({authState, festivals, addPick }) => {
         {festivals.map((festival) => (
           <Festival
           authState={authState}
-            addPick={addPick}
+            togglePick={togglePick}
             key={festival.content_id}
             festival={festival}
+            pickItems={pickItems}
           />
         ))}
       </Wrapper>

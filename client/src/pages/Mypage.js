@@ -7,7 +7,7 @@ import EditProfile from "../components/EditProfile";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 90%;
   height: 80vh;
   /* border: 1px solid black; */
   /* font-family: "EarlyFontDiary"; */
