@@ -1,10 +1,37 @@
 import React, { useState } from "react";
-import SignoutDone from "./WithdrawDone";
+import WithdrawDone from "./WithdrawDone";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  height: 15rem;
+  height: 2rem;
   text-align: center;
+  & > button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    margin-right: 20px;
+
+    /* 크기 */
+    height: 2rem;
+    width: 6.5rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #faa08e;
+    &:hover {
+      background: #fd937e;
+    }
+    &:active {
+      background: #f56f54;
+    }
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -22,9 +49,53 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #faf7f2;
   width: 30vw;
-  height: 40vh;
+  height: 43vh;
+  & > h1 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const InputsInColumn = styled.div`
+  display: relative;
+  & > input {
+    margin: 0.5rem;
+    width: 15rem;
+    height: 30px;
+  }
+`;
+
+const Controllers = styled.div`
+  display: relative;
+  & > button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+
+    /* 크기 */
+    height: 2rem;
+    width: 6.5rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #faa08e;
+    &:hover {
+      background: #fd937e;
+    }
+    &:active {
+      background: #f56f54;
+    }
+  }
 `;
 
 const Withdraw = ({ openModalHandlerMypage }) => {
@@ -54,27 +125,24 @@ const Withdraw = ({ openModalHandlerMypage }) => {
               e.stopPropagation();
             }}
           >
-            <h1>Withdraw Component</h1>
-            <div className="Sighout-view-inputs">
-              <input placeholder="Password"></input>
-            </div>
-            <div className="Sighout-view-buttons">
-              <SignoutDone
+            <h1>비밀번호를 입력해주세요</h1>
+            <InputsInColumn>
+              <input placeholder="비밀번호 입력"></input>
+            </InputsInColumn>
+            <Controllers>
+              <button
+                onClick={() => {
+                  openModalHandlerWithdraw();
+                  openModalHandlerMypage();
+                }}
+              >
+                cancel
+              </button>
+              <WithdrawDone
                 openModalHandlerMypage={openModalHandlerMypage}
                 openModalHandlerWithdraw={openModalHandlerWithdraw}
               />
-              <div>
-                <button
-                  className="close-btn"
-                  onClick={() => {
-                    openModalHandlerWithdraw();
-                    openModalHandlerMypage();
-                  }}
-                >
-                  cancel
-                </button>
-              </div>
-            </div>
+            </Controllers>
           </ModalView>
         </ModalBackdrop>
       ) : null}

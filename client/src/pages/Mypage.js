@@ -19,7 +19,7 @@ const Nav = styled.div`
   justify-content: flex-end;
   height: 4rem;
   margin-top: 1rem;
-  &  button {
+  & button {
     border: none;
     width: 8rem;
     height: 100%;
@@ -32,16 +32,15 @@ const Nav = styled.div`
     transition: transform 0.2s ease-out;
 
     &:hover {
-    transform: scale(1.1);
-    background-color: #f8826b;
-
-    & > div,
-    border {
-      /* background-color: #88b85c; */
+      transform: scale(1.1);
       background-color: #f8826b;
 
+      & > div,
+      border {
+        /* background-color: #88b85c; */
+        background-color: #f8826b;
+      }
     }
-  }
   }
 `;
 
@@ -51,7 +50,9 @@ const Pickpage = ({ festivalData, pickItems, removePick }) => {
       <Nav>
         <EditProfile />
         <Link to="/">
-          <button>메인페이지로 <br></br>돌아가기</button>
+          <button>
+            메인페이지로 <br></br>돌아가기
+          </button>
         </Link>
       </Nav>
       <h1>My Pick!</h1>

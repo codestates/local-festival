@@ -7,7 +7,7 @@ const ModalContainer = styled.div`
   width: 30rem;
   height: 100%;
   text-align: center;
-  &>button{
+  & > button {
     width: 20%;
     height: 100%;
     border: none;
@@ -16,9 +16,8 @@ const ModalContainer = styled.div`
     font-weight: bolder;
     font-size: larger;
     transition: 0.2s ease-out;
-   
 
-    &:hover{
+    &:hover {
       background-color: #fb505e;
       transition: all 0.2s ease-in;
       cursor: pointer;
@@ -41,9 +40,12 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   border-radius: 10px;
-  background-color: #ffffff;
-  width: 30vw;
-  height: 40vh;
+  background-color: #faf7f2;
+  width: 40vw;
+  height: 55vh;
+  & > h1 {
+    margin-top: 1rem;
+  }
 `;
 
 const LoginControl = styled.div`
@@ -57,38 +59,161 @@ const LoginControl = styled.div`
 const InputsInColumn = styled.div`
   display: flex;
   flex-direction: column;
-  & > input {
-    margin: 0.2rem;
+  align-items: start;
+  /* display: relative; */
+  relative-align: top;
+  & > label > input {
+    align-items: start;
+    margin: 5px;
+    width: 15rem;
+    height: 30px;
   }
 `;
 
-const ButtonsInRow = styled.div`
+const LoginButton = styled.div`
   display: flex;
-  & > button {
-    height: 2rem;
-    margin: 0.2rem;
-    font-size: 28px;
+  & > input {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
     font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 15px;
+    margin-left: 32px;
+    margin-bottom: 15px;
+
+    /* 크기 */
+    height: 2rem;
+    width: 15rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #faa08e;
+    &:hover {
+      background: #fd937e;
+    }
+    &:active {
+      background: #f56f54;
+    }
+  }
+`;
+
+const GoogleLoginControl = styled.div`
+  display: relative;
+  button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 60px;
+    margin-bottom: 15px;
+
+    /* 크기 */
+    height: 2rem;
+    width: 15rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #4285f4;
+    &:hover {
+      background: #4285f4;
+    }
+    &:active {
+      background: #2366d2;
+    }
+  }
+`;
+
+const KakaoLoginControl = styled.div`
+  display: relative;
+  button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: #000000c1;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 15px;
+
+    /* 크기 */
+    height: 2rem;
+    width: 15rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #fee500;
+    &:hover {
+      background: #fee500;
+    }
+    &:active {
+      background: #ccb801;
+    }
+  }
+`;
+
+const CancelControl = styled.div`
+  display: relative;
+  button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 0.5rem;
+
+    /* 크기 */
+    height: 2rem;
+    width: 6.5rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #faa08e;
+    &:hover {
+      background: #fd937e;
+    }
+    &:active {
+      background: #f56f54;
+    }
   }
 `;
 
 const Login = ({ loginHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [userId, setUserId] = useState('');
-const [password, setPassword] = useState('');
-  
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleUserId = (e) => {
     setUserId(e.target.value);
-  }
- const handlePassword = (e) => {
+  };
+  const handlePassword = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
-      axios.post("http://localhost:4001/signin", {user_id : userId, password : password})
-      .then(response => {
+    //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
+    axios
+      .post("http://localhost:4001/signin", {
+        user_id: userId,
+        password: password,
+      })
+      .then((response) => {
         if (response.data.error) {
           alert(response.data.error);
         } else {
@@ -99,17 +224,10 @@ const [password, setPassword] = useState('');
           loginHandler();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
-     
-    // }
-   
-  ;
-  }
-
-  
-
+      });
+  };
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -130,32 +248,54 @@ const [password, setPassword] = useState('');
               e.stopPropagation();
             }}
           >
-            <h1>Login Component</h1>
+            <h1>로그인</h1>
             <LoginControl>
-            <form onSubmit={(e) => { handleSubmit(e) }}>
-              <InputsInColumn>
-              <label >
-            아이디 
-          <input type="text" value={userId} required onChange={(e)=> { handleUserId(e) }} /><br />
-          </label>
-          <label>
-            비밀번호
-          <input type="password" value={password} required onChange={(e) => { handlePassword(e) }} /><br />
-          </label>
-              </InputsInColumn>
-              <ButtonsInRow>
-              <input type="submit" value="로그인하기" />
-              </ButtonsInRow>
+              <form
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                <InputsInColumn>
+                  <label>
+                    아이디
+                    <input
+                      type="text"
+                      value={userId}
+                      required
+                      onChange={(e) => {
+                        handleUserId(e);
+                      }}
+                    />
+                    <br />
+                  </label>
+                  <label>
+                    비밀번호
+                    <input
+                      type="password"
+                      value={password}
+                      required
+                      onChange={(e) => {
+                        handlePassword(e);
+                      }}
+                    />
+                    <br />
+                  </label>
+                </InputsInColumn>
+                <LoginButton>
+                  <input type="submit" value="로그인하기" />
+                  <Signup openModalHandlerLogin={openModalHandlerLogin} />
+                </LoginButton>
               </form>
             </LoginControl>
-            <Signup openModalHandlerLogin={openModalHandlerLogin} />
-                <button className="close-btn" onClick={openModalHandler}>
-                  cancel
-                </button>
-            <div>
-              <button>구글 로그인</button>
-              <button>카카오 로그인?</button>
-            </div>
+            <GoogleLoginControl>
+              <button>Sigin in with Google</button>
+            </GoogleLoginControl>
+            <KakaoLoginControl>
+              <button>Login with Kakao</button>
+            </KakaoLoginControl>
+            <CancelControl>
+              <button onClick={openModalHandler}>cancel</button>
+            </CancelControl>
           </ModalView>
         </ModalBackdrop>
       ) : null}

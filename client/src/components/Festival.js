@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import onErrorImage from "../noimage.png"
+import onErrorImage from "../noimage.png";
 const Wrapper = styled.div`
   width: 22%;
   height: 20em;
@@ -58,8 +58,8 @@ const Festival = ({ festival, addPick }) => {
   let navigate = useNavigate();
   // console.log(festival.content_id);
   const onErrorImg = (e) => {
-    e.target.src = onErrorImage
-  }
+    e.target.src = onErrorImage;
+  };
   // const onClickMoveDVP = () => {
   //   navigate(`/Detailviewpage/`, { state: festival });
   // };
@@ -77,11 +77,16 @@ const Festival = ({ festival, addPick }) => {
   let endDate = festival.end_date;
 
   return (
-    <Wrapper key={festival.id} onClick={()=>{onClickMoveDVP(festival.id)}}>
-     {/* <Wrapper key={festival.id} onClick={onClickMoveDVP}> */}
+    <Wrapper
+      key={festival.id}
+      onClick={() => {
+        onClickMoveDVP(festival.id);
+      }}
+    >
+      {/* <Wrapper key={festival.id} onClick={onClickMoveDVP}> */}
       <img
         src={festival.image}
-         alt={`${festival.title} : 이미지가 존재하지 않습니다`}
+        alt={`${festival.title} : 이미지가 존재하지 않습니다`}
         onError={onErrorImg}
       />
 
@@ -90,8 +95,8 @@ const Festival = ({ festival, addPick }) => {
           <b>{festival.title}</b>
         </div>
         <div>
-          <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
-          <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
+          {moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}~
+          {moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}
         </div>
         <button
           onClick={(e) => {
