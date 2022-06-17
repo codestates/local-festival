@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
-  height: 80vh;
+  height: 60rem;
   /* border: 1px solid black; */
   /* font-family: "EarlyFontDiary"; */
 `;
@@ -19,10 +19,10 @@ const Nav = styled.div`
   justify-content: flex-end;
   height: 4rem;
   margin-top: 1rem;
-  &  button {
+  & button {
     border: none;
     width: 8rem;
-    height: 100%;
+    /* height: 100%; */
     margin-left: 1rem;
     background-color: #faa08e;
     color: white;
@@ -32,27 +32,28 @@ const Nav = styled.div`
     transition: transform 0.2s ease-out;
 
     &:hover {
-    transform: scale(1.1);
-    background-color: #f8826b;
-
-    & > div,
-    border {
-      /* background-color: #88b85c; */
+      transform: scale(1.1);
       background-color: #f8826b;
 
+      & > div,
+      border {
+        /* background-color: #88b85c; */
+        background-color: #f8826b;
+      }
     }
-  }
   }
 `;
 
-const Mypage = ({ authState,festivalData, pickItems, removePick }) => {
-  const {nickname} = authState
+const Mypage = ({ authState, festivalData, pickItems, removePick }) => {
+  const { nickname } = authState;
   return (
     <Wrapper>
       <Nav>
-        <EditProfile />
+        <EditProfile authState={authState} />
         <Link to="/">
-          <button>메인페이지로 <br></br>돌아가기</button>
+          <button>
+            메인페이지로 <br></br>돌아가기
+          </button>
         </Link>
       </Nav>
       <h1> {nickname}님이 찜하신 축제들 입니다</h1>

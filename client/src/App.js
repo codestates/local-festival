@@ -19,19 +19,19 @@ const Wrapper = styled.div`
   padding: 0;
   /* background-color: #f8f9fa; */
   background-color: #faf7f2;
-  height: 75rem;
+  height: 60rem;
 `;
 
 function App() {
   const [authState, setAuthState] = useState({
-    nickname : "",
-    user_id : "",
-    loginStatus : false
-  })
+    nickname: "",
+    user_id: "",
+    loginStatus: false,
+  });
   // const [isLogin, setIsLogin] = useState(false);
   const [festivalData, setFestivalData] = useState(null);
   const [pickItems, setPickItems] = useState([]);
-  const [filteredData, setFilteredData] = useState(festivalData)
+  const [filteredData, setFilteredData] = useState(festivalData);
   const dummyData = [
     {
       id: 1,
@@ -316,27 +316,24 @@ function App() {
     // isLogin ? setIsLogin(false) : setIsLogin(true);
     console.log(nickname, user_id, loginStatus);
     //* 로그인한 후의 유저정보 상태변경입니다.
-   const nextState = {
-    nickname : nickname,
-    user_id : user_id,
-    loginStatus : loginStatus
-   }
-   setAuthState(nextState)
-   console.log('나 실행???');
-   
-   //# 유저별 찜한 축제 가져오기
-   axios.get(`http://localhost:4001/pick/${user_id}`)
-   .then(response => {
-    console.log(response.data.data);
-    const pickedFestivalId = response.data.data
-    console.log(pickedFestivalId);
-    // const festivalIdArr = pickedFestivalId.map(ele => ele.local_id)
-    // const pickedFestivalByUser = festivalData.filter(ele => festivalIdArr.indexOf(ele.id) > -1)
-//{festival_Id: 4}
-    setPickItems(pickedFestivalId)
-   })
-    
-    
+    const nextState = {
+      nickname: nickname,
+      user_id: user_id,
+      loginStatus: loginStatus,
+    };
+    setAuthState(nextState);
+    console.log("나 실행???");
+
+    //# 유저별 찜한 축제 가져오기
+    axios.get(`http://localhost:4001/pick/${user_id}`).then((response) => {
+      console.log(response.data.data);
+      const pickedFestivalId = response.data.data;
+      console.log(pickedFestivalId);
+      // const festivalIdArr = pickedFestivalId.map(ele => ele.local_id)
+      // const pickedFestivalByUser = festivalData.filter(ele => festivalIdArr.indexOf(ele.id) > -1)
+      //{festival_Id: 4}
+      setPickItems(pickedFestivalId);
+    });
   };
   const onSearch = (searchText) => {
     console.log(searchText);
@@ -345,21 +342,19 @@ function App() {
       (festival) =>
         festival.location.includes(searchText) ||
         festival.title.includes(searchText) ||
-        festival.location.includes(searchText) ||(
-        Number(festival.start_date) <= (Number(searchText)) &&
-        Number(festival.end_date) >= (Number(searchText)) )
-        
+        festival.location.includes(searchText) ||
+        (Number(festival.start_date) <= Number(searchText) &&
+          Number(festival.end_date) >= Number(searchText))
     );
 
     setFilteredData(filteredFestival);
-        //alert(`${filteredFestival.length}개의 축제가 진행중입니다.`)
+    //alert(`${filteredFestival.length}개의 축제가 진행중입니다.`)
     // }
   };
 
-  const resetCondition = ()=>{
-    setFilteredData(festivalData)
-
-  }
+  const resetCondition = () => {
+    setFilteredData(festivalData);
+  };
 
   const togglePick = (id) => {
     // console.log("togglePick", id);
@@ -368,31 +363,37 @@ function App() {
     const found = pickItems.filter((el) => el.festival_id === id)[0];
     if (found) {
       console.log("found");
-     
-      //# 픽 해제해서 서버에 픽 해제한 정보 보내주기 
+
+      //# 픽 해제해서 서버에 픽 해제한 정보 보내주기
       console.log("removeId what!!!", id);
 
-    //*서버에 삭제요청 보내기
-    axios.delete("http://localhost:4001/pick", {data : {user_id : authState.user_id, festival_id: id}})
-    .then(response => {
-      console.log(response.data.message);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      //*서버에 삭제요청 보내기
+      axios
+        .delete("http://localhost:4001/pick", {
+          data: { user_id: authState.user_id, festival_id: id },
+        })
+        .then((response) => {
+          console.log(response.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    setPickItems(pickItems.filter((el) => el.festival_id !== id));
-      
+      setPickItems(pickItems.filter((el) => el.festival_id !== id));
     } else {
       console.log("add new");
-      //# 픽해서 서버에 픽한 정보 보내주기 
-      axios.post("http://localhost:4001/pick", {user_id : authState.user_id, festival_id: id})
-      .then(response => {
-        console.log(response.data.message);
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      //# 픽해서 서버에 픽한 정보 보내주기
+      axios
+        .post("http://localhost:4001/pick", {
+          user_id: authState.user_id,
+          festival_id: id,
+        })
+        .then((response) => {
+          console.log(response.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       setPickItems([
         ...pickItems,
@@ -407,17 +408,18 @@ function App() {
     console.log("removeId what!!!", id);
 
     //*서버에 삭제요청 보내기
-    axios.delete("http://localhost:4001/pick", {data : {user_id : authState.user_id, festival_id: id}})
-    .then(response => {
-      console.log(response.data.message);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    axios
+      .delete("http://localhost:4001/pick", {
+        data: { user_id: authState.user_id, festival_id: id },
+      })
+      .then((response) => {
+        console.log(response.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     setPickItems(pickItems.filter((el) => el.festival_id !== id));
-
-
   };
 
   useEffect(() => {
@@ -436,7 +438,7 @@ function App() {
 
         if (response) {
           setFestivalData(response.data);
-          setFilteredData(response.data)
+          setFilteredData(response.data);
         } else {
           console.log("no fetch data & use dummyData");
           setFestivalData(dummyData);
@@ -461,7 +463,7 @@ function App() {
           path="/"
           element={
             <Mainpage
-            authState={authState}
+              authState={authState}
               togglePick={togglePick}
               onSearch={onSearch}
               filteredData={filteredData}
@@ -487,12 +489,7 @@ function App() {
           path="/Detailviewpage/festival_id/:id"
           element={<Detailviewpage />}
         ></Route>
-        <Route
-          exact
-          path="/Signup"
-          element={<Signup />}
-        ></Route>
-       
+        <Route exact path="/Signup" element={<Signup />}></Route>
       </Routes>
       <Footer />
     </Wrapper>
