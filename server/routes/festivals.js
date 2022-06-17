@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('./../controllers');
+const controller = require('../controllers/festivals');
 
 
 router.get('/', controller.festivals.get);
