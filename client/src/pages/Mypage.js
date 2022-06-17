@@ -44,8 +44,8 @@ const Nav = styled.div`
   }
 `;
 
-const Mypage = ({ authState, festivalData, pickItems, removePick }) => {
-  const { nickname } = authState;
+const Mypage = ({ authState,festivalData, pickItems, togglePick }) => {
+  const {nickname} = authState
   return (
     <Wrapper>
       <Nav>
@@ -58,7 +58,7 @@ const Mypage = ({ authState, festivalData, pickItems, removePick }) => {
       </Nav>
       <h1> {nickname}님이 찜하신 축제들 입니다</h1>
       <Picklist
-        removePick={removePick}
+        togglePick={togglePick}
         festivalData={festivalData}
         pickItems={pickItems}
       />

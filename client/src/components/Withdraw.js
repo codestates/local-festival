@@ -26,9 +26,9 @@ const ModalView = styled.div`
   height: 40vh;
 `;
 
-const Withdraw = ({ authState, openModalHandlerMypage }) => {
+const Withdraw = ({ authState,openModalHandlerMypage }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("")
   const openModalHandler = () => {
     setIsOpen(!isOpen);
     // openModalHandlerLogin();
@@ -40,11 +40,11 @@ const Withdraw = ({ authState, openModalHandlerMypage }) => {
   };
 
   const handlePasswordCheck = (e) => {
-    setPasswordCheck(e.target.value);
-  };
+    setPasswordCheck(e.target.value)
+  }
 
   // const that = useRef(null)
-  const warningMessage = useRef(null);
+  const warningMessage = useRef(null)
   return (
     <ModalContainer>
       <button onClick={openModalHandlerWithdraw}>회원탈퇴</button>
@@ -61,25 +61,15 @@ const Withdraw = ({ authState, openModalHandlerMypage }) => {
             }}
           >
             <h1>Withdraw Component</h1>
-            <div className="Sighout-view-inputs">
-              <div
-                ref={warningMessage}
-                className="pwdNotMatch"
-                style={{ color: "Red", display: "none" }}
-              >
-                {" "}
-                비밀번호가 일치하지 않습니다.
-              </div>
-              <input
-                onChange={handlePasswordCheck}
-                placeholder="Password"
-              ></input>
+            <div  className="Sighout-view-inputs">
+              <div ref={warningMessage} className="pwdNotMatch" style={{color : "Red", display:"none"}}> 비밀번호가 일치하지 않습니다.</div>
+              <input  onChange={handlePasswordCheck} placeholder="Password"></input>
             </div>
             <div className="Sighout-view-buttons">
               <WithdrawDone
-                // that={that}
-                authState={authState}
-                warningMessage={warningMessage}
+              // that={that}
+              authState={authState}
+              warningMessage={warningMessage}
                 passwordCheck={passwordCheck}
                 openModalHandlerMypage={openModalHandlerMypage}
                 openModalHandlerWithdraw={openModalHandlerWithdraw}

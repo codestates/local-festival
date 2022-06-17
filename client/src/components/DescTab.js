@@ -1,12 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const Wrapper = styled.div`
   height: 100%;
+  width: 100%;
   overflow-y: auto;
-  border: 1px solid black;
-  margin: 1rem;
-  border-radius: 1rem;
+  border: 1px 0 0 0  solid black;
+  /* margin: 1rem; */
+  border-radius: 0 0 1rem 1rem;
+  background-color: #f7f5f2c8;
+  padding: 1rem;
+
+  & h2{
+    margin-top: 4rem;
+  }
+
+  & hr {
+    margin-bottom: 0.5rem;
+  }
+
+  /* &>hr:nth-child() {
+    margin-top: 1rem;
+  } */
 `;
 
 const DescTab = ({ festivalInfo }) => {
@@ -24,19 +40,25 @@ const DescTab = ({ festivalInfo }) => {
   }
   return (
     <Wrapper>
-      <h3>Title</h3>
-      {title}
-      <h3>Overview </h3>
+      <h1>{title}</h1>
+      <hr></hr>
+      <h2>개요 </h2>
+      <hr></hr>
       <p>{overview}</p>
-      <h3>period</h3>
-      {start_date} ~ {end_date}
-      <h3>Location</h3>
+      <h2>축제 기간</h2>
+      <hr></hr>
+      {moment(start_date, "YYYY.MM.DD").format("YYYY년 MM월 DD일")} ~ {moment(end_date, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}
+      <h2>Location</h2>
+      <hr></hr>
       {location}
-      <h3>Tel</h3>
-      {tel}
-      <h3>URL</h3>
+      <h2>문의</h2>
+      <hr></hr>
+      <a href="tel:{tel}">{tel}</a>
+      
+      <h2>홈페이지</h2>
+      <hr></hr>
       <a href={parsedUrl} target="_blank" rel="noreferrer">
-        축제 홈페이지
+        링크
       </a>
     </Wrapper>
   );

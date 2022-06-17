@@ -5,7 +5,10 @@ const Wrapper = styled.div`
   width: 98%;
   /* height: 30%; */
   margin-bottom: 1rem;
-  border: 1px solid black;
+  box-shadow: 0.1rem 0.1rem 0.2rem  gray;
+
+  /* border: 2px solid #e6a5a5; */
+  background-color: #fcd5ce;
   border-radius: 0.5rem;
   margin: 0.4rem;
   padding: 0.3rem;
@@ -16,13 +19,10 @@ const Review = ({review}) => {
   // console.log(review);
   return (
     <Wrapper>
-      <b>Review component</b>
+      <h3>  <span style={{color:"#ec5b5b", fontStyle:"italic"}}>{review.nickname}</span>&nbsp;&nbsp;&nbsp;⭐️⭐️⭐️   </h3>
       <ul>
-        <li>작성내용 : {review.content}</li>
-        <li>작성일시</li>
-        <li>작성자 : {review.nickname}</li>
-        <li>평점 : {review.rating}</li>
-        <li>태그</li>
+        <p>{review.content}</p>
+        <h3>작성일시{review.created_at} 태그 </h3>
       </ul>
     </Wrapper>
   );

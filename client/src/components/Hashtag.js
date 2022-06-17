@@ -9,10 +9,12 @@ const Wrapper = styled.div`
   padding: 1rem;
   border-radius: 0.4rem;
   font-family: 'HS-Regular';
+  font-family: 'GangwonEdu_OTFBoldA';
   flex-direction: column;
   justify-content: center;
   position: relative; 
   bottom: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.2rem  gray;
 
   &  button {
     border: none;
@@ -24,7 +26,7 @@ const Wrapper = styled.div`
 	outline: inherit;
   margin-left: 1rem;
   font-size: 1.5rem;
-  font-style: italic;
+  /* font-style: italic; */
 
   &:hover{
     color: red;

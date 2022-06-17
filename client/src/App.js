@@ -367,17 +367,14 @@ function App() {
       //# 픽 해제해서 서버에 픽 해제한 정보 보내주기
       console.log("removeId what!!!", id);
 
-      //*서버에 삭제요청 보내기
-      axios
-        .delete("http://localhost:4001/pick", {
-          data: { user_id: authState.user_id, festival_id: id },
-        })
-        .then((response) => {
-          console.log(response.data.message);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    //*서버에 삭제요청 보내기
+    axios.delete("http://localhost:4001/pick",  {data : {user_id : authState.user_id, festival_id: id},  headers: { accessToken: 'token'}})
+    .then(response => {
+      console.log(response.data.message);
+    })
+    .catch(err => {
+      console.log(err);
+    })
 
       setPickItems(pickItems.filter((el) => el.festival_id !== id));
     } else {
@@ -404,23 +401,7 @@ function App() {
     }
   };
 
-  const removePick = (id) => {
-    console.log("removeId what!!!", id);
-
-    //*서버에 삭제요청 보내기
-    axios
-      .delete("http://localhost:4001/pick", {
-        data: { user_id: authState.user_id, festival_id: id },
-      })
-      .then((response) => {
-        console.log(response.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    setPickItems(pickItems.filter((el) => el.festival_id !== id));
-  };
+ 
 
   useEffect(() => {
     // console.log("계속 작동하니???");
@@ -478,16 +459,17 @@ function App() {
           element={
             <Mypage
               authState={authState}
-              removePick={removePick}
+              
               festivalData={festivalData}
               pickItems={pickItems}
+              togglePick={togglePick}
             />
           }
         ></Route>
         <Route
           exact
           path="/Detailviewpage/festival_id/:id"
-          element={<Detailviewpage />}
+          element={<Detailviewpage  pickItems={pickItems} togglePick={togglePick} />}
         ></Route>
         <Route exact path="/Signup" element={<Signup />}></Route>
       </Routes>

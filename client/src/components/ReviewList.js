@@ -5,8 +5,8 @@ import axios from "axios";
 
 const Wrapper = styled.div`
   width: 97%;
-  height: 70%;
-  border: 1px solid black;
+  height: 35rem;
+  /* border: 1px solid black; */
   border-radius: 0.5rem;
   overflow-y: auto;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const ReviewList = ({festival_id}) => {
+const ReviewList = ({festivalInfo, festival_id}) => {
 const dummydata = [
   {nickname : 'mong',
 content : 'aaa',
@@ -70,8 +70,8 @@ console.log(festival_id);
 
   return (
     <Wrapper>
-      <h3>ReviewList Component</h3>
-    {/* {listOfReviews.map()} */}
+      
+  
     {!listOfReviews.length ? <>리뷰가 등록되어있지 않습니다.</> : <>
     
     {listOfReviews.map((review,idx) =>< Review key={idx} review={review}/> )}

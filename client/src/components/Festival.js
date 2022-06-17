@@ -12,10 +12,9 @@ const Wrapper = styled.div`
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
-  /* background-color: #ff8a3d; */
   display: flex;
   flex-direction: column;
-  box-shadow: inset;
+  /* box-shadow: 0.1rem 0.1rem 0.2rem  gray; */
   transition: transform 0.3s ease-out;
   /* font-family: "EarlyFontDiary"; */
 
