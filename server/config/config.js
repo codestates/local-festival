@@ -8,6 +8,7 @@ const config = {
     password: process.env.DATABASE_SPRINT_PASSWORD,
     database: "local_festival",
     connectTimeout: 60000,
+    dialect : "mysql"
   },
   // deploy 추가
   deploy: {
@@ -16,6 +17,7 @@ const config = {
     password: process.env.DATABASE_PASSWORD,
     database: "local_festival",
     connectTimeout: 60000,
+    dialect : "mysql"
   },
 };
 
