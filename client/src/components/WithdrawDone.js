@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -26,15 +27,47 @@ const ModalView = styled.div`
   height: 40vh;
 `;
 
-const WithdrawDone = ({ openModalHandlerMypage, openModalHandlerWithdraw }) => {
+const WithdrawDone = ({
+  authState,
+  warningMessage,
+  passwordCheck,
+  openModalHandlerMypage,
+  openModalHandlerWithdraw,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
     // openModalHandlerWithdraw();
   };
+
+  const pwdNotMatch = () => {
+    // that.current.value="비밀번호가 일치하지 않습니다."
+    console.log(warningMessage);
+    warningMessage.current.style.display = "block";
+    // that.current.focus()
+  };
+
+  const handleSubmit = () => {
+    axios
+      .delete("http://localhost:4001/users", {
+        data: { user_id: authState.user_id, passwordCheck: passwordCheck },
+        headers: { accessToken: "token" },
+      })
+      .then((response) => {
+        if (response.data.message === "ok") {
+          console.log("here");
+          openModalHandler();
+        } else {
+          pwdNotMatch();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>확인</button>
+      <button onClick={handleSubmit}>확인</button>
       {isOpen ? (
         <ModalBackdrop
           onClick={() => {

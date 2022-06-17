@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import SignoutDone from "./WithdrawDone";
+import React, { useState, useRef } from "react";
+import WithdrawDone from "./WithdrawDone";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  height: 15rem;
   text-align: center;
 `;
 
@@ -27,8 +26,9 @@ const ModalView = styled.div`
   height: 40vh;
 `;
 
-const Withdraw = ({ openModalHandlerMypage }) => {
+const Withdraw = ({ authState, openModalHandlerMypage }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [passwordCheck, setPasswordCheck] = useState("");
   const openModalHandler = () => {
     setIsOpen(!isOpen);
     // openModalHandlerLogin();
@@ -39,6 +39,12 @@ const Withdraw = ({ openModalHandlerMypage }) => {
     setIsOpen(!isOpen);
   };
 
+  const handlePasswordCheck = (e) => {
+    setPasswordCheck(e.target.value);
+  };
+
+  // const that = useRef(null)
+  const warningMessage = useRef(null);
   return (
     <ModalContainer>
       <button onClick={openModalHandlerWithdraw}>회원탈퇴</button>
@@ -56,10 +62,25 @@ const Withdraw = ({ openModalHandlerMypage }) => {
           >
             <h1>Withdraw Component</h1>
             <div className="Sighout-view-inputs">
-              <input placeholder="Password"></input>
+              <div
+                ref={warningMessage}
+                className="pwdNotMatch"
+                style={{ color: "Red", display: "none" }}
+              >
+                {" "}
+                비밀번호가 일치하지 않습니다.
+              </div>
+              <input
+                onChange={handlePasswordCheck}
+                placeholder="Password"
+              ></input>
             </div>
             <div className="Sighout-view-buttons">
-              <SignoutDone
+              <WithdrawDone
+                // that={that}
+                authState={authState}
+                warningMessage={warningMessage}
+                passwordCheck={passwordCheck}
                 openModalHandlerMypage={openModalHandlerMypage}
                 openModalHandlerWithdraw={openModalHandlerWithdraw}
               />

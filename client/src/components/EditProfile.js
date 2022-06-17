@@ -22,18 +22,56 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #faf7f2;
   width: 30vw;
-  height: 40vh;
+  height: 43vh;
+  & > h1 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const InputsInColumn = styled.div`
+  display: relative;
+  flex-direction: column;
+  & > input {
+    margin: 0.5rem;
+    width: 15rem;
+    height: 30px;
+  }
 `;
 
 const Controllers = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
+  display: relative;
+  & > button {
+    /* 공통 스타일 */
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 10px;
+
+    /* 크기 */
+    height: 2rem;
+    width: 6.5rem;
+    font-size: 1rem;
+
+    /* 색상 */
+    background: #faa08e;
+    &:hover {
+      background: #fd937e;
+    }
+    &:active {
+      background: #f56f54;
+    }
+  }
 `;
 
-const Mypage = () => {
+const EditProfile = ({ authState }) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -46,7 +84,7 @@ const Mypage = () => {
 
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>회원정보 수정</button>
+      <button onClick={openModalHandler}>회원정보 수정/탈퇴</button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView
@@ -54,16 +92,17 @@ const Mypage = () => {
               e.stopPropagation();
             }}
           >
-            <h1>Mypage component</h1>
-            <Controllers>
+            <h1>회원정보 수정/탈퇴</h1>
+            <InputsInColumn>
               <input placeholder="바꿀닉네임"></input>
-            </Controllers>
+            </InputsInColumn>
             <Controllers>
-              <button className="close-btn" onClick={openModalHandler}>
-                cancel
-              </button>
               <button>수정하기</button>
-              <Withdraw openModalHandlerMypage={openModalHandlerMypage} />
+              <button onClick={openModalHandler}>cancel</button>
+              <Withdraw
+                authState={authState}
+                openModalHandlerMypage={openModalHandlerMypage}
+              />
             </Controllers>
           </ModalView>
         </ModalBackdrop>
@@ -72,4 +111,4 @@ const Mypage = () => {
   );
 };
 
-export default Mypage;
+export default EditProfile;
