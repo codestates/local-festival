@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  box-shadow: 1px 1px 3px 1px #dadce0;
+  box-shadow: 0.1rem 0.1rem 0.2rem  gray;
   border-radius: 0.5rem;
   & > * {
     margin: 1rem 0;
@@ -31,6 +31,8 @@ const Wrapper = styled.div`
     font-size: large;
     font-weight: bold;
     border-radius: 0.2rem;
+      box-shadow: 0.1rem 0.1rem 0.2rem  gray;
+
     
   }
     & > button:active {

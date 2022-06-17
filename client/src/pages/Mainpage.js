@@ -23,14 +23,16 @@ width: 90%;
 height: 5rem;
 align-self: flex-start;
 margin-top: 1rem;
-font-size: 2rem;
-font-weight: bold;
+font-size: 1.7rem;
+/* font-weight: bolder; */
 line-height: 3;
 position: relative;
 left: 3.5rem;
 bottom: 1rem;
 display: flex;
 justify-content: space-between;
+font-family: 'SuseongDotum';
+
 
 &>img{
   width: 3rem;

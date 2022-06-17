@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     display: none; /* for Chrome, Safari, and Opera */
   }
 `;
-const Picklist = ({ festivalData, pickItems, removePick }) => {
+const Picklist = ({ festivalData, pickItems, togglePick }) => {
   if (festivalData === null) {
     return <div>데이터를 받아오는 중</div>;
   } else {
@@ -33,7 +33,7 @@ const Picklist = ({ festivalData, pickItems, removePick }) => {
         ) : (
           <Wrapper>
             {renderedItems.map((item, idx) => {
-              return <Pick key={idx} item={item} pickItems={pickItems} removePick={removePick} />;
+              return <Pick key={idx} item={item} pickItems={pickItems} togglePick={togglePick} />;
             })}
           </Wrapper>
         )}

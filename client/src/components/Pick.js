@@ -63,14 +63,14 @@ justify-content: flex-end;
 }
 `
 
-const Pick = ({ item, removePick, pickItems }) => {
+const Pick = ({ item, togglePick, pickItems }) => {
   const [like, setLike] = useState(false)
 
   let navigate = useNavigate();
   const { id, title, image, start_date, end_date } = item;
   const onClickRemove = (event,id) => {
     event.stopPropagation();
-    removePick(id);
+    togglePick(id);
 
   };
   
