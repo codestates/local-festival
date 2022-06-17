@@ -29,7 +29,7 @@ connection.query(queryString, (err, result) => {
   result.map((el) => {
     var options = {
       method: "GET",
-      url: `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?serviceKey=stO4X3mcQKt4qoziL2sU1zxc2WkmZ3hmKg6wA6Ofi50vDavjqwvTCBPasarXjMPuRaUXMy0S1ERW8HX6KVOuFQ%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${el.content_id}&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
+      url: `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?serviceKey=GF0Lq9LWPlZV7Ga1tMaCqZDhb06lzroW4fwEwQy9BfDy82xa3bPReEfNfTUBi%2Fg4mCd%2FPfHGZu1Djjs4VdP0iQ%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&contentId=${el.content_id}&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json`,
       headers: {},
     };
     request(options, function (error, response, body) {
