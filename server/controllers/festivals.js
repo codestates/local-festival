@@ -1,10 +1,9 @@
-const models = require("../models");
+const models = require("../models/sql/index");
 
 module.exports = {
   festivals: {
     get: (req, res) => {
       const date = "a";
-      console.log("뭐야");
       if (!date) {
         return res.status(401).send("wrong date");
       } else {
