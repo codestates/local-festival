@@ -91,6 +91,7 @@ const Logout = ({ loginHandler }) => {
     // localStorage.removeItem("accessToken");
     loginHandler("", "", false);
     navigate("/");
+    window.sessionStorage.clear()
   };
   return (
     <ModalContainer>

@@ -63,7 +63,7 @@ const Withdraw = ({ authState,openModalHandlerMypage }) => {
             <h1>Withdraw Component</h1>
             <div  className="Sighout-view-inputs">
               <div ref={warningMessage} className="pwdNotMatch" style={{color : "Red", display:"none"}}> 비밀번호가 일치하지 않습니다.</div>
-              <input  onChange={handlePasswordCheck} placeholder="Password"></input>
+              <input type="password" onChange={handlePasswordCheck} placeholder="Password"></input>
             </div>
             <div className="Sighout-view-buttons">
               <WithdrawDone

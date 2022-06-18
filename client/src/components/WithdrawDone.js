@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
@@ -34,6 +35,7 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
     // openModalHandlerWithdraw();
   };
 
+  let navigate = useNavigate()
   
 
   const pwdNotMatch = ()=> {
@@ -90,6 +92,9 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
                     openModalHandler();
                     openModalHandlerMypage();
                     openModalHandlerWithdraw();
+                    window.sessionStorage.clear()
+                    // navigate("/")
+                    window.location.replace("/")
                   }}
                 >
                   확인

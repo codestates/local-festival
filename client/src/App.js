@@ -400,7 +400,16 @@ function App() {
       ]);
     }
   };
-
+ 
+  const handleAuthState = (nickname)=>{
+    console.log(nickname);
+    const nextAuthState = authState
+    console.log(nextAuthState);
+    nextAuthState.nickname = nickname
+    console.log(nextAuthState);
+    setAuthState(nextAuthState)
+   
+  }
  
 
   useEffect(() => {
@@ -434,7 +443,37 @@ function App() {
       }
     };
     fetchData();
+    // loginHandler()
+    if(window.sessionStorage.accesstoken
+      ){
+       setAuthState(authState)
+    }
+
+    axios.get('http://localhost:4001/users', {
+      headers: {
+        accesstoken: sessionStorage.getItem("accesstoken"),
+      },
+    })
+    .then(response => {
+      console.log(response.data);
+      const {user_id, nickname} = response.data.data
+     
+      setAuthState({
+        nickname : nickname,
+        user_id :user_id,
+        loginStatus : true
+
+      })
+
+      
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    
   }, []);
+
+  
   return (
     <Wrapper>
       <Header loginHandler={loginHandler} authState={authState} />
@@ -459,7 +498,7 @@ function App() {
           element={
             <Mypage
               authState={authState}
-              
+              handleAuthState={handleAuthState}
               festivalData={festivalData}
               pickItems={pickItems}
               togglePick={togglePick}

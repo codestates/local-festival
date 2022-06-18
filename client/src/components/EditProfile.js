@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Withdraw from "./Withdraw";
 import styled from "styled-components";
+import axios from "axios";
 
 const ModalContainer = styled.div`
   /* height: 15rem; */
@@ -71,8 +72,9 @@ const Controllers = styled.div`
   }
 `;
 
-const EditProfile = ({ authState }) => {
+const EditProfile = ({ authState, handleAuthState }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [nickname, setNickname] = useState(authState.nickname)
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };
@@ -81,6 +83,23 @@ const EditProfile = ({ authState }) => {
     console.log("here!!!!");
     setIsOpen(!isOpen);
   };
+ const nicknameHandler = (e) => {
+  setNickname(e.target.value)
+ }
+  const profileHandler = () => {
+    axios.put('http://localhost:4001/users', {nickname},  {headers: { accesstoken: sessionStorage.getItem("accesstoken")}})
+    .then(response => {
+
+      const nextNickname = response.data.nickname
+      console.log(nextNickname);
+      handleAuthState(nextNickname)
+      openModalHandler()
+      window.location.replace("/Mypage")
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
   return (
     <ModalContainer>
@@ -94,10 +113,10 @@ const EditProfile = ({ authState }) => {
           >
             <h1>회원정보 수정/탈퇴</h1>
             <InputsInColumn>
-              <input placeholder="바꿀닉네임"></input>
+              <input onChange={nicknameHandler} placeholder="바꿀닉네임"></input>
             </InputsInColumn>
             <Controllers>
-              <button>수정하기</button>
+              <button onClick={profileHandler}>수정하기</button>
               <button onClick={openModalHandler}>cancel</button>
               <Withdraw
                 authState={authState}
