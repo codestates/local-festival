@@ -47,7 +47,7 @@ color: inherit;
 	cursor: pointer;
 	outline: inherit;
 `
-const ReviewWrite = ({festival_id}) => {
+const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
 
   const [content, setContent] = useState("")
   const [rating, setRating] = useState(null)
@@ -66,7 +66,8 @@ const ReviewWrite = ({festival_id}) => {
       axios.post('http://localhost:4001/review', {data : {content : content, rating:Number(rating), festival_id:festival_id}, headers: { accessToken: 'token'}})
       .then(response => {
        alert(response.data.message);
-      //#상태변화 시켜주는 로직 다시 수정하기
+      //#작성한 리뷰 ReviewList에 올려지도록 하기 
+      updateReviewList({content : content, rating : rating, nickname : authState.nickname})
       })
       .catch(err => {
         console.log(err);

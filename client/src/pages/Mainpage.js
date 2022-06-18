@@ -4,6 +4,7 @@ import Hashtag from "../components/Hashtag";
 import Search from "../components/Search";
 import styled from "styled-components";
 import resetImg from "../assets/reset.png"
+import { IoSyncCircleSharp } from "react-icons/io5";
 const Wrapper = styled.div`
   width: 90%;
   height: 44rem;
@@ -34,11 +35,11 @@ justify-content: space-between;
 font-family: 'SuseongDotum';
 
 
-&>img{
-  width: 3rem;
-  height: 3rem;
+&>svg{
+  width: 2.8rem;
+  height: 2.8rem;
   position: relative;
-  top: 1.2rem;
+  top: 0.8rem;
   &:hover{
      transition: all 1s ease-in-out;
     transform: rotate(-45deg);
@@ -46,8 +47,8 @@ font-family: 'SuseongDotum';
   }
   &:active   {
     
-  transform: rotate(-360deg);
-  transition: 0.3s;   
+  transform: rotate(180deg);
+  transition: 0.1s;   
 
 
   }
@@ -60,7 +61,9 @@ const Mainpage = ({ authState,togglePick, onSearch, filteredData, pickItems, res
     <Wrapper>
       <Search onSearch={onSearch} />
       <FilteredInfo>
-       <div>{!!filteredData && <span style={{color:"red"}}>{filteredData.length}</span>}개의 축제가 진행중입니다</div> <img onClick={resetCondition} src={resetImg}></img>
+       <div>{!!filteredData && <span style={{color:"red"}}>{filteredData.length}</span>}개의 축제가 진행중입니다</div> 
+       {/* <img onClick={resetCondition} src={resetImg}></img> */}
+       <IoSyncCircleSharp size={45} color={" #2f76d3"} onClick={resetCondition} />
 
         </FilteredInfo>
       <FestivalList  authState={authState} togglePick={togglePick} festivals={filteredData} pickItems={pickItems} />

@@ -4,7 +4,8 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   height: 10rem;
   width: 80%;
-  background-color: #f9c9c9;
+  background-color:  #8898ad;
+  color: white;
   display: flex;
   padding: 1rem;
   border-radius: 0.4rem;
@@ -29,10 +30,10 @@ const Wrapper = styled.div`
   /* font-style: italic; */
 
   &:hover{
-    color: red;
+    color: #00ff91;
   }
   &:visited{
-    color: red;
+    color: #00ff91;
   }
   }
 `;

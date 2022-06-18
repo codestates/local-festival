@@ -8,7 +8,7 @@ import HeartButton from "./HeartButton";
 
 const Wrapper = styled.div`
   width: 22%;
-  height: 25em;
+  height: 23em;
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
@@ -21,7 +21,8 @@ const Wrapper = styled.div`
   &:hover {
     transform: scale(1.1);
     & > div:nth-child(2) {
-      background-color: #f8826b;
+      background-color: #2f76d3;
+      color: white;
     }
   }
 
@@ -42,9 +43,9 @@ const Description = styled.div`
   flex-direction: column;
   align-items: center;
   /* border-top: 0.3em solid; */
-  color: white;
-  background-color: #d2ad81;
-  
+  color: black;
+  /* background-color: #d2ad81; */
+  background-color: #f2eeee;
   border-radius: 0 0 4px 4px;
   & > div {
     width: 80%;

@@ -2,7 +2,7 @@ import React from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
-
+import { RiAccountCircleFill } from "react-icons/ri";
 import styled from "styled-components";
 
 
@@ -11,24 +11,12 @@ const ButtonsWrapper = styled.div`
   display: flex;
   /* align-items: center; */
   
-  /* background-color: blue; */
-  width: 20rem;
+  background-color: blue;
+  /* width: 20rem; */
   height: 100%;
- & > a{
-  width: 6rem;
-  line-height: 4;
-  font-size: larger;
-  font-weight: bolder;
-  color: white;
-  text-decoration:none;
-  /* background-color: #f56f54cb; */
-  transition: 0.2s ease-out;
-    &:hover{
-      background-color: #f56f54;
-      transition: all 0.2s ease-in;
-    }
-  
- }
+  position: absolute;
+  right:5rem;
+ 
 
 `;
 
@@ -38,7 +26,7 @@ const Navigationbar = ({ authState, loginHandler }) => {
     <> 
       {authState.loginStatus ? (
         <ButtonsWrapper>
-          <Link to="/Mypage">Mypage</Link>
+          <Link to="/Mypage"><RiAccountCircleFill size={45}/></Link>
           <Logout loginHandler={loginHandler} />
         </ButtonsWrapper>
       ) : (

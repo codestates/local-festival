@@ -7,8 +7,8 @@ import ReviewTab from "../components/ReviewTab";
 import HeartButton from"../components/HeartButton"
 const Wrapper = styled.div`
   display: flex;
-  width: 70rem;
-  height: 60rem;
+  width: 80%;
+  height: 70rem;
   justify-content: space-evenly;
   border-radius: 1rem;
   background-color: #f0e3e2;
@@ -111,7 +111,7 @@ const Tab = styled.div`
   }
 `;
 
-const Detailviewpage = ({pickItems, togglePick}) => {
+const Detailviewpage = ({pickItems, togglePick, authState}) => {
   
   const [currentTab, setCurrentTab] = useState(0);
   const [like, setLike] = useState(false)
@@ -122,7 +122,7 @@ const Detailviewpage = ({pickItems, togglePick}) => {
   
   const tabArr = [
     { name: "상세정보", content: <DescTab festivalInfo={state} /> },
-    { name: "리뷰", content: <ReviewTab festivalInfo={state} /> },
+    { name: "리뷰", content: <ReviewTab authState={authState} festivalInfo={state} /> },
   ];
 
   useEffect(()=>{
