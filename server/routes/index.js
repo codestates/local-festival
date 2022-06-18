@@ -6,34 +6,7 @@ router.use("/festivals", festivalRouter);
 
 const usersRouter = require("./users");
 router.use("/users", usersRouter);
-router.use('/festivals', festivalRouter);
-// router.use('/users', usersRouter);
 
-
-//*회원 탈퇴 라우터
-router.delete('/users', (req, res) => {
-  //토큰 유효성검사후 db에 저장된 user비밀번호가 맞는지 확인한 후에 비밀번호가 일치하면 db에서 회원정보 삭제해주시고 ok 메시지 보내주세요
-  console.log(req.headers.accesstoken); //token
-  console.log(req.body); //{ user_id: 1, passwordCheck: 'aa' }
-  res.json({message:"ok"})
-})
-
-
-//* 회원가입 라우터
-router.post('/users/signup',(req, res) => {
-  console.log(req.body);
-//* DB저장 해주세욥
-  res.send({message : "ok"})
-})
-
-
-
-// router.post('/users/signin', (req, res) => {
-//   console.log(req.body);
-// //아이디 검증해서 유효성 검사 후 토큰 만들어서 전송해 주세요
-// //res.json({ token: accessToken, username: username, id: user.id });
-//   res.json({data : {token : "a", nickname : "(서버에서 보낸 유저 닉네임)", user_id:1},message : "ok"})
-// })
 
 //#Pick CRUD
 
@@ -48,6 +21,15 @@ res.send("good")
 
 //* 유저별로 찜한 축제 불러오기 (R)
 //! params로 받아오는건 숫자가 문자열로 받아와지는 것 같음
+
+//*회원 탈퇴 라우터
+// router.delete('/users', (req, res) => {
+//   //토큰 유효성검사후 db에 저장된 user비밀번호가 맞는지 확인한 후에 비밀번호가 일치하면 db에서 회원정보 삭제해주시고 ok 메시지 보내주세요
+//   console.log(req.headers.accesstoken); //token
+//   console.log(req.body); //{ user_id: 1, passwordCheck: 'aa' }
+//   res.json({message:"ok"})
+// })
+
 router.get('/pick/:user_id', (req, res) => {
   const user_id = req.params
   console.log('get picked festival',user_id); //{ user_id: '1' }

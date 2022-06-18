@@ -45,9 +45,9 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
 
   const handleSubmit = () => {
 
-    axios.delete('http://localhost:4001/users' , {data : {user_id : authState.user_id, passwordCheck: passwordCheck},  headers: { accessToken: 'token'}})
+    axios.delete('http://localhost:4001/users' , {data : {passwordCheck: passwordCheck},  headers: { accesstoken: sessionStorage.getItem("accesstoken")}})
     .then(response => {
-      if(response.data.message === "ok") {
+      if(response.data.message === "successfully quit") {
         console.log('here');
           openModalHandler()
         } else {
@@ -58,6 +58,7 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
     .catch(err => {
       console.log(err);
     })
+
     
     
   }

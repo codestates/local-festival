@@ -1,4 +1,4 @@
-const { users } = require('../db/indexS');
+const { users } = require('../../db/indexS');
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -6,6 +6,7 @@ module.exports = {
         post : (req, res) => {
     
             const {user_id, password, nickname}=req.body
+            console.log("🚀 ~ file: signup.js ~ line 9 ~ password", password)
 
             if(!user_id||!password||!nickname){ //파라미터 중 하나라도 요청에서 제공되지 않았다면 400 상태코드로 응답을 돌려줘야 합니다
                 return res.status(400).send('Unauthorized user')
