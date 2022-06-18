@@ -5,6 +5,7 @@ const {validateToken} = require('../../controllers/tokenfunctions/validateToken'
 module.exports= {
     withdraw : {
         delete : async (req,res) => {
+            console.log(req.body);
             const accessTokenData = validateToken(req)
 
             if(!accessTokenData){

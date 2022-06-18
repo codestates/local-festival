@@ -5,7 +5,7 @@ module.exports={
     edit : {
         put : async(req, res) =>{
             const accessTokenData = validateToken(req)
-            
+            console.log(req.headers);
             if(!accessTokenData){
                 return res.status(404).json({data:null , message: 'User not logged in'})
             }
@@ -15,7 +15,7 @@ module.exports={
             await users.update({nickname:nickname},{where:{user_id:user_id}})
 
             const user = await users.findOne({where:{user_id:user_id}})
-            
+            console.log(user);
             res.status(200).json({nickname:user.nickname, message : "ok, userinfo changed"})
 
         }

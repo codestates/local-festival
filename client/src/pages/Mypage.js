@@ -44,12 +44,12 @@ const Nav = styled.div`
   }
 `;
 
-const Mypage = ({ authState,festivalData, pickItems, togglePick }) => {
+const Mypage = ({ authState,handleAuthState,festivalData, pickItems, togglePick }) => {
   const {nickname} = authState
   return (
     <Wrapper>
       <Nav>
-        <EditProfile authState={authState} />
+        <EditProfile authState={authState} handleAuthState={handleAuthState} />
         <Link to="/">
           <button>
             메인페이지로 <br></br>돌아가기

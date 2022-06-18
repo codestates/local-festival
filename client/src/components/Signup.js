@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const ModalContainer = styled.div`
@@ -169,6 +170,8 @@ const Signup = ({ openModalHandlerLogin }) => {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
+
+  
   // const errorMessage = useRef()
   // errorMessage.textContent = 'aaa'
   const handleUserId = (e) => {
@@ -204,6 +207,8 @@ const Signup = ({ openModalHandlerLogin }) => {
         })
         .then((response) => {
           console.log(response.data.message);
+          
+          openModalHandler()
         })
         .catch((err) => {
           console.log(err);
