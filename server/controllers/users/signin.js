@@ -1,7 +1,7 @@
-const { users } = require('../db/indexS');
+const { users } = require('../../db/indexS');
 const bcrypt = require("bcrypt");
-const { sign } = require("jsonwebtoken");
-
+const {sign} = require('jsonwebtoken');
+require('dotenv').config
 
 module.exports= { 
     signin : {
@@ -21,10 +21,10 @@ module.exports= {
                     }
 
                     const accessToken = sign(
-                        {user_id:users.user_id, id: users.id},
-                        "importantsecret"
+                        {"user_id":`${user.user_id}`, "id": `${user.id}`},
+                        process.env.ACCESS_SECRET
                     )
-                    // res.json({ token: accessToken, user_id: user_id, id: user.id, nickname: user.nickname });
+
                     res.json({data : {token : accessToken, nickname : user.nickname, user_id:user.id},message : "login success"})
                 })
         }

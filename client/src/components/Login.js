@@ -220,7 +220,8 @@ const Login = ({ loginHandler }) => {
         } else {
           //# 토큰과 유저정보를 받아온다.
           // localStorage.setItem("accessToken", response.data.token);
-          console.log(response.data.data);
+          sessionStorage.setItem("accesstoken", response.data.data.token);
+
           const { nickname, user_id } = response.data.data;
           //# 토큰 설정
           loginHandler(nickname, user_id, true);
