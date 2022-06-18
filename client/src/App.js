@@ -18,8 +18,8 @@ const Wrapper = styled.div`
   margin: 0;
   padding: 0;
   /* background-color: #f8f9fa; */
-  background-color: #faf7f2;
-  height: 60rem;
+  
+  height: 100%;
 `;
 
 function App() {
@@ -469,7 +469,11 @@ function App() {
         <Route
           exact
           path="/Detailviewpage/festival_id/:id"
-          element={<Detailviewpage  pickItems={pickItems} togglePick={togglePick} />}
+          element={<Detailviewpage  
+            pickItems={pickItems} 
+            togglePick={togglePick} 
+            authState={authState}
+            />}
         ></Route>
         <Route exact path="/Signup" element={<Signup />}></Route>
       </Routes>

@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  width: 30rem;
+  /* width: 30rem; */
   height: 100%;
   text-align: center;
   & > button {

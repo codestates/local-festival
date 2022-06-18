@@ -3,25 +3,27 @@ import { useState } from "react";
 import Signup from "./Signup";
 import styled from "styled-components";
 import axios from "axios";
+import { RiAccountCircleFill } from "react-icons/ri";
 const ModalContainer = styled.div`
-  width: 30rem;
+  /* position: relative;
+  left: 10rem; */
   height: 100%;
-  text-align: center;
+  /* text-align: center; */
   & > button {
-    width: 20%;
+    /* width: 20%; */
     height: 100%;
     border: none;
-    background-color: #faa08e;
+    background-color: #1564a9;
     color: white;
     font-weight: bolder;
     font-size: larger;
     transition: 0.2s ease-out;
-
-    &:hover {
-      background-color: #fb505e;
-      transition: all 0.2s ease-in;
-      cursor: pointer;
-    }
+   & > *:hover {
+    color: #6cf7a6;
+    transition: all 0.2s ease-in;
+      cursor: pointer; ;
+   }
+   
   }
 `;
 
@@ -242,7 +244,7 @@ const Login = ({ loginHandler }) => {
 
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>Log In</button>
+      <button onClick={openModalHandler}><RiAccountCircleFill size={45}/></button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView
