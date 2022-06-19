@@ -5,7 +5,7 @@ const {validateToken} = require('../../controllers/tokenfunctions/validateToken'
 module.exports= {
     withdraw : {
         delete : async (req,res) => {
-            console.log(req.body);
+           // console.log(req.body);
             const accessTokenData = validateToken(req)
 
             if(!accessTokenData){
@@ -16,7 +16,7 @@ module.exports= {
             const user = await users.findOne({where:{user_id:user_id}})
             
             const {passwordCheck} = req.body
-            console.log("🚀 ~ file: withdraw.js ~ line 18 ~ delete: ~ passwordCheck", passwordCheck)
+            //console.log("🚀 ~ file: withdraw.js ~ line 18 ~ delete: ~ passwordCheck", passwordCheck)
 
             bcrypt.compare(passwordCheck,user.password).then(async(match) =>{
                 if(!match){

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Rating from "./Rating";
 
@@ -11,7 +11,8 @@ const Wrapper = styled.div`
   overflow-y: auto;
   padding: 0.5rem;
   margin: 0.5rem;
-    background-color: #dcdcdc;
+  /* background-color: #1564a9; */
+  /* color: white; */
     box-shadow: 0.1rem 0.1rem 0.3rem  gray;
 ;
 `;
@@ -36,8 +37,8 @@ justify-content: space-between;
 const Button = styled.button`
 /* margin: 1rem; */
 
-background-color: #ee7178;
-color: inherit;
+background-color: #1161c9;
+color: white;
 	border: none;
   height: 2.5rem;
   border-radius: 0.3rem;
@@ -47,10 +48,23 @@ color: inherit;
 	cursor: pointer;
 	outline: inherit;
 `
+
+const ErrorMessage = styled.div`
+width: 10rem;
+color: red;
+position: relative;
+left: 9rem;
+line-height: 2.4;
+font-size: large;
+font-weight: bold;
+
+`
 const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
 
   const [content, setContent] = useState("")
   const [rating, setRating] = useState(null)
+
+  const errorMessage = useRef()
 
   const handleContent = (e) => {
     console.log(e.target.value);
@@ -63,29 +77,51 @@ const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
   }
 
   const handleSubmit = () => {
-      axios.post('http://localhost:4001/review', {data : {content : content, rating:Number(rating), festival_id:festival_id}, headers: { accessToken: 'token'}})
-      .then(response => {
-       alert(response.data.message);
-      //#작성한 리뷰 ReviewList에 올려지도록 하기 
-      updateReviewList({content : content, rating : rating, nickname : authState.nickname})
-      })
-      .catch(err => {
-        console.log(err);
-      })
+
+      if(!rating) {
+        console.log(errorMessage.current);
+        errorMessage.current.textContent = "별점을 입력해 주세요"
+      } else if(content.length===0){
+        console.log(errorMessage.current);
+                errorMessage.current.textContent = "내용을 입력해 주세요"
+      } else {
+        axios.post('http://localhost:4001/review', {data : {content : content, rating:Number(rating), festival_id:festival_id}},{headers: {
+          accesstoken: sessionStorage.getItem("accesstoken"),
+        }})
+        .then(response => {
+        
+        //#작성한 리뷰 ReviewList에 올려지도록 하기 
+        updateReviewList({user_id : authState.user_id, nickname: authState.nickname, content : content, rating : rating})
+        setContent("")
+        setRating(null)
+        window.scrollTo({
+          top: 0, 
+          behavior: 'smooth'
+          /* you can also use 'auto' behaviour
+             in place of 'smooth' */
+        });
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+     
    
   }
   return (
     <Wrapper>
       <h2>리뷰</h2>
      
-        <Textarea onChange={handleContent} placeholder="후기를 남겨주세요."></Textarea>
+        <Textarea value={content} onChange={handleContent} placeholder="후기를 남겨주세요."></Textarea>
         <Controllers>
-          <Rating handleRating={handleRating} />
-         <Button onClick={handleSubmit}>리뷰올리기</Button>
+          <Rating howmany={rating} handleRating={handleRating} />
+          <ErrorMessage ref={errorMessage} />
+         <Button onClick={handleSubmit}>올리기</Button>
         </Controllers>
      
     </Wrapper>
   );
 };
+
 
 export default ReviewWrite;

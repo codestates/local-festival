@@ -6,9 +6,9 @@ require('dotenv').config
 module.exports= { 
     signin : {
         post : async(req, res) => {
-            const { user_id, password } = req.body;
+            const { username, password } = req.body;
 
-            const user = await users.findOne({ where: { user_id: user_id } });
+            const user = await users.findOne({ where: { username: username } });
 
             if(!user){
                 return res.status(401).json({ message: "User Doesn't Exist" });
@@ -21,13 +21,13 @@ module.exports= {
                     }
 
                     const accessToken = sign(
-                        {"user_id":`${user.user_id}`, "id": `${user.id}`},
+                        {"username":user.username, "id": user.id},
                         process.env.ACCESS_SECRET
                     )
 
-                    res.json({data : {token : accessToken, nickname : user.nickname, user_id:user.id},message : "login success"})
+                    res.json({data : {token : accessToken, user_id:user.id, username:username, nickname : user.nickname},message : "login success"})
                 })
         }
-        
+
     }
 }

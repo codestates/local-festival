@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { MdLogout } from "react-icons/md";
 
 const ModalContainer = styled.div`
   /* width: 30rem; */
@@ -10,14 +11,15 @@ const ModalContainer = styled.div`
     height: 100%;
     border: none;
     padding: 1rem;
-    background-color: #faa08e;
+    background: none;
+    /* background-color: #faa08e; */
     color: white;
     font-weight: bolder;
     font-size: larger;
     transition: 0.2s ease-out;
 
     &:hover {
-      background-color: #f56f54cb;
+      /* background-color: #f56f54cb; */
       transition: all 0.2s ease-in;
       cursor: pointer;
     }
@@ -95,7 +97,7 @@ const Logout = ({ loginHandler }) => {
   };
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>Logout</button>
+      <button onClick={openModalHandler}><MdLogout size={35}/></button>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView

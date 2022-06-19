@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import HeartButton from "./HeartButton";
-
+import onErrorImage from "../noimage.png"
 const Wrapper = styled.div`
   width: 22%;
   height: 25em;
@@ -16,11 +16,13 @@ const Wrapper = styled.div`
   transition: transform 0.3s ease-out;
   /* z-index: 999000; */
   
+  
 
   &:hover {
     transform: scale(1.1);
     & > div:nth-child(2) {
-      background-color: #f8826b;
+      background-color: #2f76d3;
+      color: white;
     }
   }
 
@@ -31,6 +33,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 70%;
     border-radius: 3.5px 3.5px 0 0;
+    box-shadow: 1px 0  2px gray; 
   }
 `;
 
@@ -42,9 +45,10 @@ const Description = styled.div`
   flex-direction: column;
   align-items: center;
   /* border-top: 0.3em solid; */
-  color: white;
-  background-color: #d2ad81;
+  color: black;
+  background-color: #f2eeee;
   border-radius: 0 0 4px 4px;
+  box-shadow: 1px 2px 2px gray;
   & > div {
     width: 80%;
     text-align: center;
@@ -73,6 +77,10 @@ const Pick = ({ item, togglePick, pickItems }) => {
     togglePick(id);
 
   };
+  const onErrorImg = (e) => {
+    e.target.src = onErrorImage
+  }
+ 
   
   useEffect(()=>{
     const isPicked = pickItems.some(ele => ele.festival_id === id)
@@ -85,12 +93,12 @@ const Pick = ({ item, togglePick, pickItems }) => {
   };
   return (
     <Wrapper onClick={onClickMoveDVP}>
-        <img src={image} alt={title} />
+        <img src={image} alt={title}  onError={onErrorImg} />
       <Description>
         
         <div><b>{title}</b></div>
         <div>{start_date}~{end_date}</div>
-        <div>pickdate</div>
+        
      
         </Description>
         <HeartDiv>

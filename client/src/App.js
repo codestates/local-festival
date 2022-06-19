@@ -24,8 +24,9 @@ const Wrapper = styled.div`
 
 function App() {
   const [authState, setAuthState] = useState({
-    nickname: "",
     user_id: "",
+    username:"",
+    nickname: "",
     loginStatus: false,
   });
   // const [isLogin, setIsLogin] = useState(false);
@@ -312,20 +313,25 @@ function App() {
     },
   ];
 
-  const loginHandler = (nickname, user_id, loginStatus) => {
+  const loginHandler = ( user_id,username,nickname, loginStatus) => {
     // isLogin ? setIsLogin(false) : setIsLogin(true);
-    console.log(nickname, user_id, loginStatus);
+    // console.log(nickname, user_id, loginStatus);
     //* 로그인한 후의 유저정보 상태변경입니다.
     const nextState = {
-      nickname: nickname,
       user_id: user_id,
+      username:username,
+      nickname: nickname,
       loginStatus: loginStatus,
     };
     setAuthState(nextState);
     console.log("나 실행???");
 
     //# 유저별 찜한 축제 가져오기
-    axios.get(`http://localhost:4001/pick/${user_id}`).then((response) => {
+    axios.get(`http://localhost:4001/pick/${user_id}`
+    , {headers: {
+      accesstoken: sessionStorage.getItem("accesstoken"),
+    }}
+    ).then((response) => {
       console.log(response.data.data);
       const pickedFestivalId = response.data.data;
       console.log(pickedFestivalId);
@@ -368,7 +374,9 @@ function App() {
       console.log("removeId what!!!", id);
 
     //*서버에 삭제요청 보내기
-    axios.delete("http://localhost:4001/pick",  {data : {user_id : authState.user_id, festival_id: id},  headers: { accessToken: 'token'}})
+    axios.delete("http://localhost:4001/pick",  {data : {festival_id: id}, headers: {
+      accesstoken: sessionStorage.getItem("accesstoken"),
+    }})
     .then(response => {
       console.log(response.data.message);
     })
@@ -382,9 +390,10 @@ function App() {
       //# 픽해서 서버에 픽한 정보 보내주기
       axios
         .post("http://localhost:4001/pick", {
-          user_id: authState.user_id,
           festival_id: id,
-        })
+        }, {headers: {
+          accesstoken: sessionStorage.getItem("accesstoken"),
+        }})
         .then((response) => {
           console.log(response.data.message);
         })
@@ -444,10 +453,11 @@ function App() {
     };
     fetchData();
     // loginHandler()
-    if(window.sessionStorage.accesstoken
-      ){
-       setAuthState(authState)
-    }
+
+    // if(window.sessionStorage.accesstoken
+    //   ){
+    //    setAuthState(authState)
+    // }
 
     axios.get('http://localhost:4001/users', {
       headers: {
@@ -455,20 +465,38 @@ function App() {
       },
     })
     .then(response => {
+      console.log('ㄷㅏ시 실행되나??? 계속인증');
       console.log(response.data);
-      const {user_id, nickname} = response.data.data
+      const {user_id,username, nickname} = response.data.data
      
       setAuthState({
-        nickname : nickname,
         user_id :user_id,
+        username:username,
+        nickname : nickname,
         loginStatus : true
 
       })
 
+      //* 새로고침시 유저가 픽한 상태도 유지되야 하므로
+      axios.get(`http://localhost:4001/pick/${user_id}`
+    , {headers: {
+      accesstoken: sessionStorage.getItem("accesstoken"),
+    }}
+    ).then((response) => {
+      console.log(response.data.data);
+      const pickedFestivalId = response.data.data;
+      console.log(pickedFestivalId);
+      // const festivalIdArr = pickedFestivalId.map(ele => ele.local_id)
+      // const pickedFestivalByUser = festivalData.filter(ele => festivalIdArr.indexOf(ele.id) > -1)
+      //{festival_Id: 4}
+      setPickItems(pickedFestivalId);
+    });
+  
       
     })
     .catch(err => {
       console.log(err);
+      console.log('에러 발생');
     })
     
   }, []);

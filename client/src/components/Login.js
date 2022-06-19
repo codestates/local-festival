@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Signup from "./Signup";
 import styled from "styled-components";
 import axios from "axios";
@@ -194,13 +194,18 @@ const CancelControl = styled.div`
   }
 `;
 
+const ErrorMessage = styled.div`
+color: red;
+font-weight: bold;
+`
+
 const Login = ({ loginHandler }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleUserId = (e) => {
-    setUserId(e.target.value);
+  const handleUserName = (e) => {
+    setUsername(e.target.value);
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
@@ -211,24 +216,31 @@ const Login = ({ loginHandler }) => {
     //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
     axios
       .post("http://localhost:4001/users/signin", {
-        user_id: userId,
+        username: username,
         password: password,
       })
       .then((response) => {
-        if (response.data.error) {
-          alert(response.data.error);
-        } else {
+      
           //# 토큰과 유저정보를 받아온다.
           // localStorage.setItem("accessToken", response.data.token);
           sessionStorage.setItem("accesstoken", response.data.data.token);
 
-          const { nickname, user_id } = response.data.data;
+          const { nickname, user_id, username } = response.data.data;
           //# 토큰 설정
-          loginHandler(nickname, user_id, true);
-        }
+          console.log('ㄴㅓㅁ어와???', response.data.data);
+          loginHandler(user_id, username, nickname, true);
+        // }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
+       if(err.response.data.message === "Wrong Username And Password Combination") {
+        errorMessage.current.textContent = "비밀번호가 일치하지 않습니다."
+       
+       } else if(err.response.data.message === "User Doesn't Exist"){
+        errorMessage.current.textContent = "사용자가 존재하지 않습니다."
+       } else {
+        console.log('그밖에에러');
+       }
       });
 
     // }
@@ -243,6 +255,8 @@ const Login = ({ loginHandler }) => {
     setIsOpen(!isOpen);
   };
 
+  const errorMessage = useRef()
+
   return (
     <ModalContainer>
       <button onClick={openModalHandler}><RiAccountCircleFill size={45}/></button>
@@ -254,6 +268,8 @@ const Login = ({ loginHandler }) => {
             }}
           >
             <h1>로그인</h1>
+           
+              <ErrorMessage ref={errorMessage}></ErrorMessage>
             <LoginControl>
               <form
                 onSubmit={(e) => {
@@ -265,10 +281,10 @@ const Login = ({ loginHandler }) => {
                     아이디 &ensp;
                     <input
                       type="text"
-                      value={userId}
+                      value={username}
                       required
                       onChange={(e) => {
-                        handleUserId(e);
+                        handleUserName(e);
                       }}
                     />
                     <br />

@@ -91,7 +91,7 @@ const EditProfile = ({ authState, handleAuthState }) => {
     .then(response => {
 
       const nextNickname = response.data.nickname
-      console.log(nextNickname);
+  
       handleAuthState(nextNickname)
       openModalHandler()
       window.location.replace("/Mypage")

@@ -19,11 +19,17 @@ const Wrapper = styled.div`
   /* font-family: "EarlyFontDiary"; */
 
   &:hover {
+    .title>b {
+      color: white;
+    }
     transform: scale(1.1);
     & > div:nth-child(2) {
       background-color: #2f76d3;
       color: white;
     }
+    
+    
+    
   }
 
 
@@ -32,25 +38,37 @@ const Wrapper = styled.div`
     width: 100%;
     height: 70%;
     border-radius: 3.5px 3.5px 0 0;
+    box-shadow: 1px 0  2px gray; 
   }
 `;
 
 const Description = styled.div`
   text-align: start;
   height: 7rem;
-  padding: 0.2em;
+  padding: 1rem 1px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* border-top: 0.3em solid; */
+  align-items: flex-start;
+  
   color: black;
-  /* background-color: #d2ad81; */
+  box-shadow: 1px 1.5px 2px gray;
   background-color: #f2eeee;
   border-radius: 0 0 4px 4px;
   & > div {
     width: 80%;
-    text-align: center;
-   
+    text-align: start;
+    padding-left:0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+    & > b{
+      color: #073c6a;
+      font-size :large;
+     
+    }
+
+    
   }
 
   
@@ -113,12 +131,12 @@ const Festival = ({ authState, festival, togglePick, pickItems }) => {
       />
 
       <Description>
-        <div>
+        <div className="title">
           <b>{festival.title}</b>
         </div>
         <div>
-          <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
-          <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년/MM월/DD일")}</div>
+          <div >시작일:{moment(startDate, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}</div>
+          <div >종료일:{moment(endDate, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}</div>
         </div>
         
         </Description>
