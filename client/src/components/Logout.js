@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { MdLogout } from "react-icons/md";
 
@@ -39,10 +39,11 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalView = styled.div`
+width: 30rem;
+  height: 20rem;
   border-radius: 10px;
-  background-color: #faf7f2;
-  width: 40vw;
-  height: 43vh;
+  background-color: white;
+  
   & > h1 {
     margin-top: 5rem;
     margin-bottom: 3rem;
@@ -69,12 +70,21 @@ const LogoutViewButton = styled.div`
     font-size: 23px;
 
     /* 색상 */
-    background: #faa08e;
+    background-color: #1564a9;
+    &:nth-child(2) {
+      background-color: #05c299;
+      color: white;
+      &:active{
+        color: #1564a9;
+      }
+    }
+    transition: transform 0.2s ease-out;
     &:hover {
-      background: #fd937e;
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
     }
     &:active {
-      background: #f56f54;
+      color: #6cf7a6;
     }
   }
 `;
@@ -105,7 +115,7 @@ const Logout = ({ loginHandler }) => {
               e.stopPropagation();
             }}
           >
-            <h1>정말 로그아웃 하시겠습니까?</h1>
+            <h1>로그아웃 하시겠습니까?</h1>
             <LogoutViewButton>
               <button className="close-btn" onClick={openModalHandler}>
                 Cancel

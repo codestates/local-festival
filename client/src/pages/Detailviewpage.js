@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DescTab from "../components/DescTab";
 import Moveloginpick from "../components/Moveloginpick";
-import { Link, useLocation, useParams, Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import ReviewTab from "../components/ReviewTab";
 import HeartButton from"../components/HeartButton"
 import onErrorImage from "../noimage.png"
+import ReviewWrite from "../components/ReviewWrite";
 
 const Wrapper = styled.div`
   display: flex;
@@ -140,7 +141,6 @@ const Detailviewpage = ({pickItems, togglePick, authState}) => {
   useEffect(()=>{
     const isPicked = pickItems.some(ele => ele.festival_id === id)
     setLike(isPicked)
-    console.log('hey');
   })
   const toggleLike =  (event) => {
     // event.stopPropagation();
@@ -160,17 +160,21 @@ const Detailviewpage = ({pickItems, togglePick, authState}) => {
         alt={`${title} : 이미지가 존재하지 않습니다.`}
         onError={onErrorImg}
         ></img>
-        {/* <Moveloginpick /> */}
-        <HeartButton  like={like}
+
+        {authState.loginStatus ? <HeartButton  like={like}
             onClick={(event) => {
               onClickPick(event, id);
           
             }}
-         / >
-        {/* <Link to="/">
-          <button>메인페이지로 돌아가기</button>
-        </Link> */}
-
+         / > :  null}
+       
+        
+       
+            {/* <ReviewWrite authState={authState}
+      //   festival_id={festival_id}
+      //  updateReviewList={updateReviewList}
+       
+         />  */}
       
      
       </ImageAndPickbtn>

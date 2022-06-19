@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import Login from "./Login";
 import styled from "styled-components";
+import HeartButton from "./HeartButton";
+
 
 const ModalContainer = styled.div`
-  height: 1rem;
-  text-align: center;
+  
+  &>img{
+    width: 2rem;
+    height: 2rem;
+  }
 `;
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -63,7 +68,12 @@ const Moveloginpick = () => {
 
   return (
     <ModalContainer>
-      <button onClick={openModalHandler}>찜하기</button>
+      
+      <HeartButton like={false}
+            onClick={openModalHandler}
+          >
+          
+          </HeartButton>
       {isOpen ? (
         <ModalBackdrop onClick={openModalHandler}>
           <ModalView
@@ -71,19 +81,19 @@ const Moveloginpick = () => {
               e.stopPropagation();
             }}
           >
-            <h1>찜하기 기능</h1>
+           
             <h2>로그인시 사용 가능합니다</h2>
             <h3>로그인 하시겠습니까?</h3>
-            <PickupControl>
+            
               <ButtonsInRow>
-                <InputsInColumn>
+                
                   <button className="close-btn" onClick={openModalHandler}>
                     cancel
                   </button>
                   <Login openModalHandlerMLP={openModalHandlerMLP} />
-                </InputsInColumn>
+                
               </ButtonsInRow>
-            </PickupControl>
+            
           </ModalView>
         </ModalBackdrop>
       ) : null}

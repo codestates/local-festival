@@ -1,6 +1,6 @@
 import React from "react";
 import Navigationbar from "./Navigationbar";
-import { Link, useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -29,62 +29,21 @@ const Wrapper = styled.div`
 
 `;
 
-const Title = styled.div`
-
-
-  font-family: 'HS-Regular';
-  color: white;
-  width: 12rem;
-  height: 4rem;
-  background-color: #383804;
-  & > h1{
-    font-size: 3rem;
-  cursor: pointer;
-  font-style: italic;
-  }
- margin: 1rem;
-  /* position: relative;
-  left: 1rem; */
-  
-//   font-size: 25px;
-//   /* font-family: "ulsanjunggu"; */
-//   font-family: 'HS-Regular';
-//   color: white;
-//   text-align: center;
-//   /* line-height: 1.6; */
-//   position: absolute;
-//   top: 50%;
-//   /* width: 10rem; */
-//   left: 4.5rem;
-//   height: 100%;
-//   transform: translate(-50%, -50%);
-//   font-style: italic;
-//   /* background-color: #f43e4d; */
-//   padding: 0.5rem;
-//   border-radius: 0.1rem;
-//   /* box-shadow: 0 1px 0 1px #dadce0; */
-//   margin-bottom: 1em;
-//   /* & img {
-//     width: 100%;
-//     height: 100%;
-//   } */
-  
- `; 
 
 
 
 const Header = ({ authState, loginHandler }) => {
 
-  let navigate = useNavigate()
+  
 
-  const navi = ()=>{
-    navigate("/")
+  const onClickReload = ()=>{
+    window.location.replace("/")
   }
   return (
     <Wrapper>
       
         
-            <h1 onClick={navi}>나가노라</h1>
+            <h1 onClick={onClickReload}>나가노라</h1>
         
     
 

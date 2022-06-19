@@ -3,30 +3,38 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import HeartButton from "./HeartButton";
 import onErrorImage from "../noimage.png"
+import moment from "moment";
 const Wrapper = styled.div`
-  width: 22%;
-  height: 25em;
+    width: 22%;
+  height: 23em;
   padding: 0.2em;
   margin: 0.5rem;
   border: none;
-  /* background-color: #ff8a3d; */
   display: flex;
   flex-direction: column;
-  box-shadow: inset;
+  /* box-shadow: 0.1rem 0.1rem 0.2rem  gray; */
   transition: transform 0.3s ease-out;
-  /* z-index: 999000; */
-  
+  /* font-family: "EarlyFontDiary"; */
   
 
   &:hover {
+    .title>b {
+      color:#6cf7a6; 
+    }
     transform: scale(1.1);
     & > div:nth-child(2) {
-      background-color: #2f76d3;
+      background-color: #1a6cb4;
       color: white;
     }
+
+    svg {
+      color: white;
+    }
+    
+    
+    
   }
 
-  
 
   & > img {
     object-fit: fill;
@@ -40,21 +48,30 @@ const Wrapper = styled.div`
 const Description = styled.div`
   text-align: start;
   height: 7rem;
-  padding: 0.2em;
+  padding: 1rem 1px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* border-top: 0.3em solid; */
+  align-items: flex-start;
+  
   color: black;
+  box-shadow: 1px 1.5px 2px gray;
   background-color: #f2eeee;
   border-radius: 0 0 4px 4px;
-  box-shadow: 1px 2px 2px gray;
   & > div {
     width: 80%;
-    text-align: center;
+    text-align: start;
+    padding-left:0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+    & > b{
+      color: #073c6a;
+      font-size :large;
+     
+    }
   }
-`;
-
+`
 const HeartDiv = styled.div`
 display: flex;
 justify-content: flex-end;
@@ -85,7 +102,7 @@ const Pick = ({ item, togglePick, pickItems }) => {
   useEffect(()=>{
     const isPicked = pickItems.some(ele => ele.festival_id === id)
     setLike(isPicked)
-    console.log('hey');
+   
   })
 
   const onClickMoveDVP = () => {
@@ -95,10 +112,13 @@ const Pick = ({ item, togglePick, pickItems }) => {
     <Wrapper onClick={onClickMoveDVP}>
         <img src={image} alt={title}  onError={onErrorImg} />
       <Description>
-        
-        <div><b>{title}</b></div>
-        <div>{start_date}~{end_date}</div>
-        
+       <div className="title">
+          <b>{title}</b>
+        </div>
+        <div>
+          <div >시작일:{moment(start_date, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}</div>
+          <div >종료일:{moment(end_date, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}</div>
+        </div>
      
         </Description>
         <HeartDiv>

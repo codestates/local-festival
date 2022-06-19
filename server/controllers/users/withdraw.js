@@ -12,8 +12,8 @@ module.exports= {
                 return res.status(404).json({data:null , message: 'User not logged in'})
             }
 
-            const {user_id} = accessTokenData
-            const user = await users.findOne({where:{user_id:user_id}})
+            const {id} = accessTokenData
+            const user = await users.findOne({where:{id}})
             
             const {passwordCheck} = req.body
             //console.log("🚀 ~ file: withdraw.js ~ line 18 ~ delete: ~ passwordCheck", passwordCheck)

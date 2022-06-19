@@ -43,10 +43,19 @@ color: white;
   height: 2.5rem;
   border-radius: 0.3rem;
   font-weight: bold;
+  font-size: 1rem;
 	padding: 0.5rem;
 
 	cursor: pointer;
 	outline: inherit;
+  transition: transform 0.2s ease-out;
+    &:hover {
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+    }
+    &:active {
+      color: #6cf7a6;
+    }
 `
 
 const ErrorMessage = styled.div`
