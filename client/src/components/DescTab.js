@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   border: 1px 0 0 0  solid black;
   /* margin: 1rem; */
   border-radius: 0 0 1rem 1rem;
-  background-color: #f7f5f2c8;
+  /* background-color: #d8e4f0c8; */
   padding: 1rem;
 
   & h2{

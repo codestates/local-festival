@@ -8,7 +8,7 @@ height: 2.5rem;
 /* margin: 1rem; */
 padding: 0.5rem;
 border-radius: 0.5rem;
-background-color: #ee7178;
+background-color: #1161c9;
 
 & * {
   width: 20%;
@@ -25,10 +25,10 @@ display: none;
 
 `
   
-const Rating = ({handleRating}) => {
+const Rating = ({handleRating, howmany}) => {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
-
+  console.log(howmany);
   const onClickRating = (rating)=>{
     setRating(rating)
     console.log(rating);
@@ -50,7 +50,7 @@ const Rating = ({handleRating}) => {
             />
             <AiFillStar
              className="star" 
-             color={ratingValue<= (hover ||rating)? "yellow" :"#c6c6c6" } 
+             color={ratingValue<= (hover ||rating)? "#ffdd00" :"#c6c6c6" } 
              size={100}
              onMouseEnter={()=> setHover(ratingValue)}
              onMouseLeave={()=> setHover(null)}

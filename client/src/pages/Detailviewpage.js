@@ -5,25 +5,29 @@ import { Link, useLocation, useParams, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import ReviewTab from "../components/ReviewTab";
 import HeartButton from"../components/HeartButton"
+import onErrorImage from "../noimage.png"
+
 const Wrapper = styled.div`
   display: flex;
   width: 80%;
   height: 70rem;
   justify-content: space-evenly;
   border-radius: 1rem;
-  background-color: #f0e3e2;
+  /* background-color: #f9fafa; */
   margin-top: 1rem;
+  
 `;
 
 const ImageAndPickbtn = styled.div`
-  margin: 1rem 0 0 1rem;
+  margin: 8rem 0 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 37%; 
-  height: 97%;
+  height: 30rem;
   /* border: 1px solid black; */
-  background-color: #f7f5f2c8;
+  background-color:white;
+  box-shadow: 0.1rem 0.1rem 0.5rem gray;
 
   border-radius: 1rem;
   & > * {
@@ -31,10 +35,10 @@ const ImageAndPickbtn = styled.div`
   }
   & > img {
     width: 100%;
-    height: 50%;
+    height: 80%;
     border-radius: 1rem;
     padding: 0.5rem;
-    border: 1.5px solid #dab2b2;
+    /* border: 1.5px solid #1564a9; */
     position:relative;
    
     
@@ -45,7 +49,7 @@ const ImageAndPickbtn = styled.div`
     height: 3rem;
     border: none;
     position: relative;
-    left: 1rem;
+    left: 0.5rem;
   }
 
   & > div {
@@ -68,13 +72,16 @@ const TabAndDesc = styled.div`
   border-radius: 1rem;
   /* padding: 0 1rem; */
   margin: 1rem;
+  margin-left : 3rem;
+  box-shadow: 0.1rem 0.1rem 0.3rem gray;
 `;
 
 const Tab = styled.div`
   width: 100%;
-  height: 10%;
+  height: 5rem;
   color: rgba(73, 73, 73, 0.5);
   font-weight: bold;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: row;
   justify-items: center;
@@ -82,6 +89,7 @@ const Tab = styled.div`
   list-style: none;
   border-radius: 0.5rem 0.5rem 0 0 ;
   background-color: aliceblue;
+  box-shadow: 0 0 2px 0 gray;
 
   & > div {
     width: 100%;
@@ -101,7 +109,8 @@ const Tab = styled.div`
   }
 
   .focused {
-    background-color: #ee7178;
+    background-color: #1564a9;
+
     color: rgba(255, 255, 255, 1);
     transition: 0.3s;
   }
@@ -119,6 +128,9 @@ const Detailviewpage = ({pickItems, togglePick, authState}) => {
   const { state } = useLocation();
 
   const { image, title, id } = state;
+  const onErrorImg = (e) => {
+    e.target.src = onErrorImage
+  }
   
   const tabArr = [
     { name: "상세정보", content: <DescTab festivalInfo={state} /> },
@@ -144,7 +156,10 @@ const Detailviewpage = ({pickItems, togglePick, authState}) => {
   return (
     <Wrapper>
       <ImageAndPickbtn>
-        <img src={image} alt={`${title} : 이미지가 존재하지 않습니다.`}></img>
+        <img src={image} 
+        alt={`${title} : 이미지가 존재하지 않습니다.`}
+        onError={onErrorImg}
+        ></img>
         {/* <Moveloginpick /> */}
         <HeartButton  like={like}
             onClick={(event) => {
@@ -156,8 +171,7 @@ const Detailviewpage = ({pickItems, togglePick, authState}) => {
           <button>메인페이지로 돌아가기</button>
         </Link> */}
 
-        <div>평균평점?</div>
-        <div>태그?</div>
+      
      
       </ImageAndPickbtn>
       <TabAndDesc>

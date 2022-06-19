@@ -45,7 +45,7 @@ connection.query(queryString, (err, result) => {
         `INSERT INTO festival_api_second (content_id,overview, url) VALUES ("${el.content_id}", "${overview}", "${url}")`,
         (error, rows, fields) => {
           if (error) throw error;
-          console.log("local info is: ", rows);
+          //console.log("local info is: ", rows);
         }
       );
     });

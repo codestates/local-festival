@@ -74,7 +74,7 @@ request(options, function (error, response, body) {
       `INSERT INTO festival_api_first (content_id, title, image, start_date, end_date, location, tel) VALUES ("${contentid}", "${title}", "${image}", ${start_date},${end_date},"${location}",'${tel}')`,
       (error, rows, fields) => {
         if (error) throw error;
-        console.log("local info is: ", rows);
+        //console.log("local info is: ", rows);
       }
     );
     // });

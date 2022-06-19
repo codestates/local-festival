@@ -6,7 +6,7 @@ import axios from "axios";
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #f7f5f2c8;
+  /* background-color: #d8e4f0c8; */
   overflow: hidden; // 안해주면 줄어들음
   display: flex;
   flex-direction: column;
@@ -53,8 +53,18 @@ content : 'aaa',
 rating : '333'},
 ]
 const [listOfReviews, setListOfReviews] = useState([])
-  //id 뽑아오기
-// console.log(festival_id);
+
+//* listOfReviews
+// {content: "'소록소록 로운 비나리 소록소록 다솜.',", createdAt: "20…}
+// id :1
+// festival_id : 3
+// user_id : "bbb1234"
+// nickname :"유동혁"
+// content : "'소록소록 로운 비나리 소록소록 다솜.',"
+// rating:4
+// createdAt: "2022-06-14T01:44:00.000Z"
+// updatedAt: "2022-06-14T01:44:00.000Z"
+
   useEffect(()=>{
     //# 특정 축제에 대한 리뷰글들을 불러온다. 
     //* api 수정 특정 글의 리뷰로 전달
@@ -71,10 +81,10 @@ const [listOfReviews, setListOfReviews] = useState([])
     })
   },[])
 
-const updateReviewList = ({content, rating, nickname})=>{
+const updateReviewList = ({user_id,nickname,content, rating})=>{
   console.log(content, rating, nickname, "reviewTab!!");
 
-  const nextReviewLists = [...listOfReviews, {nickname, content, rating}]
+  const nextReviewLists = [...listOfReviews, {user_id, nickname, content, rating}]
 
   setListOfReviews(nextReviewLists)
 }
@@ -83,7 +93,9 @@ const deleteReview = (id)=>{
   console.log(id);
   axios
   .delete(`http://localhost:4001/review/${id}`, {
-    headers: { accessToken: "token" },
+    headers: {
+      accesstoken: sessionStorage.getItem("accesstoken")
+    }
   })
   .then((response) => {
     console.log(response.data.message);

@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const ModalContainer = styled.div`
   /* height: 15rem; */
@@ -165,7 +164,7 @@ const CancelControl = styled.div`
 
 const Signup = ({ openModalHandlerLogin }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -175,7 +174,7 @@ const Signup = ({ openModalHandlerLogin }) => {
   // const errorMessage = useRef()
   // errorMessage.textContent = 'aaa'
   const handleUserId = (e) => {
-    setUserId(e.target.value);
+    setUsername(e.target.value);
   };
   const handleNickname = (e) => {
     setNickname(e.target.value);
@@ -201,7 +200,7 @@ const Signup = ({ openModalHandlerLogin }) => {
       //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
       axios
         .post("http://localhost:4001/users/signup", {
-          user_id: userId,
+          username: username,
           password: password,
           nickname: nickname,
         })
@@ -249,7 +248,7 @@ const Signup = ({ openModalHandlerLogin }) => {
                     아이디
                     <input
                       type="text"
-                      value={userId}
+                      value={username}
                       required
                       onChange={(e) => {
                         handleUserId(e);
