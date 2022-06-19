@@ -1,10 +1,10 @@
-import React,{useRef} from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: 10rem;
   width: 80%;
-  background-color:  #8898ad;
+  background-color:  #3f6eab;
   color: white;
   display: flex;
   padding: 1rem;
@@ -30,10 +30,10 @@ const Wrapper = styled.div`
   /* font-style: italic; */
 
   &:hover{
-    color: #00ff91;
+    color: gold;
   }
   &:visited{
-    color: #00ff91;
+    color: gold;
   }
   }
 `;
@@ -54,14 +54,14 @@ const Hashtag = ({ onSearch }) => {
     console.log(e.target.parentNode.parentNode.children[1].children);
     const LocationTags = e.target.parentNode.parentNode.children[1].children
     for(let i = 0 ; i < monthTags.length; i++) {
-      if(monthTags[i].style.color === "red") {
-        monthTags[i].style.color = "black"
+      if(monthTags[i].style.color === "mint") {
+        monthTags[i].style.color = "white"
         
       }
     }
     for(let i = 0 ; i < LocationTags.length; i++) {
-      if(LocationTags[i].style.color === "red") {
-        LocationTags[i].style.color = "black"
+      if(LocationTags[i].style.color === "gold") {
+        LocationTags[i].style.color = "white"
         
       }
     }
@@ -75,7 +75,7 @@ const Hashtag = ({ onSearch }) => {
       onSearch(`2022${month}00`)
     }
 
-     e.target.style.color = "red"
+     e.target.style.color = "gold"
   }
 
 const onClickLocation = (e) => {
@@ -86,21 +86,21 @@ const onClickLocation = (e) => {
   const monthTags = e.target.parentNode.parentNode.children[0].children
 
   for(let i = 0 ; i < LocationTags.length; i++) {
-    if(LocationTags[i].style.color === "red") {
-      LocationTags[i].style.color = "black"
+    if(LocationTags[i].style.color === "gold") {
+      LocationTags[i].style.color = "white"
       
     }
   }
   for(let i = 0 ; i < monthTags.length; i++) {
-    if(monthTags[i].style.color === "red") {
-      monthTags[i].style.color = "black"
+    if(monthTags[i].style.color === "gold") {
+      monthTags[i].style.color = "white"
       
     }
   }
   
 
   onSearch(searchTag)
-  e.target.style.color = "red"
+  e.target.style.color = "gold"
 
 }
 const tagsArr = {months : Array(12).fill().map((v,i)=>i+1),

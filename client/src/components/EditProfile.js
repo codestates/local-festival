@@ -6,6 +6,23 @@ import axios from "axios";
 const ModalContainer = styled.div`
   /* height: 15rem; */
   text-align: center;
+  &>button {
+    width: 10rem;
+    height: 3rem;
+    background-color: #1564a9;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 0.4rem;
+    transition: transform 0.2s ease-out;
+        &:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;   
+        }
+        &:active{
+          color:#6cf7a6; 
+        }
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -18,14 +35,15 @@ const ModalBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+  z-index:1;
 `;
 
 const ModalView = styled.div`
+  width: 30rem;
+  height: 20rem;
   border-radius: 10px;
-  background-color: #faf7f2;
-  width: 30vw;
-  height: 43vh;
+  background-color: white;
   & > h1 {
     margin-top: 3rem;
     margin-bottom: 1rem;
@@ -62,13 +80,20 @@ const Controllers = styled.div`
     font-size: 1rem;
 
     /* 색상 */
-    background: #faa08e;
+    background-color: #1564a9;
+    transition: transform 0.2s ease-out;
     &:hover {
-      background: #fd937e;
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+     
     }
+    &:nth-child(1) {
+      background-color: #05c299;
+      color: white;
+    }
+   
     &:active {
-      background: #f56f54;
-    }
+      color: #1564a9;    }
   }
 `;
 
@@ -111,7 +136,7 @@ const EditProfile = ({ authState, handleAuthState }) => {
               e.stopPropagation();
             }}
           >
-            <h1>회원정보 수정/탈퇴</h1>
+            <h1>변경할 닉네임을 입력해 주세요</h1>
             <InputsInColumn>
               <input onChange={nicknameHandler} placeholder="바꿀닉네임"></input>
             </InputsInColumn>

@@ -5,10 +5,9 @@ import styled from "styled-components";
 import axios from "axios";
 import { RiAccountCircleFill } from "react-icons/ri";
 const ModalContainer = styled.div`
-  /* position: relative;
-  left: 10rem; */
+ 
   height: 100%;
-  /* text-align: center; */
+
   & > button {
     /* width: 20%; */
     height: 100%;
@@ -17,10 +16,10 @@ const ModalContainer = styled.div`
     color: white;
     font-weight: bolder;
     font-size: larger;
-    transition: 0.2s ease-out;
+    transition: all 0.3s ease-in;
    & > *:hover {
     color: #6cf7a6;
-    transition: all 0.2s ease-in;
+    transition: all 0.2s ease-out;
       cursor: pointer; ;
    }
    
@@ -42,10 +41,10 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   border-radius: 10px;
-  background-color: #faf7f2;
+  background-color: white;
   box-sizing: border-box;
   padding: 1rem;
-  width: 40vw;
+  width: 30rem;
   height: 55vh;
   & > h1 {
     /* margin-top: 1rem;
@@ -91,14 +90,15 @@ const LoginButton = styled.div`
     height: 2rem;
     width: 15rem;
     font-size: 1rem;
-
+    transition: transform 0.2s ease-out;
     /* 색상 */
-    background: #faa08e;
+    background-color: #1564a9;
     &:hover {
-      background: #fd937e;
+      transform: scale(1.1);
+    
     }
     &:active {
-      background: #f56f54;
+      color: #6cf7a6;
     }
   }
 `;
@@ -125,8 +125,9 @@ const GoogleLoginControl = styled.div`
 
     /* 색상 */
     background: #4285f4;
-    &:hover {
-      background: #4285f4;
+    transition: transform 0.2s ease-out;
+        &:hover {
+    transform: scale(1.1);;
     }
     &:active {
       background: #2366d2;
@@ -155,8 +156,9 @@ const KakaoLoginControl = styled.div`
 
     /* 색상 */
     background: #fee500;
-    &:hover {
-      background: #fee500;
+    transition: transform 0.2s ease-out;
+        &:hover {
+    transform: scale(1.1);
     }
     &:active {
       background: #ccb801;
@@ -184,13 +186,15 @@ const CancelControl = styled.div`
     font-size: 1rem;
 
     /* 색상 */
-    background: #faa08e;
-    &:hover {
-      background: #fd937e;
+    background-color: #1564a9;
+    transition: transform 0.2s ease-out;
+        &:hover {
+    transform: scale(1.1);
+   
+   
     }
     &:active {
-      background: #f56f54;
-    }
+      color: #6cf7a6;    }
   }
 `;
 
@@ -234,10 +238,10 @@ const Login = ({ loginHandler }) => {
       .catch((err) => {
         console.log(err.response.data.message);
        if(err.response.data.message === "Wrong Username And Password Combination") {
-        errorMessage.current.textContent = "비밀번호가 일치하지 않습니다."
+        errorMessage.current.textContent = "비밀번호가 일치하지 않습니다"
        
        } else if(err.response.data.message === "User Doesn't Exist"){
-        errorMessage.current.textContent = "사용자가 존재하지 않습니다."
+        errorMessage.current.textContent = "사용자가 존재하지 않습니다"
        } else {
         console.log('그밖에에러');
        }
@@ -277,7 +281,7 @@ const Login = ({ loginHandler }) => {
                 }}
               >
                 <InputsInColumn>
-                  <label>
+                  <label style={{fontWeight:"bold"}}>
                     아이디 &ensp;
                     <input
                       type="text"
@@ -289,7 +293,7 @@ const Login = ({ loginHandler }) => {
                     />
                     <br />
                   </label>
-                  <label>
+                  <label  style={{fontWeight:"bold"}}>
                     비밀번호
                     <input
                       type="password"
@@ -316,7 +320,7 @@ const Login = ({ loginHandler }) => {
             </KakaoLoginControl>
             <CancelControl>
               <button className="close-btn" onClick={openModalHandler}>
-                cancel
+                취소하기
               </button>
             </CancelControl>
           </ModalView>

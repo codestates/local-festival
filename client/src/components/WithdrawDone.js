@@ -1,11 +1,29 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  height: 15rem;
+  /* height: 15rem; */
   text-align: center;
+  &>button{
+    height: 2rem;
+    width: 6.5rem;
+    background-color: #05c299;;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    left: 1rem;
+    transition: transform 0.2s ease-out;
+    &:hover {
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+     
+    }
+
+  }
+  
 `;
 
 const ModalBackdrop = styled.div`
@@ -22,10 +40,40 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalView = styled.div`
+ width: 30rem;
+  height: 20rem;
   border-radius: 10px;
   background-color: #ffffff;
-  width: 30vw;
-  height: 40vh;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &>h2{
+    position: relative;
+    top: -1rem;
+  }
+
+  &>button{
+    height: 2rem;
+    width: 6.5rem;
+    position: relative;
+    top: 1rem;
+    background-color: #1564a9;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    &:hover {
+      transition: all 0.1s;
+      transform: translateY(-5%);
+      color: #6cf7a6;
+    }
+  }
+
+
 `;
 
 const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandlerMypage, openModalHandlerWithdraw }) => {
@@ -35,7 +83,7 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
     // openModalHandlerWithdraw();
   };
 
-  let navigate = useNavigate()
+  
   
 
   const pwdNotMatch = ()=> {
@@ -66,7 +114,7 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
   }
   return (
     <ModalContainer>
-      <button onClick={handleSubmit}>확인</button>
+      <button onClick={handleSubmit}>탈퇴하기</button>
       {isOpen ? (
         <ModalBackdrop
           onClick={() => {
@@ -80,12 +128,10 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
               e.stopPropagation();
             }}
           >
-            <h1>WithdrawDone Component</h1>
-            <div className="WithdrawDone-view-inputs">
-              성공적으로 회원탈퇴가 되었습니다. 감사합니다.
-            </div>
-            <div className="WithdrawDone-view-buttons">
-              <div>
+            <h2>성공적으로 회원탈퇴가 되었습니다</h2>
+            <h2>이용해주셔서 감사합니다</h2>
+            
+           
                 <button
                   className="close-btn"
                   onClick={() => {
@@ -99,8 +145,8 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
                 >
                   확인
                 </button>
-              </div>
-            </div>
+             
+           
           </ModalView>
         </ModalBackdrop>
       ) : null}

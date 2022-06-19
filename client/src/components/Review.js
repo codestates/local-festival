@@ -71,7 +71,7 @@ border-radius: 0.5rem;
     color: white;
   }
   & button:nth-child(2){
-    background-color: #f0543f;
+    background-color:  #05c299;
     color: white;
   }
   

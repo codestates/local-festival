@@ -4,6 +4,25 @@ import styled from "styled-components";
 
 const ModalContainer = styled.div`
   text-align: center;
+  &>button{
+    height: 2rem;
+    width: 6.5rem;
+    background-color: #1564a9;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: transform 0.2s ease-out;
+    &:hover {
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+     
+    }
+    &:active{
+      color: #6cf7a6;
+    }
+
+  }
 `;
 
 const ModalBackdrop = styled.div`
@@ -20,15 +39,57 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalView = styled.div`
+  width: 30rem;
+  height: 20rem;
   border-radius: 10px;
   background-color: #ffffff;
-  width: 30vw;
-  height: 40vh;
+  padding: 2rem;
 `;
+
+const InputSection = styled.div`
+
+margin: 3em 0 ;
+&>input{
+  width: 17rem;
+  height: 2rem;
+}
+`
+const ButtonSection = styled.div`
+display: flex;
+justify-content: space-evenly;
+
+
+
+&>button {
+  height: 2rem;
+    width: 6.5rem;
+    background-color: #1564a9;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+  
+    &:nth-child(2){
+      position: relative;
+      left: -1rem;
+    }
+
+    transition: transform 0.2s ease-out;
+    &:hover {
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+      
+    }
+    &:active{
+      color: #6cf7a6;
+    }
+}
+`
 
 const Withdraw = ({ authState,openModalHandlerMypage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState("")
+  
   const openModalHandler = () => {
     setIsOpen(!isOpen);
     // openModalHandlerLogin();
@@ -42,6 +103,7 @@ const Withdraw = ({ authState,openModalHandlerMypage }) => {
   const handlePasswordCheck = (e) => {
     setPasswordCheck(e.target.value)
   }
+
 
   // const that = useRef(null)
   const warningMessage = useRef(null)
@@ -60,21 +122,20 @@ const Withdraw = ({ authState,openModalHandlerMypage }) => {
               e.stopPropagation();
             }}
           >
-            <h1>Withdraw Component</h1>
-            <div  className="Sighout-view-inputs">
+            <h1>비밀번호를 한번 더 입력해 주세요</h1>
+            <InputSection>
               <div ref={warningMessage} className="pwdNotMatch" style={{color : "Red", display:"none"}}> 비밀번호가 일치하지 않습니다.</div>
               <input type="password" onChange={handlePasswordCheck} placeholder="Password"></input>
-            </div>
-            <div className="Sighout-view-buttons">
+            </InputSection>
+            <ButtonSection>
               <WithdrawDone
-              // that={that}
               authState={authState}
               warningMessage={warningMessage}
                 passwordCheck={passwordCheck}
                 openModalHandlerMypage={openModalHandlerMypage}
                 openModalHandlerWithdraw={openModalHandlerWithdraw}
               />
-              <div>
+              
                 <button
                   className="close-btn"
                   onClick={() => {
@@ -84,8 +145,8 @@ const Withdraw = ({ authState,openModalHandlerMypage }) => {
                 >
                   cancel
                 </button>
-              </div>
-            </div>
+             
+            </ButtonSection>
           </ModalView>
         </ModalBackdrop>
       ) : null}
