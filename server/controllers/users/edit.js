@@ -1,4 +1,4 @@
-const { users } = require('../../db/indexS');
+const models  = require('../../models/users/edit');
 const {validateToken} = require('../../controllers/tokenfunctions/validateToken')
 
 module.exports={
@@ -11,11 +11,14 @@ module.exports={
 
             const {nickname} = req.body
             const {id} = accessTokenData
-            await users.update({nickname},{where:{id}})
 
-            const user = await users.findOne({where:{id}})
-           //console.log(user);
-            res.status(200).json({nickname:user.nickname, message : "ok, userinfo changed"})
+            models.edit.put({nickname,id},(error)=>{
+                if(error){
+                    res.status(500).json({message :'Internal Server Error'});
+                } else{
+                    res.status(200).json({nickname:nickname, message : "ok, userinfo changed"})
+                }
+            })
 
         }
     }

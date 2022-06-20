@@ -1,4 +1,4 @@
-const { users } = require('../../db/indexS');
+const models  = require('../../models/users/withdraw');
 const bcrypt = require("bcrypt");
 const {validateToken} = require('../../controllers/tokenfunctions/validateToken')
 
@@ -12,21 +12,23 @@ module.exports= {
             }
 
             const {username} = accessTokenData
-            const user = await users.findOne({where:{username:username}})
-            
             const {passwordCheck} = req.body
+            //db에서 비밀번호를 찾아온다
 
-            bcrypt.compare(passwordCheck,user.password).then(async(match) =>{
-                if(!match){
-                    res.json({message :"Wrong Username And Password Combination"})
-                } else{
-                    await user.destroy()
-    
-                    res.status(200).json({message : "successfully quit"})
-                }
+            models.withdraw.get(username,(error,result)=>{
+                const {password} =result[0]
 
+                bcrypt.compare(passwordCheck,password).then(async(match) =>{
+                    if(!match){
+                        res.status(409).json({message :"Wrong Username And Password Combination"})
+                    } else{
+                        // db에서 username과 같은 열삭제
+                        models.withdraw.delete(username,()=>{
+                            res.status(200).json({message : "successfully quit"})
+                        })      
+                    }
+                })
             })
-            
         }
     }
 }

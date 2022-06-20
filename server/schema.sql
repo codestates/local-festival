@@ -24,14 +24,14 @@ CREATE TABLE IF NOT EXISTS `users` (
     `username` varchar(255) not NULL,
     `password` varchar(255) not NULL,
     `nickname` varchar(255) not NULL,
-    `createdAt` timestamp,
-    `updatedAt` timestamp
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    `updatedAt` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS `pick` (
     `id` int PRIMARY KEY AUTO_INCREMENT,
-    `createdAt` timestamp,
-    `updatedAt` timestamp
+    `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    `updatedAt` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 ALTER TABLE festival_api_first ADD UNIQUE (content_id);
