@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 module.exports = {
     signup : { 
         post : (req, res) => {
-            console.log(req.body);
+    
             const {username, password, nickname}=req.body
             console.log("🚀 ~ file: signup.js ~ line 9 ~ password", password)
 

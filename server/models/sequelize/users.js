@@ -13,7 +13,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     });
-    
-  
+
+    users.associate = (models) => {
+      users.hasMany(models.pick, {
+        onDelete: "cascade",
+        foreignKey : "user_id"
+      });
+    }
     return users;
   };

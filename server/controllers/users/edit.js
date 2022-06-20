@@ -5,7 +5,6 @@ module.exports={
     edit : {
         put : async(req, res) =>{
             const accessTokenData = validateToken(req)
-           // console.log(req.headers);
             if(!accessTokenData){
                 return res.status(404).json({data:null , message: 'User not logged in'})
             }

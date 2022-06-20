@@ -4,16 +4,14 @@ const {validateToken} = require('../../controllers/tokenfunctions/validateToken'
 module.exports= {
     auth : {
         get : async (req,res) => {
-           // console.log(req.headers);
             const accessTokenData = validateToken(req)
 
             if(!accessTokenData){
                 return res.status(404).json({data:null , message: 'No access Token'})
             }
             
-            const {id} = accessTokenData
-          //  console.log(id);
-            const user = await users.findOne({where:{id}})
+            const {username} = accessTokenData
+            const user = await users.findOne({where:{username:username}})
 
             if(!user){
               return res.status(401).json({ message: "User Doesn't Exist" });

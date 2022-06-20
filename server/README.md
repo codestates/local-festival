@@ -20,3 +20,4 @@ mysql -u root --host final-project-local-festival.cckvitmvdr6s.ap-northeast-2.rd
 서버터미널에서 스키마 해서 필드 만들면 됩니다. // npm run schema
 이후 필드에 데이터를 채워주시면 됩니다. // npm run db, npm run db2
 이후 ctal+c / cmd+c 하셔서 종료 해주시면 festival 데이터 저장됩니다.
+festival_info table 생성 // npm run view

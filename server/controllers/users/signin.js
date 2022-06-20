@@ -21,7 +21,7 @@ module.exports= {
                     }
 
                     const accessToken = sign(
-                        {"username":user.username, "id": user.id},
+                        {"username":`${user.username}`, "id": `${user.id}`},
                         process.env.ACCESS_SECRET
                     )
 
