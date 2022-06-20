@@ -1,12 +1,11 @@
-const { users } = require('../../db/indexS');
+const models = require('../../models/users/signup');
 const bcrypt = require("bcrypt");
 
 module.exports = {
     signup : { 
         post : (req, res) => {
-            console.log(req.body);
+    
             const {username, password, nickname}=req.body
-            console.log("🚀 ~ file: signup.js ~ line 9 ~ password", password)
 
             if(!username||!password||!nickname){ //파라미터 중 하나라도 요청에서 제공되지 않았다면 400 상태코드로 응답을 돌려줘야 합니다
                 return res.status(400).send('Unauthorized user')
@@ -19,19 +18,16 @@ module.exports = {
                     password: hash,
                     nickname : nickname
                 };
-    
-                users.findOrCreate({
-                    where:{username} , defaults : newUser
-                }) .then(([save, created])=>{
-    
-                    if(!created){
-                        return res.status(409).send('    messege : `User ID is already in use ')
-                    }
-                    else{
+
+                models.signup.post(newUser,(error,result) => {
+                    if(error){
+                        res.status(500).json({message :'Internal Server Error'});
+                    } else if(Array.isArray(result)){
+                        res.status(409).json({message :"User ID is already in use"})
+                    }else{
                         res.status(201).json({message:'ok'})
                     }
                 })
-
             })
     }}
 }
