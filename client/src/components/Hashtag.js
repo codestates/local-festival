@@ -54,7 +54,7 @@ const Hashtag = ({ onSearch }) => {
     console.log(e.target.parentNode.parentNode.children[1].children);
     const LocationTags = e.target.parentNode.parentNode.children[1].children
     for(let i = 0 ; i < monthTags.length; i++) {
-      if(monthTags[i].style.color === "mint") {
+      if(monthTags[i].style.color === "gold") {
         monthTags[i].style.color = "white"
         
       }

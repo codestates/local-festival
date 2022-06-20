@@ -103,12 +103,12 @@ const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
         updateReviewList({user_id : authState.user_id, nickname: authState.nickname, content : content, rating : rating})
         setContent("")
         setRating(null)
-        window.scrollTo({
-          top: 0, 
-          behavior: 'smooth'
-          /* you can also use 'auto' behaviour
-             in place of 'smooth' */
-        });
+        // window.scrollTo({
+        //   top: 0, 
+        //   behavior: 'smooth'
+        //   /* you can also use 'auto' behaviour
+        //      in place of 'smooth' */
+        // });
         })
         .catch(err => {
           console.log(err);
