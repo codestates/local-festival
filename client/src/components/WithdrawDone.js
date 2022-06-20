@@ -106,8 +106,9 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
       }
     )
     .catch(err => {
-      console.log(err);
-    })
+    console.log(err);
+      })
+    
 
     
     
