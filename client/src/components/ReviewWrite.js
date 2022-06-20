@@ -43,10 +43,19 @@ color: white;
   height: 2.5rem;
   border-radius: 0.3rem;
   font-weight: bold;
+  font-size: 1rem;
 	padding: 0.5rem;
 
 	cursor: pointer;
 	outline: inherit;
+  transition: transform 0.2s ease-out;
+    &:hover {
+      transition: transform 0.2s ease-out;
+      transform: translateY(-5%);
+    }
+    &:active {
+      color: #6cf7a6;
+    }
 `
 
 const ErrorMessage = styled.div`
@@ -94,12 +103,12 @@ const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
         updateReviewList({user_id : authState.user_id, nickname: authState.nickname, content : content, rating : rating})
         setContent("")
         setRating(null)
-        window.scrollTo({
-          top: 0, 
-          behavior: 'smooth'
-          /* you can also use 'auto' behaviour
-             in place of 'smooth' */
-        });
+        // window.scrollTo({
+        //   top: 0, 
+        //   behavior: 'smooth'
+        //   /* you can also use 'auto' behaviour
+        //      in place of 'smooth' */
+        // });
         })
         .catch(err => {
           console.log(err);

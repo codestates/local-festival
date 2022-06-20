@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import Review from "./Review";
 import styled from "styled-components";
 
@@ -8,17 +8,24 @@ const Wrapper = styled.div`
   border-radius: 0.5rem;
   padding-top: 0;
   display: flex;
-  flex-direction: column-reverse;
-  overflow-y: auto;
+  flex-direction: column;
+ 
+  /* flex-wrap:nowrap; */
+  overflow-y: scroll;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   &::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }
+ 
 `;
 
 const ReviewList = ({listOfReviews, authState, deleteReview}) => {
-
+  const that = useRef()
+// console.log(that.current.scrollTo({
+//   top:0,
+//   behavior:'smooth'}
+// ));
 //* listOfReviews
 // {content: "'소록소록 로운 비나리 소록소록 다솜.',", createdAt: "20…}
 // id :1
@@ -30,8 +37,10 @@ const ReviewList = ({listOfReviews, authState, deleteReview}) => {
 // createdAt: "2022-06-14T01:44:00.000Z"
 // updatedAt: "2022-06-14T01:44:00.000Z"
 
+
+
   return (
-    <Wrapper>
+    <Wrapper ref={that} >
       
   
     {!listOfReviews.length ? <>리뷰가 등록되어있지 않습니다.</> : <>

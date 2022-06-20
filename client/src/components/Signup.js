@@ -25,12 +25,15 @@ const ModalContainer = styled.div`
     font-size: 1rem;
 
     /* 색상 */
-    background: #faa08e;
+    background-color: #1564a9;
+    transition: transform 0.2s ease-out;
     &:hover {
-      background: #fd937e;
+      transform: scale(1.1);
+   
     }
     &:active {
-      background: #f56f54;
+      color: #6cf7a6;
+     
     }
   }
 `;
@@ -50,10 +53,10 @@ const ModalBackdrop = styled.div`
 
 const ModalView = styled.div`
   border-radius: 10px;
-  background-color: #faf7f2;
+  background-color:white;
   box-sizing: border-box;
   padding: 1rem;
-  width: 40vw;
+  width: 30rem;
   height: 55vh;
   & > h1 {
     margin-top: 1rem;
@@ -101,12 +104,15 @@ const SignUpButton = styled.div`
     font-size: 1rem;
 
     /* 색상 */
-    background: #faa08e;
+    background-color: #05c299;;
+    transition: transform 0.2s ease-out;
     &:hover {
-      background: #fd937e;
+      transition: transform 0.2s ease-out;
+      transform: translateY(-10%);
     }
     &:active {
-      background: #f56f54;
+      color: #6cf7a6;
+
     }
   }
 `;
@@ -124,6 +130,7 @@ const InputsInColumn = styled.div`
     float: left;
     text-align: left;
     line-height: 2.8rem;
+    font-weight: bp;
   }
   & > label > input {
     margin: 5px;
@@ -151,13 +158,14 @@ const CancelControl = styled.div`
     width: 6.5rem;
     font-size: 1rem;
 
-    /* 색상 */
-    background: #faa08e;
+    background-color: #1564a9;
+    transition: transform 0.2s ease-out;
     &:hover {
-      background: #fd937e;
+      transition: transform 0.2s ease-out;
+      transform: translateY(-10%);
     }
     &:active {
-      background: #f56f54;
+      color: #6cf7a6;
     }
   }
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import Logout from "./Logout";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { RiAccountCircleFill } from "react-icons/ri";
 import styled from "styled-components";
 
