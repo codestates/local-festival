@@ -6,13 +6,11 @@ import Rating from "./Rating";
 const Wrapper = styled.div`
   width: 96%;
   height: 14rem;
-  /* border: 1px solid black; */
+  
   border-radius: 0.5rem;
   overflow-y: auto;
   padding: 0.5rem;
   margin: 0.5rem;
-  /* background-color: #1564a9; */
-  /* color: white; */
     box-shadow: 0.1rem 0.1rem 0.3rem  gray;
 ;
 `;
@@ -100,7 +98,7 @@ const ReviewWrite = ({updateReviewList,festival_id, authState}) => {
         .then(response => {
         
         //#작성한 리뷰 ReviewList에 올려지도록 하기 
-        updateReviewList({user_id : authState.user_id, nickname: authState.nickname, content : content, rating : rating})
+        updateReviewList({user_id : authState.user_id, nickname: authState.nickname, content : content, rating : rating, createdAt:(new Date()).toLocaleString()})
         setContent("")
         setRating(null)
         // window.scrollTo({

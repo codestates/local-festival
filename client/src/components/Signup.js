@@ -76,11 +76,7 @@ const SignupViewInputs = styled.div`
     height: 30px;
   }
 `;
-// const ErrorMessage = styled.div`
-// height: 10rem;
-// background-color: aliceblue;
-// color: red;
-// `
+
 const SignUpButton = styled.div`
   display: flex;
   justify-content: center;
@@ -204,7 +200,8 @@ const Signup = ({ openModalHandlerLogin }) => {
       // console.log(errorMessage);
       document.body.querySelector(".errorMessage").textContent =
         "비밀번호가 일치하지 않습니다";
-    } else {
+        document.body.querySelector(".errorMessage").style.fontWeight = "bold"
+    }  else {
       //# 유효성 검증 후 서버에 회원가입 정보 전송 (주석 해제)
       axios
         .post("http://localhost:4001/users/signup", {
@@ -218,7 +215,12 @@ const Signup = ({ openModalHandlerLogin }) => {
           openModalHandler()
         })
         .catch((err) => {
-          console.log(err);
+         if(err.response.status === 409) {
+          document.body.querySelector(".errorMessage").textContent =
+        "이미 가입된 아이디 입니다.";
+        document.body.querySelector(".errorMessage").style.fontWeight = "bold"
+         }
+          
         });
     }
   };

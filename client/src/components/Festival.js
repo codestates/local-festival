@@ -98,7 +98,7 @@ const Festival = ({ authState, festival, togglePick, pickItems }) => {
   }
  
   const onClickMoveDVP = (id) => {
-    console.log(id);
+    //console.log(id);
     navigate(`/Detailviewpage/festival_id/${id}`, { state: festival });
   };
   const toggleLike =  (event) => {
@@ -109,7 +109,7 @@ const Festival = ({ authState, festival, togglePick, pickItems }) => {
   useEffect(()=>{
     const isPicked = pickItems.some(ele => ele.festival_id === festival.id)
     setLike(isPicked)
-    console.log('hey');
+    //console.log('hey');
   })
 
   const onClickPick = (event, id) => {

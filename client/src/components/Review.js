@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 const Header = styled.div`
 display: flex;
 justify-content: space-between;
+
 `
 
 const Button = styled.button`
@@ -130,7 +131,7 @@ const ratingToStar = (rating) => {
       </Modal>: <><Header> <span> <span style={{color:"#1564a9", fontWeight:"bold", fontStyle:"italic"}}>{review.nickname}</span>&nbsp;&nbsp;{ratingToStar(rating)}</span> {review.user_id === authState.user_id &&  <span><Button onClick={modalHandler}><FaTrashAlt size={15} /></Button></span>} </Header>
       <ul>
         <p>{content}</p>
-        <li>작성일시{createdAt} </li>
+        <li>{createdAt} </li>
       </ul></>}
      
     </Wrapper>

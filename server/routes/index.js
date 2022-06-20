@@ -23,7 +23,7 @@ router.post('/pick', (req, res) => {
    
    //* 유저별로 찜한 축제 불러오기 (R)
    //! params로 받아오는건 숫자가 문자열로 받아와지는 것 같음
-   router.get('/pick/:user_id', (req, res) => {
+   router.get('/pick', (req, res) => {
      const user_id = req.params
    console.log('유저 아이디 받아옴??',user_id); //{ user_id: '1' }
      console.log('유저별 픽정보 토큰 ',req.headers.accesstoken);

@@ -29,7 +29,7 @@ const Picklist = ({ festivalData, pickItems, togglePick }) => {
     return (
       <>
         {pickItems.length === 0 ? (
-          <div>찜한 축제가 없습니다</div>
+          <h1 style={{position:"absolute", left:"35rem",top:"25rem"}}>현재 찜하신 축제가 없습니다</h1>
         ) : (
           <Wrapper>
             {renderedItems.map((item, idx) => {
