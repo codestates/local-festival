@@ -231,7 +231,7 @@ const Login = ({ loginHandler }) => {
 
           const { nickname, user_id, username } = response.data.data;
           //# 토큰 설정
-          console.log('ㄴㅓㅁ어와???', response.data.data);
+        //  console.log('ㄴㅓㅁ어와???', response.data.data);
           loginHandler(user_id, username, nickname, true);
         // }
       })

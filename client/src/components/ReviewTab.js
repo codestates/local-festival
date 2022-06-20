@@ -70,21 +70,21 @@ const [listOfReviews, setListOfReviews] = useState([])
     //* api 수정 특정 글의 리뷰로 전달
     axios.get(`http://localhost:4001/review/${festival_id}`)
     .then(response => {
-      console.log(response.data);
+     // console.log(response.data);
       setListOfReviews(response.data)
-      console.log('reviewtab 클릭시 서버에서 리뷰리스트를 받아옵니다.');
+      //console.log('reviewtab 클릭시 서버에서 리뷰리스트를 받아옵니다.');
     })
     .catch(err => {
-      console.log(err);
-      console.log('받아오는게 없어서 dummydata로 대체합니다.');
+     // console.log(err);
+     // console.log('받아오는게 없어서 dummydata로 대체합니다.');
       setListOfReviews(dummydata)
     })
   },[])
 
-const updateReviewList = ({user_id,nickname,content, rating})=>{
+const updateReviewList = ({user_id,nickname,content, rating, createdAt})=>{
   console.log(content, rating, nickname, "reviewTab!!");
 
-  const nextReviewLists = [...listOfReviews, {user_id, nickname, content, rating}]
+  const nextReviewLists = [...listOfReviews, {user_id, nickname, content, rating, createdAt}]
 
   setListOfReviews(nextReviewLists)
 }

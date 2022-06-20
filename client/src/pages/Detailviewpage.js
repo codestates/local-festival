@@ -19,6 +19,11 @@ const Wrapper = styled.div`
   
 `;
 
+
+//70 W
+  //5 T
+  //97% T & D
+
 const ImageAndPickbtn = styled.div`
   margin: 8rem 0 0 1rem;
   display: flex;

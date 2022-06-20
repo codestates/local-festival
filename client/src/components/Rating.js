@@ -28,7 +28,7 @@ display: none;
 const Rating = ({handleRating, howmany}) => {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
-  console.log(howmany);
+  //console.log(howmany);
   const onClickRating = (rating)=>{
     setRating(rating)
     console.log(rating);

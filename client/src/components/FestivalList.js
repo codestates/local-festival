@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const FestivalList = ({authState, festivals, pickItems,togglePick }) => {
-  console.log(festivals);
+ // console.log(festivals);
   if (!festivals) {
     return (
       <div>
