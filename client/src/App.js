@@ -478,8 +478,7 @@ function App() {
         })
   
         //* 새로고침시 유저가 픽한 상태도 유지되야 하므로
-        axios.get(`http://localhost:4001/pick/${user_id}`
-      , {headers: {
+        axios.get(`http://localhost:4001/pick`, {headers: {
         accesstoken: sessionStorage.getItem("accesstoken"),
       }}
       ).then((response) => {

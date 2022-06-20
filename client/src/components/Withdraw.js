@@ -106,7 +106,7 @@ const Withdraw = ({ authState,openModalHandlerMypage }) => {
 
 
   // const that = useRef(null)
-  const warningMessage = useRef(null)
+  const warningMessage = useRef()
   return (
     <ModalContainer>
       <button onClick={openModalHandlerWithdraw}>회원탈퇴</button>

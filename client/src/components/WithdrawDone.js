@@ -88,7 +88,8 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
 
   const pwdNotMatch = ()=> {
     // that.current.value="비밀번호가 일치하지 않습니다."
-    console.log(warningMessage);
+    console.log("here!!!");
+    console.log("here????",warningMessage);
     warningMessage.current.style.display = "block"
     // that.current.focus()
   }
@@ -101,12 +102,14 @@ const WithdrawDone = ({ authState,warningMessage ,passwordCheck,openModalHandler
         console.log('here');
           openModalHandler()
         } else {
-          pwdNotMatch()
+          console.log('일치하지 않을 때');
+         
         }
       }
     )
     .catch(err => {
     console.log(err);
+    pwdNotMatch()
       })
     
 
