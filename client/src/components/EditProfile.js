@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Withdraw from "./Withdraw";
 import styled from "styled-components";
 import axios from "axios";
@@ -104,6 +104,8 @@ const EditProfile = ({ authState, handleAuthState }) => {
     setIsOpen(!isOpen);
   };
 
+  const inputhere = useRef()
+
   const openModalHandlerMypage = () => {
     console.log("here!!!!");
     setIsOpen(!isOpen);
@@ -112,6 +114,11 @@ const EditProfile = ({ authState, handleAuthState }) => {
   setNickname(e.target.value)
  }
   const profileHandler = () => {
+
+if(inputhere.current.value === "") {
+  document.querySelector('.errorMessage').textContent = "최소 한 글자 이상의 단어를 적어주세요"
+ 
+}  else {
     axios.put('http://localhost:4001/users', {nickname},  {headers: { accesstoken: sessionStorage.getItem("accesstoken")}})
     .then(response => {
 
@@ -124,6 +131,9 @@ const EditProfile = ({ authState, handleAuthState }) => {
     .catch(err => {
       console.log(err);
     })
+}
+   
+  
   }
 
   return (
@@ -138,7 +148,8 @@ const EditProfile = ({ authState, handleAuthState }) => {
           >
             <h1>변경할 닉네임을 입력해 주세요</h1>
             <InputsInColumn>
-              <input onChange={nicknameHandler} placeholder="바꿀닉네임"></input>
+              <div className="errorMessage" style={{ color: "Red" }}></div>
+              <input ref={inputhere}  onChange={nicknameHandler} placeholder="바꿀닉네임"></input>
             </InputsInColumn>
             <Controllers>
               <button onClick={profileHandler}>수정하기</button>

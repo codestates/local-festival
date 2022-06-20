@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   border-radius: 0.5rem;
   padding-top: 0;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
  
   /* flex-wrap:nowrap; */
   overflow-y: scroll;
